@@ -13,12 +13,11 @@ pacman::p_load(tidyverse,
 #####################
 ##### Load data #####
 #####################
+#getwd()
+#setwd()
 #data("mtcars")
 #data("iris")
-#schools_tibble <- read.csv("https://raw.githubusercontent.com/HeardLibrary/digital-scholarship/master/data/gis/wg/Metro_Nashville_Schools.csv", stringsAsFactors = FALSE)
-schools_tibble <- read_csv("https://raw.githubusercontent.com/HeardLibrary/digital-scholarship/master/data/gis/wg/Metro_Nashville_Schools.csv")
 schools_tibble <- read_csv("https://raw.githubusercontent.com/HeardLibrary/digital-scholarship/master/data/gis/wg/Metro_Nashville_Schools.csv") %>% clean_names()
-#str(schools_tibble)
 
 #####################
 ###### Scripts ######
