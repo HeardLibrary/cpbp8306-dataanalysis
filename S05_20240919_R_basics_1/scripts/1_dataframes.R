@@ -112,7 +112,7 @@ my_tibble <- read_tsv("test.tsv")
 # tail() shows the last 6 rows
 # names() returns the column names
 # str() describes the structure of the data frame with information about each column
-# How could I get a data.frame with the name below?
+# How could I get a data.frame with the name below using the erg_dframe data.frame?
 head(my_data_frame)
 tail(my_data_frame)
 names(my_data_frame)
@@ -121,8 +121,6 @@ str(my_data_frame)
 # ------------------
 # Subsetting dataframes
 # ------------------
-
-my_data_frame <- erg_dframe
 my_data_frame[1,] # first row
 my_data_frame[,1] 
 my_data_frame[1:3,]
