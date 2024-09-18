@@ -8,7 +8,7 @@ pacman::p_load(tidyverse,
                janitor)
 
 # install_github("mvuorre/exampleRPackage")
-# help(exampleRPackage)
+# help(janitor)
 
 #####################
 ##### Load data #####
