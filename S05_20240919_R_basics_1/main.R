@@ -1,29 +1,22 @@
 #####################
 ##### Libraries #####
 #####################
-#install.packages("pacman")
-#library(pacman)
 pacman::p_load(tidyverse, 
                devtools,
                janitor)
 
-# install_github("mvuorre/exampleRPackage")
-# help(janitor)
-
 #####################
 ##### Load data #####
 #####################
-#getwd()
-#setwd()
-#data("mtcars")
-#data("iris")
 schools_tibble <- read_csv("https://raw.githubusercontent.com/HeardLibrary/digital-scholarship/master/data/gis/wg/Metro_Nashville_Schools.csv") %>% clean_names()
+#write_csv(schools_tibble, "raw_data/schools_tibble.csv")
+#write_csv(schools_tibble, "data/schools_tibble.csv")
+#schools_tibble <- read_csv("data/schools_tibble.csv")
 
 #####################
 ###### Scripts ######
 #####################
-## Clean raw_data file.csv and write to data/clean_file.csv
-source("scripts/0_vectors.R")
-source("scripts/1_dataframes.R")
+## Clean schools_tibble 
+source("scripts/0_clean_data.R")
 
 
