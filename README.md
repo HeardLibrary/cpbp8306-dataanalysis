@@ -15,11 +15,3 @@ This course will focus on practical coding for research using Python and R. We w
 | **S04_20240912_python_session:** | basic Python data manipulation with Pandas, image analysis, and univariate statistics. |
 | **S05_20240919_r_basics_1:**     | R and RStudio and how to use them. Loading packages. Basic 1D and 2D data types and manipulation. |
 | **S06_20240926_r_data_cleaning_2:** | cleaning data using R. Using data cleaning packages like dplyr, janitor, ... |
-
-## Folders
-*  **S01_20240822_python_session:** what is Python and installing Python 
-*  **S02_20240829_python_session:** installing Python environment (miniconda, VScode, jupyter notebooks)
-*  **S03_20240905_python_session:** basic Python variables types and functions
-*  **S04_20240912_python_session:** basic Python data manipulation with Pandas, image analysis, and univariate statistics
-*  **S05_20240919_r_basics_1:** R and RStudio and how to use them. Loading packages. Basic 1D and 2D data types and manipulation.
-*  **S06_20240926_r_data_cleaning_2:** cleaning data using R. Using data cleaning packages like dplyr, janitor, ...
