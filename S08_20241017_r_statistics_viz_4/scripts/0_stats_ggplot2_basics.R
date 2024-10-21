@@ -132,7 +132,6 @@ schools_data %>%
 # -------------------------
 # Combine and export plots
 # -------------------------
-
 english_distadvantage_plot <- ggplot(data = subset(schools_data, School.Level %in% c("Charter", "Elementary School", "High School", "Middle School")), 
                                      aes(x = Limited.English.Proficiency, y = Economically.Disadvantaged)) +
                                      geom_point() +
