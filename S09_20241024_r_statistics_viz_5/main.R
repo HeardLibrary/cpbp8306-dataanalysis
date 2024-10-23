@@ -7,8 +7,12 @@
 
 # Libraries
 pacman::p_load(tidyverse,
+               stats,
+               DataExplorer,
+               lmtest,
                ggrepel,
                janitor,
+               corrplot,
                countrycode,
                patchwork,
                FactoMineR,
@@ -25,4 +29,5 @@ gdp_capita_data <- read_csv("data/gdp_nd_gain.csv") %>% clean_names()
 
 # Scripts
 source("scripts/0_clean_combine_data.R")
-source("scripts/1_multiple_factor_analysis.R")
+source("scripts/1_explore_glm.R")
+source("scripts/2_principle_component_analysis.R")
