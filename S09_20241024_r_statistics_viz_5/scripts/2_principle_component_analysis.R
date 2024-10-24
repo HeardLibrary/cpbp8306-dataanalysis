@@ -100,13 +100,10 @@ wvs_theme <- theme(plot.title = element_text(face="bold",size=24),
                    legend.position = "bottom",
                    legend.title = element_text(face="bold", size=14),
                    legend.text=element_text(size=12),
-                   legend.title.position = "top",
                    axis.title.x = element_text(color="black",size=21,face="bold"),
                    axis.title.y = element_text(color="black",size=21,face="bold"),
                    axis.text.x = element_text(color="black",size=16, angle=0),
-                   axis.text.y = element_text(color="black",size=16, angle=0),
-                   strip.text.x = element_text(size = 18, color="black",face="bold"),
-                   strip.text.y = element_text(size = 18, color="black",face="bold"))
+                   axis.text.y = element_text(color="black",size=16, angle=0))
 # Individual coordinates plot
 ## Define factor for grouping
 all_data_plot <- all_data
@@ -165,13 +162,10 @@ co2_theme <- theme(plot.title = element_text(face="bold",size=24),
                    legend.position = "bottom",
                    legend.title = element_text(face="bold", size=14),
                    legend.text=element_text(size=12),
-                   legend.title.position = "top",
                    axis.title.x = element_text(color="black",size=21,face="bold"),
                    axis.title.y = element_text(color="black",size=21,face="bold"),
                    axis.text.x = element_text(color="black",size=16, angle=0),
-                   axis.text.y = element_text(color="black",size=16, angle=0),
-                   strip.text.x = element_text(size = 18, color="black",face="bold"),
-                   strip.text.y = element_text(size = 18, color="black",face="bold"))
+                   axis.text.y = element_text(color="black",size=16, angle=0))
 # Plots
 model1 <- lm(co2_per_capita ~ dim_1, data = all_data_plot)
 summary(model1)
