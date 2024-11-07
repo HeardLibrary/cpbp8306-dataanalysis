@@ -10,7 +10,8 @@ pacman::p_load(tidyverse,
                dbscan,
                mclust,
                ggdendro,
-               patchwork)
+               patchwork,
+               gridExtra)
 
 ## Load data
 data(iris)

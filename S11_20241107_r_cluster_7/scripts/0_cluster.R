@@ -50,7 +50,7 @@ p2 <- fviz_cluster(k3, geom = "point",  data = iris[, 1:4]) + ggtitle("k = 3")
 p3 <- fviz_cluster(k4, geom = "point",  data = iris[, 1:4]) + ggtitle("k = 4")
 p4 <- fviz_cluster(k5, geom = "point",  data = iris[, 1:4]) + ggtitle("k = 5")
 
-library(gridExtra)
+# Make grid plot
 grid.arrange(p1, p2, p3, p4, nrow = 2)
 
 # Compute optimal number of clusters
@@ -60,7 +60,10 @@ gap_stat <- clusGap(iris[, 1:4], FUN = kmeans, nstart = 25,
                     K.max = 10, B = 50)
 fviz_gap_stat(gap_stat)
 
-# Define the number of clusters and run the algorithm
+# Setting random number to same value for consistent clusters
+set.seed(123)
+
+# Run k-means
 k <- 3
 km_model <- kmeans(iris[, 1:4], centers = k, iter.max = 10, nstart = 1)
 
@@ -173,6 +176,7 @@ sepal_plot <- ggplot(data, aes(x = Sepal.Length, y = Sepal.Width, color = as.fac
     legend.title = element_text(size = 12),
     legend.text = element_text(size = 10)
   )
+sepal_plot
 
 ######################################################
 # Hierarchical Clustering (agglomerative and divisive)
