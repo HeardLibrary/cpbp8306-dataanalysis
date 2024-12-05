@@ -9,12 +9,17 @@ This course will focus on practical coding for research using Python and R. We w
 ## Folders
 | Month    | Savings |
 | -------- | ------- |
-| **S01_20240822_python_session:** | what is Python and installing Python. |
-| **S02_20240829_python_session:** | installing Python environment (miniconda, VScode, jupyter notebooks). |
-| **S03_20240905_python_session:** | basic Python variables types and functions. |
-| **S04_20240912_python_session:** | basic Python data manipulation with Pandas, image analysis, and univariate statistics. |
+| **S01_20240822_python_session:** | What is Python and installing Python. |
+| **S02_20240829_python_session:** | Installing Python environment (miniconda, VScode, jupyter notebooks). |
+| **S03_20240905_python_session:** | Basic Python variables types and functions. |
+| **S04_20240912_python_session:** | Basic Python data manipulation with Pandas, image analysis, and univariate statistics. |
 | **S05_20240919_r_basics_1:**     | R and RStudio and how to use them. Loading packages. Basic 1D and 2D data types and manipulation. |
-| **S06_20240926_r_data_cleaning_2:** | cleaning data using R. Using data cleaning packages like dplyr, janitor, ... |
-| **S07_20241003_r_data_cleaning_3:** | long versus wide data. Combining data sets |
-| **S08_20241017_r_statistics_viz_4:** | base R stat functions and plotting. Basics of ggplot2. |
-
+| **S06_20240926_r_data_cleaning_2:** | Cleaning data using R. Using data cleaning packages like dplyr, janitor, ... |
+| **S07_20241003_r_data_cleaning_3:** | Long versus wide data. Combining data sets |
+| **S08_20241017_r_statistics_viz_4:** | Base R stat functions and plotting. Basics of ggplot2. |
+| **S09_20241024_r_statistics_viz_5:** | Principle component analysis and diagnostic plots. |
+| **S10_20241031_r_modeling_6:** | Tidymodels, linear regression, decision trees, random forest, K-nearest neighbors |
+| **S11_20241107_r_cluster_7:** | Clustering algorithms. K-means clustering, gaussian mixture modeling, heirarchical clustering, DBSCAN. |
+| **S12_20241114_python_session:** | Image analysis, pandas, linear regression continued. |
+| **S13_20241121_r_animations_8:** | Creating animations by looping through data and generating images. |
+| **S14_20241205_presentations_9:** | Student presentations. |
