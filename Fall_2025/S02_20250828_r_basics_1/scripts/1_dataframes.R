@@ -12,7 +12,6 @@ thing <- list(fruit_kind="apple", euler=2.71828, vector_data=animal, curse="!@#$
 thing[[2]]
 thing$curse
 
-
 # --------------------
 # Data frames
 # --------------------
