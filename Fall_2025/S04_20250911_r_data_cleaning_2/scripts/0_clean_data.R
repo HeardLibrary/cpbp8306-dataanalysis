@@ -1,4 +1,10 @@
 # --------------------------
+# Load libraries and data
+# --------------------------
+library(tidyverse)
+schools_tibble <- read_csv("https://raw.githubusercontent.com/HeardLibrary/digital-scholarship/master/data/gis/wg/Metro_Nashville_Schools.csv") %>% clean_names()
+
+# --------------------------
 # If statements, loops, and functions
 # --------------------------
 ## If, else if, else statement
