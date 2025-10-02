@@ -8,7 +8,7 @@ schools_tibble <- read_csv("https://raw.githubusercontent.com/HeardLibrary/digit
 # If statements, loops, and functions
 # --------------------------
 ## If, else if, else statement
-x <- 9
+x <- 11
 if (x < 10) {
   print("x is less than 10")
 } else if (x == 10) {

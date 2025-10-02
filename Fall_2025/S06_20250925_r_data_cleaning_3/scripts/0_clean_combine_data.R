@@ -72,14 +72,14 @@ names(culture_gdp_2020_data)[names(culture_gdp_2020_data) == "x2020"] <- "gdp_ca
 ## Combine culture, gdp, and population data
 culture_gdp_pop_2020_data <- culture_gdp_2020_data %>%
   left_join(subset(population_data, select=c(iso_code, x2020)), by = c("iso_code")) %>%
-  select(iso_code, x2020, everything())
-names(culture_gdp_pop_2020_data)[names(culture_gdp_pop_2020_data) == "x2020"] <- "population_2020"
+  select(iso_code, everything())
+names(culture_gdp_pop_2020_data)[names(culture_gdp_pop_2020_data) == "x2020.x"] <- "population_2020"
 
 ## Combine culture, gdp, population, and vulnerability data
 culture_gdp_pop_vuln_2020_data <- culture_gdp_pop_2020_data %>%
   left_join(subset(vulnerability_data, select=c(iso_code, x2020)), by = c("iso_code")) %>%
-  select(iso_code, x2020, everything())
-names(culture_gdp_pop_vuln_2020_data)[names(culture_gdp_pop_vuln_2020_data) == "x2020"] <- "vulnerability_2020"
+  select(iso_code, everything())
+names(culture_gdp_pop_vuln_2020_data)[names(culture_gdp_pop_vuln_2020_data) == "x2020.x"] <- "vulnerability_2020"
 
 ## Combine culture, gdp, population, vulnerability, and co2 data
 culture_gdp_pop_vuln_co2_2020_data <- culture_gdp_pop_vuln_2020_data %>%
