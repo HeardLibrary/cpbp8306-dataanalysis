@@ -40,7 +40,7 @@ t.test(Economically.Disadvantaged ~ School.Level, data=subset(school_demographic
 chisq.test(school_demographics$Economically.Disadvantaged, school_demographics$School.Level) # Performs a chi-square test of independence on a contingency table.
 school_demographics %>% group_by(School.Level) %>% summarise(count = n()) # Summarizes the number of observations in each group.
 ## Linear regression
-model1 <- lm(Economically.Disadvantaged ~ Hispanic.Latino + Limited.English.Proficiency, data = school_demographics) # Performs linear regression on a dataset.
+model1 <- lm(Economically.Disadvantaged ~ Hispanic.Latino*Limited.English.Proficiency, data = school_demographics) # Performs linear regression on a dataset.
 model1
 summary(model1) # Summarizes the output of a linear regression model.
 # ANOVA
