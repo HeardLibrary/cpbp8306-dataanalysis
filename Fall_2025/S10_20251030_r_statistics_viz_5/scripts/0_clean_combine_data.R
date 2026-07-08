@@ -57,3 +57,4 @@ culture_gdp_pop_vuln_co2_2020_data <- na.omit(culture_gdp_pop_vuln_co2_2020_data
 culture_gdp_pop_vuln_co2_wvs_2020_data <- culture_gdp_pop_vuln_co2_2020_data %>%
   left_join(subset(wvs_regions_data, select=c(iso_code, wvs_region)), by = c("iso_code")) %>% 
   select(iso_code, wvs_region, everything())
+

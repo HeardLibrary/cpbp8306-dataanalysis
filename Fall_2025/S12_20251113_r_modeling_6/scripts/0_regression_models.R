@@ -15,16 +15,17 @@ tidy(lin_reg_fit)
 lin_reg_pred <- predict(lin_reg_fit, new_data = test_data)
 
 # Evaluate the linear regression model performance on the test data
-rmse_vec(test_data$body_mass_g, lin_reg_pred$.pred)
-rsq_vec(test_data$body_mass_g, lin_reg_pred$.pred)
+rmse_vec(test_data$body_mass_g, lin_reg_pred$.pred) # Root Mean Squared Error (lower is better)
+rmse_vec(test_data$body_mass_g, lin_reg_pred$.pred)/mean(test_data$body_mass_g) # RMSE as a percentage of the mean
+rsq_vec(test_data$body_mass_g, lin_reg_pred$.pred) # R-squared (0 to 1)
 
 ###################
 # Decision tree
 ###################
 # Define the decision tree regression model
 tree_model <- decision_tree() %>%
-  set_engine("rpart") %>%
-  set_mode("regression")
+  set_engine("rpart") %>% # Recursive partitioning and regression trees
+  set_mode("regression")  # For continuous numeric outcomes
 
 # Fit the decision tree model to the training data
 tree_fit <- tree_model %>%
@@ -38,6 +39,7 @@ vip(tree_fit)
 
 # Evaluate the decision tree model performance on the test data
 rmse_vec(test_data$body_mass_g, tree_pred$.pred)
+rmse_vec(test_data$body_mass_g, tree_pred$.pred)/mean(test_data$body_mass_g) 
 rsq_vec(test_data$body_mass_g, tree_pred$.pred)
 
 ###################
@@ -60,6 +62,7 @@ vip(rf_fit)
 
 # Evaluate the random forest model performance on the test data
 rmse_vec(test_data$body_mass_g, rf_pred$.pred)
+rmse_vec(test_data$body_mass_g, rf_pred$.pred)/mean(test_data$body_mass_g)
 rsq_vec(test_data$body_mass_g, rf_pred$.pred)
 
 ###################
@@ -69,7 +72,7 @@ rsq_vec(test_data$body_mass_g, rf_pred$.pred)
 # The penalty parameter controls the amount of shrinkage applied to the model coefficients
 # We'll tune this parameter later
 lasso_model <- linear_reg(penalty = tune(), mixture = 1) %>%
-  set_engine("glmnet")
+  set_engine("glmnet") # mixture = 1 indicates LASSO regression, 2 = Ridge, between 0 and 1 = Elastic Net
 
 # Define the parameter grid to tune the LASSO model
 # We'll try 20 different values of the penalty parameter
@@ -102,6 +105,7 @@ lasso_pred <- predict(final_lasso, new_data = test_data)
 
 # Evaluate the LASSO model performance on the test data
 rmse_vec(test_data$body_mass_g, lasso_pred$.pred)
+rmse_vec(test_data$body_mass_g, lasso_pred$.pred)/mean(test_data$body_mass_g)
 rsq_vec(test_data$body_mass_g, lasso_pred$.pred)
 
 #####################
@@ -132,6 +136,7 @@ knn_pred <- predict(final_knn, new_data = test_data)
 
 # Evaluate the k-nearest neighbors model performance on the test data
 rmse_vec(test_data$body_mass_g, knn_pred$.pred)
+rmse_vec(test_data$body_mass_g, knn_pred$.pred)/mean(test_data$body_mass_g)
 rsq_vec(test_data$body_mass_g, knn_pred$.pred)
 
 ###########################

@@ -1,3 +1,6 @@
+# Reset plotting layout
+par(mfrow = c(1, 1))
+
 # Split the data into training and testing sets
 data_split <- initial_split(na.omit(penguins), prop = 0.8)
 train_data <- training(data_split)
@@ -23,8 +26,8 @@ vip(rf_fit)
 rf_prob <- predict(rf_fit, new_data = test_data, type = "prob")
 
 # Calculate the ROC curve and the AUC
-rf_roc_obj <- roc(test_data$sex, rf_prob$.pred_female)
-rf_auc_value <- auc(rf_roc_obj)
+rf_roc_obj <- roc(test_data$sex, rf_prob$.pred_female) # Receiver Operating Characteristic: true positive rate vs. false positive rate
+rf_auc_value <- auc(rf_roc_obj) # Area Under the Curve: closer to 1 is better 0.5 is random guessing
 
 # Plot the ROC curve
 plot(rf_roc_obj)
@@ -36,7 +39,7 @@ rf_auc_value
 # Define the k-nearest neighbors regression model
 knn_model <- nearest_neighbor(neighbors = tune()) %>%
   set_engine("kknn") %>%
-  set_mode("classification")
+  set_mode("classification") # For categorical outcomes
 
 # Tune the k-nearest neighbors model using 5-fold cross-validation
 knn_tune <- tune_grid(
@@ -71,3 +74,10 @@ plot(rf_roc_obj, col = "red")
 plot(knn_roc_obj, col = "blue", add = TRUE)
 rf_auc_value
 knn_auc_value
+
+# Practice exercise:
+# 1. Try adding more predictor variables to the models (e.g., body_mass_g, island).
+# 2. Experiment with different values of k in the k-nearest neighbors model.
+# 3. Try using a different classification algorithm (e.g., logistic regression) and compare its performance.
+# 4. Visualize the decision boundaries of the k-nearest neighbors model.
+

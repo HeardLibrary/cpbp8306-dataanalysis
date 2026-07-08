@@ -20,6 +20,7 @@ countyfips <- us_map("counties")
 statefips <- us_map("states")
 
 
+
 ##################################
 #       Get coordinate data      #
 ##################################
@@ -121,8 +122,8 @@ death_distinct <- subset(south_counties_death,select=-c(long,lat,group,order)) %
 #dates <- colnames(subset(south_counties_covid,select=-c(long,lat,group,order,region,
 #                                                        subregion,state,stateFIPS,statecounty,
 #                                                        countyFIPS,County.Name,State,`1.22.20`:`3.2.20`)))
-start <- match("2020.03.03",names(south_counties_covid))
-end <- match("2020.09.03",names(south_counties_covid))
+start <- match("2022.01.01",names(south_counties_covid))
+end <- match("2023.01.01",names(south_counties_covid))
 dates <- colnames(south_counties_covid)[start:end]
 
 for (date in dates) {
