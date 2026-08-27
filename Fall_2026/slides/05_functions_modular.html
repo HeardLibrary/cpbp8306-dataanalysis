@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CPBP 8306 — Session 5: Functions and Modular Code</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body>
+<div id="stage"><div id="scaler">
+
+<!-- ================================================================= 1 -->
+<section class="slide title">
+  <p class="kicker">CPBP 8306 &middot; Session 5</p>
+  <h1>Functions and<br>Modular Code</h1>
+  <hr>
+  <p>The smallest unit an AI can get right &mdash; and you can check</p>
+  <p><small>Unit 1 — Foundations</small></p>
+  <script type="text/notes">
+    <ul>
+      <li>This is the session that changes how students work for the rest of the semester. Treat it as the keystone of Unit 1.</li>
+      <li>Have <code>demos/05_functions_demo.py</code> open — the refactoring demo is much better performed than described.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 2 -->
+<section class="slide">
+  <p class="kicker">Recap &middot; 0&ndash;3 min</p>
+  <h2>What's wrong with this?</h2>
+  <pre class="py bad sm">
+count_high = 0
+for bp in bp_group_A:
+    if bp &gt;= 140: count_high += 1
+count_high_a = count_high
+
+count_high = 0
+for bp in bp_group_B:
+    if bp &gt;= 140: count_high += 1
+count_high_b = count_high
+</pre>
+  <p class="big center"><strong>Thirty seconds. What bothers you about it?</strong></p>
+  <script type="text/notes">
+    <ul>
+      <li>Answers you want: it's the same logic twice; if the threshold changes you must remember both; the reused <code>count_high</code> variable is a trap.</li>
+      <li>Push further: "what happens when there's a group C?" and "what if you fix a bug in one copy and forget the other?"</li>
+      <li>That second question is the real answer. <strong>Every copy-paste doubles the surface area for bugs.</strong></li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 3 -->
+<section class="slide statement">
+  <h2>You have used functions all semester.<br><span class="gold">Today you write your own.</span></h2>
+  <p class="big"><code style="background:#3a3529;color:#e8c98a">print</code> &nbsp; <code style="background:#3a3529;color:#e8c98a">sum</code> &nbsp; <code style="background:#3a3529;color:#e8c98a">len</code> &nbsp; <code style="background:#3a3529;color:#e8c98a">type</code> &nbsp; <code style="background:#3a3529;color:#e8c98a">mean</code> &nbsp; <code style="background:#3a3529;color:#e8c98a">c</code></p>
+  <p>Somebody wrote each of those. They are not magic. They are just named, reusable blocks &mdash; and yours will be too.</p>
+  <script type="text/notes">
+    <ul>
+      <li>Demystifying built-ins matters: students treat library functions as a separate category of object and it makes them timid.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 4 -->
+<section class="slide">
+  <h2>By the end of today you can&hellip;</h2>
+  <ol class="big">
+    <li>Define a function with parameters, defaults, and a return value.</li>
+    <li>Tell an <strong>argument</strong> from a <strong>parameter</strong> &mdash; the words matter when reading errors.</li>
+    <li>Say what <strong>scope</strong> is and predict where a variable is visible.</li>
+    <li>Recognize the moment code should become a function.</li>
+    <li>Write a docstring &mdash; and use it as a spec you hand to an AI.</li>
+  </ol>
+  <script type="text/notes"><ul><li>Objective 5 is the AI-collaboration payload of the whole unit.</li></ul></script>
+</section>
+
+<!-- ================================================================= 5 -->
+<section class="slide">
+  <p class="kicker">Segment 2 &middot; 3&ndash;12 min</p>
+  <h2>Defining and calling</h2>
+  <div class="cols">
+    <div>
+      <pre class="py sm">
+def count_high(bps, threshold=140):
+    count = 0
+    for bp in bps:
+        if bp &gt;= threshold:
+            count += 1
+    return count
+
+
+count_high(group_a)
+count_high(group_b, threshold=150)
+</pre>
+    </div>
+    <div>
+      <pre class="r sm">
+count_high &lt;- function(bps, threshold = 140) {
+    count &lt;- 0
+    for (bp in bps) {
+        if (bp &gt;= threshold) count &lt;- count + 1
+    }
+    count     # last expression is returned
+}
+
+count_high(group_a)
+count_high(group_b, threshold = 150)
+</pre>
+    </div>
+  </div>
+  <p class="center">Two calls. One definition. The duplicated block from slide 2 is gone.</p>
+  <script type="text/notes">
+    <ul>
+      <li>Note the R quirk: the last expression is the return value. <code>return()</code> exists and is fine to use for clarity.</li>
+      <li>Emphasize that defining a function <em>runs nothing</em>. Students expect output when they hit enter on a <code>def</code>.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 6 -->
+<section class="slide">
+  <h2>Anatomy</h2>
+  <pre class="py plain" style="border-left-color:var(--gold)">
+def   count_high  ( bps ,  threshold=140 ) :
+ ↑        ↑          ↑          ↑
+keyword  name    parameter   parameter with a default
+
+    return count
+      ↑
+   hands the value back to whoever called
+</pre>
+  <table class="sm">
+    <tbody>
+      <tr><td style="width:200px"><strong>Parameter</strong></td><td>The name in the <em>definition</em> — <code>bps</code>, <code>threshold</code>. A placeholder.</td></tr>
+      <tr><td><strong>Argument</strong></td><td>The value you pass at the <em>call</em> — <code>group_a</code>, <code>150</code>. The real thing.</td></tr>
+    </tbody>
+  </table>
+  <div class="footnote">Worth learning properly: error messages say things like <em>&ldquo;missing 1 required positional argument: 'bps'&rdquo;</em> and you need to know which noun is which to act on it.</div>
+  <script type="text/notes">
+    <ul>
+      <li>The analogy that works: a recipe says "flour." Your kitchen has a specific bag. Recipe word = parameter, bag = argument.</li>
+      <li>Trigger the actual error live so they read the message with the vocabulary fresh.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 7 -->
+<section class="slide">
+  <h2>Name your arguments when the meaning isn't obvious</h2>
+  <div class="cols">
+    <div>
+      <div class="box warn">
+        <p class="box-title">Unreadable</p>
+        <pre class="r xs plain" style="background:none;border:none;padding:0;margin:0">t.test(x, y, TRUE, 0.99)</pre>
+        <p class="sm">What is <code>TRUE</code>? Paired? Two-sided? Equal variance? You have to go read the docs to know what this code <em>does</em>.</p>
+      </div>
+    </div>
+    <div>
+      <div class="box ok">
+        <p class="box-title">Self-documenting</p>
+        <pre class="r xs plain" style="background:none;border:none;padding:0;margin:0">t.test(x, y,
+       paired = TRUE,
+       conf.level = 0.99)</pre>
+        <p class="sm">Now the code states its own assumptions. A reviewer &mdash; or you in March &mdash; can check them.</p>
+      </div>
+    </div>
+  </div>
+  <div class="box ai">
+    <p class="box-title">Why this matters for AI-generated code</p>
+    <p>AI often emits the terse positional form. Rewriting it with named arguments is a <strong>reading exercise that doubles as a correctness check</strong> &mdash; you cannot name the arguments without finding out what they are.</p>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>The AI box is a concrete, repeatable habit to give them: "when you paste a call with bare positional arguments, name them before you trust them."</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 8 -->
+<section class="slide">
+  <p class="kicker">Segment 3 &middot; 12&ndash;18 min</p>
+  <h2>Return, don't print</h2>
+  <pre class="py sm">
+def print_high_count(bps):        # side effect only
+    n = sum(bp &gt;= 140 for bp in bps)
+    print(n)
+
+def count_high(bps):              # returns a value
+    return sum(bp &gt;= 140 for bp in bps)
+
+x = print_high_count(bps)     # x is None. Useless downstream.
+y = count_high(bps)           # y is a number. You can keep working.
+</pre>
+  <div class="box gold">
+    <p class="box-title">Rule of thumb</p>
+    <p><strong>Compute &rarr; return. Printing is for humans looking at output; returning is so the next line of code can use the result.</strong></p>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>Run <code>x = print_high_count(bps); print(x)</code> live. Seeing <code>None</code> printed is worth more than the explanation.</li>
+      <li>This is the most common structural mistake in student code all semester. Students who print everything end up recomputing the same values by hand.</li>
+      <li>Legitimate side effects exist: saving a figure, writing a file. The rule is "prefer returning," not "never side-effect."</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 9 -->
+<section class="slide">
+  <p class="kicker">Segment 4 &middot; 18&ndash;24 min</p>
+  <h2>Scope: every function gets its own little world</h2>
+  <pre class="py">
+def demo():
+    x = 5
+    print(x)
+
+demo()        # prints 5
+print(x)      # NameError: name 'x' is not defined
+</pre>
+  <p><code>x</code> lived inside <code>demo()</code> and stopped existing when the function returned.</p>
+  <div class="box ok">
+    <p class="box-title">This is a feature, not an obstacle</p>
+    <p><strong>Scope is what makes functions safe.</strong> A function you wrote in September cannot accidentally clobber a variable in your November script, because its <code>x</code> is a different <code>x</code>. Without scope, every variable name in your project would have to be unique.</p>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>Frame scope as protection from the start. Students first meet it as an error message and conclude it's an annoyance.</li>
+      <li>The counterfactual — "imagine every name shared across your whole project" — is what makes it click.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 10 -->
+<section class="slide">
+  <h2>The global-variable trap</h2>
+  <div class="cols">
+    <div>
+      <div class="box warn">
+        <p class="box-title">Fragile</p>
+        <pre class="py xs plain" style="background:none;border:none;padding:0;margin:0">threshold = 140          # global
+
+def count_high(bps):
+    return sum(bp &gt;= threshold
+               for bp in bps)</pre>
+        <p class="sm">Reads a value from outside itself. Works &mdash; until you copy the function into another script, or someone changes <code>threshold</code> forty lines earlier.</p>
+      </div>
+    </div>
+    <div>
+      <div class="box ok">
+        <p class="box-title">Self-contained</p>
+        <pre class="py xs plain" style="background:none;border:none;padding:0;margin:0">def count_high(bps,
+               threshold=140):
+    return sum(bp &gt;= threshold
+               for bp in bps)</pre>
+        <p class="sm">Everything it needs arrives through the door. Same result, same answer, anywhere, forever.</p>
+      </div>
+    </div>
+  </div>
+  <p class="center"><strong>Reading a global is how you get code that &ldquo;works on my machine&rdquo; and nowhere else.</strong></p>
+  <script type="text/notes">
+    <ul>
+      <li>Note the nasty part: the fragile version does not error. It silently uses whatever <code>threshold</code> happens to be, which is the definition of an irreproducible result.</li>
+      <li>Level 4 of the Unit 1 tutor asks them to refactor exactly this. Mention it.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 11 -->
+<section class="slide">
+  <p class="kicker">Segment 5 &middot; 24&ndash;30 min</p>
+  <h2>When should this be a function?</h2>
+  <ol class="big">
+    <li><strong>You copied it more than once.</strong> Convert it. Non-negotiable.</li>
+    <li><strong>You want to test one piece</strong> of your analysis on its own.</li>
+    <li><strong>You can name what it does in three words.</strong> Then that's its name.</li>
+    <li><strong>You want to hand it to an AI</strong> without pasting your entire analysis.</li>
+  </ol>
+  <div class="box warn">
+    <p class="box-title">And the reverse signal</p>
+    <p>If your function is 200 lines long, it is not one function. It is three or four functions in a trench coat.</p>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>Rule 3 is the practical one: if naming it is hard, the block is doing too many things. Naming difficulty is a design smell.</li>
+      <li>Rule 4 leads directly into the next slide — don't linger.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 12 -->
+<section class="slide">
+  <h2>Docstrings</h2>
+  <pre class="py sm">
+def count_high(bps, threshold=140):
+    """
+    Count how many blood pressure readings meet or exceed a threshold.
+
+    Parameters
+    ----------
+    bps : list of numeric
+        Systolic readings, in mmHg. Missing values are not handled.
+    threshold : numeric, default 140
+        Cutoff at or above which a reading counts as high.
+
+    Returns
+    -------
+    int
+        Number of readings &gt;= threshold.
+    """
+    return sum(bp &gt;= threshold for bp in bps)
+</pre>
+  <script type="text/notes">
+    <ul>
+      <li>Point at the "Missing values are not handled" line. A docstring that records a known limitation is worth more than one that only restates the name.</li>
+      <li>Both editors show docstrings on hover — demo that, it's the payoff that makes students actually write them.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 13 -->
+<section class="slide">
+  <h2><span class="tag r">R</span> The same thing, roxygen-style</h2>
+  <pre class="r sm">
+#' Count high blood pressure readings
+#'
+#' @param bps numeric vector of systolic readings (mmHg)
+#' @param threshold cutoff, default 140
+#' @return integer count of readings at or above threshold
+count_high &lt;- function(bps, threshold = 140) {
+    sum(bps &gt;= threshold)
+}
+</pre>
+  <p>Note the body: R lets us write the vectorized one-liner from last week. Same function, four lines shorter.</p>
+  <div class="footnote">The <code>#'</code> comments are the convention R packages use. Your editor and R's help system both know how to read them.</div>
+  <script type="text/notes">
+    <ul>
+      <li>Call back to Session 4 deliberately — the vectorized body is the reward for last week's lesson.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 14 -->
+<section class="slide statement">
+  <h2>A good docstring is a <span class="gold">specification.</span></h2>
+  <p class="big">Write the docstring first. Hand it to the AI. Get back a body that matches.</p>
+  <p>Then verify it. Always verify it.</p>
+  <script type="text/notes">
+    <ul>
+      <li>This is the workflow the course has been building toward since week 1. Say it as a thesis, not a tip.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 15 -->
+<section class="slide">
+  <h2>Why the function is the right unit for AI collaboration</h2>
+  <div class="cols">
+    <div>
+      <div class="box warn">
+        <p class="box-title">&ldquo;Analyze my data&rdquo;</p>
+        <ul class="tight sm">
+          <li>The model must guess your goal, your data's shape, your assumptions</li>
+          <li>You get 80 lines you didn't specify</li>
+          <li>Checking it means checking all 80 at once</li>
+          <li>When it's wrong, you can't tell where</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="box ok">
+        <p class="box-title">&ldquo;Write this function to this docstring&rdquo;</p>
+        <ul class="tight sm">
+          <li>Inputs, outputs, and edge cases are all stated</li>
+          <li>You get 5 lines with a defined contract</li>
+          <li>You can test it on an input whose answer you know</li>
+          <li>When it's wrong, it's wrong <em>here</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="box gold">
+    <p class="box-title">The test that costs ten seconds</p>
+    <p>Call your new function on input where you already know the answer. <code>count_high([100, 200], threshold=140)</code> must be <code>1</code>. If it isn't, you found the bug before it reached your paper.</p>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>The ten-second test is the single most transferable habit in this deck. Make them do it during the activity.</li>
+      <li>This is the informal ancestor of unit testing. Naming that connection is enough; don't teach pytest.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 16 -->
+<section class="slide">
+  <h2>Vocabulary and traps</h2>
+  <div class="cols">
+    <div>
+      <div class="box">
+        <p class="box-title">Words</p>
+        <ul class="tight sm">
+          <li><strong>Function</strong> — named block: inputs &rarr; output</li>
+          <li><strong>Parameter</strong> — name in the definition</li>
+          <li><strong>Argument</strong> — value at the call</li>
+          <li><strong>Default argument</strong> — used when caller omits it</li>
+          <li><strong>Return value</strong> — what comes back</li>
+          <li><strong>Side effect</strong> — anything else it does</li>
+          <li><strong>Scope</strong> — where a name is visible</li>
+          <li><strong>Docstring</strong> — the contract, in prose</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="box warn">
+        <p class="box-title">Traps</p>
+        <ul class="tight sm">
+          <li>Printing where you should return</li>
+          <li>Copy-pasting a body instead of parameterizing</li>
+          <li>Reaching for a global from inside</li>
+          <li>200-line functions</li>
+          <li>Accepting an AI function without testing it on a known answer</li>
+          <li>Forgetting <code>return</code> entirely (Python gives you <code>None</code>, silently)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script type="text/notes"><ul><li>The last trap is worth a sentence — a missing <code>return</code> in Python is silent, and R's implicit return makes translations between the two error-prone.</li></ul></script>
+</section>
+
+<!-- ================================================================ 17 -->
+<section class="slide">
+  <h2>Activity &amp; next week</h2>
+  <div class="cols">
+    <div>
+      <div class="box ai">
+        <p class="box-title">Week 5 tutor — 20 minutes</p>
+        <p class="sm">You get a wall of copy-pasted code of the kind AI produces, and refactor it into named functions &mdash; deciding what the parameters should be.</p>
+        <p class="sm">Write the docstring <em>before</em> the body.</p>
+      </div>
+    </div>
+    <div>
+      <div class="box gold">
+        <p class="box-title">Next week — last of Unit 1</p>
+        <p class="sm"><strong>Projects, files, and Git.</strong> Where your code lives, and how to undo an AI that just rewrote half of it.</p>
+        <p class="sm">Bring a laptop that can reach github.com.</p>
+      </div>
+    </div>
+  </div>
+  <div class="box warn">
+    <p class="box-title">Due next week</p>
+    <p>Project dataset <strong>registered on Brightspace</strong>, plus a GitHub repo with a README, a <code>.gitignore</code>, and one script.</p>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>Tell them to create their GitHub account <em>before</em> next class — account creation plus email verification eats ten minutes of a 55-minute session.</li>
+    </ul>
+  </script>
+</section>
+
+</div></div>
+<script src="assets/deck.js"></script>
+</body>
+</html>

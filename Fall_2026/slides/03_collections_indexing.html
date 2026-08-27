@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CPBP 8306 — Session 3: Collections and Indexing</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body>
+<div id="stage"><div id="scaler">
+
+<!-- ================================================================= 1 -->
+<section class="slide title">
+  <p class="kicker">CPBP 8306 &middot; Session 3</p>
+  <h1>Collections:<br>Lists, Vectors, Dicts</h1>
+  <hr>
+  <p>Holding many values &mdash; and reaching in to grab the ones you want</p>
+  <p><small>Unit 1 — Foundations</small></p>
+  <script type="text/notes">
+    <ul>
+      <li>Have both a Python REPL and an R console open side by side. This is the week the two languages actually differ, and side-by-side live demo is the only way to make it stick.</li>
+      <li>Whiteboard needed for the indexing diagram — do not skip drawing it.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 2 -->
+<section class="slide mid center">
+  <div class="qcard">
+    <p class="q">Recap warm-up</p>
+    <p class="big">What is the <strong>type</strong> of <code>[1, 2, 3]</code>?</p>
+  </div>
+  <p><small>If anyone says &ldquo;int&rdquo; &mdash; excellent, that is exactly the confusion worth having right now.</small></p>
+  <script type="text/notes">
+    <ul>
+      <li>Answer: <code>list</code>. The <em>contents</em> are ints. A container's type is not its contents' type.</li>
+      <li>This distinction matters enormously in Session 7 when a dataframe column has a dtype separate from the dataframe itself.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 3 -->
+<section class="slide statement">
+  <h2>Real research data is never one value.</h2>
+  <p class="big">It is a <span class="gold">column</span> of blood pressures. A <span class="gold">set</span> of patient IDs. A <span class="gold">table</span> of expression measurements.</p>
+  <p>Before we can analyze anything, we need containers &mdash; and a way to reach in.</p>
+  <script type="text/notes"><ul><li>Thirty seconds. Then move.</li></ul></script>
+</section>
+
+<!-- ================================================================= 4 -->
+<section class="slide">
+  <h2>By the end of today you can&hellip;</h2>
+  <ol class="big">
+    <li>Build a list/vector and pull out an element by position.</li>
+    <li>Explain why Python starts at 0 and R starts at 1 &mdash; and what breaks when you forget.</li>
+    <li>Build a dictionary (Python) or named list (R) that maps names to values.</li>
+    <li>Predict what a slice returns before you run it.</li>
+    <li>Choose the right container for a job.</li>
+  </ol>
+  <script type="text/notes"><ul><li>Objective 4 is the one the tutor drills. Objective 2 is the one on the final quiz.</li></ul></script>
+</section>
+
+<!-- ================================================================= 5 -->
+<section class="slide">
+  <p class="kicker">Segment 2 &middot; 3&ndash;12 min</p>
+  <h2>Lists and vectors</h2>
+  <div class="cols">
+    <div>
+      <p><span class="tag py">Python — list</span></p>
+      <pre class="py sm">
+bp = [117, 122, 141, 130, 118]
+ids = ["P001", "P002", "P003"]
+
+len(bp)
+bp.append(125)
+</pre>
+      <p class="out">5 &nbsp;&nbsp;&nbsp; then bp has 6 elements</p>
+    </div>
+    <div>
+      <p><span class="tag r">R — vector, built with <code>c()</code></span></p>
+      <pre class="r sm">
+bp &lt;- c(117, 122, 141, 130, 118)
+ids &lt;- c("P001", "P002", "P003")
+
+length(bp)
+bp &lt;- c(bp, 125)
+</pre>
+      <p class="out">5 &nbsp;&nbsp;&nbsp; then bp has 6 elements</p>
+    </div>
+  </div>
+  <p><code>c()</code> is short for <strong>combine</strong>. You will type it ten thousand times this semester.</p>
+  <script type="text/notes">
+    <ul>
+      <li>Both are <strong>ordered</strong> — position is meaningful and stable. That's what makes a column a column.</li>
+      <li>Note the asymmetry: Python lists grow in place with <code>.append()</code>; R vectors are rebuilt. Don't belabor it, but it explains why R code looks the way it does.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 6 -->
+<section class="slide">
+  <h2>R vectors are homogeneous &mdash; and silent about it</h2>
+  <pre class="r bad">
+c(1, 2, "three")
+</pre>
+  <p class="out">"1" &nbsp;"2" &nbsp;"three" &nbsp;&nbsp;&mdash; everything became a string. No warning. No error.</p>
+  <div class="box warn">
+    <p class="box-title">This is exactly what happens to your data</p>
+    <p>One row of your <code>age</code> column says <code>"unknown"</code>. R loads the whole column as text. Then <code>mean(age)</code> fails &mdash; and you are three steps downstream by the time you notice.</p>
+  </div>
+  <p>Python lists happily hold mixed types (<code>[117, "high", True]</code> is legal), but you should still keep them homogeneous. A column of one kind of thing is the whole idea.</p>
+  <div class="footnote">Contrast with last week: Python <em>refused</em> to mix types and threw a <code>TypeError</code>. R <em>silently converts</em>. Loud failure beats quiet wrongness.</div>
+  <script type="text/notes">
+    <ul>
+      <li>Run this live. The silence is the lesson — students need to see that nothing happens.</li>
+      <li>Explicitly connect to the footnote: this is the deepest philosophical difference between the two languages, and it shapes how you debug in each.</li>
+      <li>Ask: "which behavior would you rather have?" There's no clean answer — that's a good discussion.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 7 -->
+<section class="slide">
+  <p class="kicker">Segment 3 &middot; 12&ndash;20 min &middot; draw this on the board</p>
+  <h2>Python counts from 0. R counts from 1.</h2>
+  <pre class="plain sm" style="background:var(--panel);border-left-color:var(--gold)">
+  value      117      122      141      130      118
+
+  Python       0        1        2        3        4
+  Python      -5       -4       -3       -2       -1
+
+  R            1        2        3        4        5
+</pre>
+  <div class="cols">
+    <div>
+      <pre class="py xs">
+bp[0]     # 117  first
+bp[1]     # 122  second
+bp[-1]    # 118  LAST
+</pre>
+    </div>
+    <div>
+      <pre class="r xs">
+bp[1]     # 117  first
+bp[2]     # 122  second
+bp[-1]    # 122 141 130 118  ← !!
+</pre>
+    </div>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>Draw the ruler on the whiteboard before showing the slide. The visual is what sticks.</li>
+      <li>Do NOT explain R's <code>-1</code> yet — let the "!!" hang for a beat and ask what they think happened.</li>
+      <li>Useful mental model for Python: the index is the number of steps from the start, not the position.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 8 -->
+<section class="slide statement">
+  <h2>In Python, <span class="gold">-1</span> means &ldquo;the last one.&rdquo;<br>In R, <span class="gold">-1</span> means &ldquo;everything except the first.&rdquo;</h2>
+  <p class="big">Same syntax. Opposite meaning. No error either way.</p>
+  <p>This is the classic silent bug when you paste code between languages &mdash; and AI does it constantly.</p>
+  <script type="text/notes">
+    <ul>
+      <li>This is on the final quiz (A2). Tell them.</li>
+      <li>Real-world framing: ask an AI to "translate this Python to R" and this is the #1 thing it gets wrong in a way that still runs.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 9 -->
+<section class="slide">
+  <h2>Slicing: grabbing a range</h2>
+  <div class="cols">
+    <div>
+      <p><span class="tag py">Python — stop is EXCLUSIVE</span></p>
+      <pre class="py sm">
+bp[1:4]    # [122, 141, 130]
+           # indices 1,2,3 — NOT 4
+bp[:3]     # first three
+bp[-2:]    # last two
+</pre>
+    </div>
+    <div>
+      <p><span class="tag r">R — stop is INCLUSIVE</span></p>
+      <pre class="r sm">
+bp[2:4]    # 122 141 130
+           # indices 2,3 AND 4
+bp[1:3]    # first three
+bp[c(1,3,5)]  # cherry-pick
+</pre>
+    </div>
+  </div>
+  <div class="box gold">
+    <p class="box-title">Why Python excludes the stop</p>
+    <p>So that <code>bp[:3]</code> and <code>bp[3:]</code> split the list perfectly with no overlap and no gap, and so <code>len(bp[a:b]) == b - a</code>. It is consistent once you see it &mdash; it just isn't intuitive on day one.</p>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>The justification box matters: students accept the rule far better once they see it isn't arbitrary.</li>
+      <li>Ask them to predict <code>len(bp[1:4])</code> before revealing. Answer: 3.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 10 -->
+<section class="slide mid center">
+  <div class="qcard">
+    <p class="q">Predict &mdash; ninety seconds, with a neighbor</p>
+    <pre class="plain sm" style="background:#fff;border-left-color:var(--gold);text-align:left">
+bp = [117, 122, 141, 130, 118]     # Python
+bp &lt;- c(117, 122, 141, 130, 118)   # R
+
+Python:  bp[2]      bp[1:3]     bp[-2]     bp[:0]
+R:       bp[2]      bp[1:3]     bp[-2]     bp[0]
+</pre>
+  </div>
+  <p><small>Write your eight answers down before anyone runs anything.</small></p>
+  <script type="text/notes">
+    <ul>
+      <li>Python: <code>141</code>; <code>[122,141]</code>; <code>130</code>; <code>[]</code> (empty).</li>
+      <li>R: <code>122</code>; <code>117 122 141</code>; <code>117 141 130 118</code> (drops the 2nd); <code>numeric(0)</code> (empty — index 0 isn't an error, it's nothing).</li>
+      <li>The two empty results at the end are worth dwelling on: an empty result is not an error, and an analysis that quietly runs on zero rows is a real failure mode.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 11 -->
+<section class="slide">
+  <h2>Boolean indexing &mdash; the idiom that runs the semester</h2>
+  <pre class="r">
+bp &lt;- c(117, 122, 141, 130, 118)
+
+bp &gt; 130           # FALSE FALSE TRUE FALSE FALSE   ← a mask
+bp[bp &gt; 130]       # 141                            ← keep where TRUE
+sum(bp &gt; 130)      # 1                              ← count them
+</pre>
+  <p>Read <code>bp[bp &gt; 130]</code> as: <em>&ldquo;the elements of bp, where bp is over 130.&rdquo;</em></p>
+  <div class="box gold">
+    <p class="box-title">Ring this bell loudly</p>
+    <p>Every filtering operation you do for the rest of the course is this. <code>dplyr::filter()</code> is this. <code>df[df.age &gt; 65]</code> is this. Learn it here, in five elements, before it arrives with fifty thousand rows.</p>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>This is the most important slide in the deck. Spend three minutes on it, not one.</li>
+      <li>Build it in stages live: first show the mask alone, then use it, then count with it. The mask is invisible to students until you print it by itself.</li>
+      <li>Python equivalent needs numpy/pandas to be this clean — that's Session 7. In plain Python it's <code>[x for x in bp if x &gt; 130]</code>, which you can mention but don't teach yet.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 12 -->
+<section class="slide">
+  <p class="kicker">Segment 4 &middot; 20&ndash;27 min</p>
+  <h2>When position is the wrong way to look things up</h2>
+  <p>Sometimes you don't want &ldquo;the third one.&rdquo; You want &ldquo;the one called <code>age</code>.&rdquo;</p>
+  <div class="cols">
+    <div>
+      <p><span class="tag py">Python — dict</span></p>
+      <pre class="py sm">
+patient = {
+    "id": "P042",
+    "age": 61,
+    "systolic": 141,
+    "treated": True
+}
+patient["age"]            # 61
+patient["age"] = 62       # update
+patient["dx"] = "HTN"     # add
+</pre>
+    </div>
+    <div>
+      <p><span class="tag r">R — named list</span></p>
+      <pre class="r sm">
+patient &lt;- list(
+    id = "P042",
+    age = 61,
+    systolic = 141,
+    treated = TRUE
+)
+patient$age               # 61
+patient$age &lt;- 62         # update
+patient$dx &lt;- "HTN"       # add
+</pre>
+    </div>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>Emphasize: a dict is unordered by concept — you never ask for "the third key." You ask by name.</li>
+      <li>R also allows <code>patient[["age"]]</code>, which is what you need when the name is itself in a variable. Mention briefly.</li>
+      <li>Note the key is almost always a string.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 13 -->
+<section class="slide">
+  <h2>Choosing the container</h2>
+  <table>
+    <thead><tr><th style="width:56%">What you have</th><th>Reach for</th></tr></thead>
+    <tbody>
+      <tr><td>A column of measurements — all one kind of thing</td><td><strong>list / vector</strong></td></tr>
+      <tr><td>One subject's attributes — mixed types, named fields</td><td><strong>dict / named list</strong></td></tr>
+      <tr><td>A lookup table — gene &rarr; chromosome, ID &rarr; group</td><td><strong>dict / named list</strong></td></tr>
+      <tr><td>Many subjects, same fields, lined up as a table</td><td><strong>dataframe</strong> — Session 7</td></tr>
+    </tbody>
+  </table>
+  <div class="box gold">
+    <p class="box-title">The foreshadow that ties Unit 1 to Unit 2</p>
+    <p>A dataframe is essentially <strong>a list of dicts, stood up as a rectangle</strong> &mdash; one dict per row, sharing the same keys. Everything you learn today is the machinery underneath week 7.</p>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>The foreshadow is worth real emphasis. Students otherwise experience Session 7 as a hard reset.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 14 -->
+<section class="slide">
+  <h2>Where AI gets this wrong</h2>
+  <div class="box ai">
+    <p class="box-title">Ask an AI to translate this Python to R</p>
+    <pre class="py xs plain" style="background:none;border:none;padding:0;margin:0">last_reading = bp[-1]</pre>
+  </div>
+  <div class="box warn">
+    <p class="box-title">What you may get back</p>
+    <pre class="r xs plain" style="background:none;border:none;padding:0;margin:0">last_reading &lt;- bp[-1]</pre>
+    <p class="sm">Runs perfectly. Returns four values instead of one. Never errors. Your &ldquo;last reading&rdquo; is now most of the dataset.</p>
+  </div>
+  <div class="box ok">
+    <p class="box-title">What you should have gotten</p>
+    <pre class="r xs plain" style="background:none;border:none;padding:0;margin:0">last_reading &lt;- bp[length(bp)]     # or tail(bp, 1)</pre>
+  </div>
+  <p class="center"><strong>You catch this by knowing the rule. Nothing else will catch it.</strong></p>
+  <script type="text/notes">
+    <ul>
+      <li>Be honest: current models often get this one right if asked carefully. The point is that when it's wrong, nothing signals it — no error, no warning, plausible-looking output.</li>
+      <li>Tie back to the Session 1 verification loop: this is caught at step 3, "compare to what you expected." Only if you had an expectation.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 15 -->
+<section class="slide">
+  <h2>Vocabulary and traps</h2>
+  <div class="cols">
+    <div>
+      <div class="box">
+        <p class="box-title">Words</p>
+        <ul class="tight sm">
+          <li><strong>List / vector</strong> — ordered container</li>
+          <li><strong>Element</strong> — one item in it</li>
+          <li><strong>Index</strong> — its position</li>
+          <li><strong>Slice</strong> — a sub-range</li>
+          <li><strong>Boolean mask</strong> — a same-length T/F vector used to select</li>
+          <li><strong>Dict / named list</strong> — name &rarr; value</li>
+          <li><strong>Coercion</strong> — R quietly making everything one type</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="box warn">
+        <p class="box-title">Traps</p>
+        <ul class="tight sm">
+          <li>Forgetting Python starts at 0</li>
+          <li><code>-1</code> meaning two different things</li>
+          <li>Python's exclusive stop vs R's inclusive stop</li>
+          <li>One string silently coercing an R vector</li>
+          <li>Using position where you meant a name</li>
+          <li>An empty result that isn't an error</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script type="text/notes"><ul><li>Leave up during transition.</li></ul></script>
+</section>
+
+<!-- ================================================================ 16 -->
+<section class="slide">
+  <h2>Activity &amp; next week</h2>
+  <div class="cols">
+    <div>
+      <div class="box ai">
+        <p class="box-title">Week 3 tutor — 20 minutes</p>
+        <p class="sm">Indexing puzzles that get progressively nastier, plus cross-language translation problems.</p>
+        <p class="sm"><strong>Predict first, then run.</strong> The tutor will refuse to move on if you skip the prediction.</p>
+      </div>
+    </div>
+    <div>
+      <div class="box gold">
+        <p class="box-title">Next week</p>
+        <p class="sm"><strong>Control flow</strong> — decisions and repetition. This is where you stop typing commands and start writing programs.</p>
+        <p class="sm">Also: the single worst habit AI will teach you, and how to override it.</p>
+      </div>
+    </div>
+  </div>
+  <p class="center big"><strong>Project dataset due next week.</strong> Come with a candidate, even a bad one.</p>
+  <script type="text/notes">
+    <ul>
+      <li>"Even a bad one" is deliberate — a mediocre chosen dataset beats an unchosen perfect one. They can switch by Session 6.</li>
+    </ul>
+  </script>
+</section>
+
+</div></div>
+<script src="assets/deck.js"></script>
+</body>
+</html>

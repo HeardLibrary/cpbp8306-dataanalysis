@@ -1,0 +1,454 @@
+/* ==========================================================================
+   CPBP 8306 — slide deck stylesheet
+   Self-contained. No external fonts, no CDN. Works offline / on a projector
+   with no network. Vanderbilt black + gold.
+   ========================================================================== */
+
+:root {
+  --ink:        #16130e;
+  --ink-soft:   #4a453c;
+  --ink-faint:  #8a8377;
+  --paper:      #fdfcf9;
+  --panel:      #f2efe7;
+  --rule:       #ddd8cb;
+  --gold:       #b8912f;
+  --gold-soft:  #f0e4c4;
+  --py:         #2f6f9f;   /* Python accent  */
+  --r:          #7a4fa3;   /* R accent       */
+  --warn:       #b2402c;   /* errors / traps */
+  --ok:         #3f7d4e;
+
+  --mono: "Cascadia Mono", "SF Mono", "Consolas", "DejaVu Sans Mono", ui-monospace, monospace;
+  --sans: "Segoe UI", "Helvetica Neue", Arial, system-ui, sans-serif;
+
+  --slide-w: 1280px;
+  --slide-h: 720px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #1c1a16;
+  font-family: var(--sans);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+/* --- stage: scales a fixed 1280x720 slide to fit any window ------------- */
+
+#stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#scaler {
+  width: var(--slide-w);
+  height: var(--slide-h);
+  transform-origin: center center;
+  position: relative;
+}
+
+.slide {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.slide.current { display: block; }
+
+/* The real content box. Fixed size, so deck.js can measure overflow and
+   auto-shrink a slide that runs long instead of clipping it. */
+.inner {
+  position: absolute;
+  inset: 48px 64px 56px;
+  display: flex;
+  flex-direction: column;
+  transform-origin: top center;
+}
+
+/* --- typography --------------------------------------------------------- */
+
+.slide h1 {
+  font-size: 60px;
+  line-height: 1.08;
+  margin: 0 0 18px;
+  letter-spacing: -0.02em;
+}
+
+.slide h2 {
+  font-size: 39px;
+  line-height: 1.14;
+  margin: 0 0 20px;
+  letter-spacing: -0.015em;
+}
+
+.slide h3 {
+  font-size: 24px;
+  margin: 0 0 12px;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.slide p, .slide li {
+  font-size: 24px;
+  line-height: 1.42;
+  margin: 0 0 13px;
+}
+
+.slide ul, .slide ol { margin: 0 0 15px; padding-left: 1.15em; }
+.slide li { margin-bottom: 9px; }
+.slide li::marker { color: var(--gold); }
+
+.slide small  { font-size: 19px; color: var(--ink-soft); line-height: 1.4; display: block; }
+.slide strong { font-weight: 700; }
+.slide em     { font-style: italic; }
+
+.tight li { margin-bottom: 4px; }
+.big  p, .big li  { font-size: 30px; }
+.sm   p, .sm  li, .sm td, .sm th { font-size: 20px; }
+.xs   p, .xs  li, .xs td, .xs th { font-size: 17px; }
+
+.center { text-align: center; }
+.mid    { justify-content: center; }
+
+/* --- title slide -------------------------------------------------------- */
+
+.slide.title {
+  background: var(--ink);
+  color: var(--paper);
+  justify-content: center;
+}
+.slide.title h1 { color: var(--paper); font-size: 66px; }
+.slide.title .kicker { color: var(--gold); }
+.slide.title p, .slide.title li { color: #cfc9bd; }
+.slide.title hr { border: 0; border-top: 3px solid var(--gold); width: 120px; margin: 26px 0; }
+
+/* --- statement / punchline slide ---------------------------------------- */
+
+.slide.statement {
+  background: var(--ink);
+  color: var(--paper);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.slide.statement h2 {
+  color: var(--paper);
+  font-size: 52px;
+  max-width: 20em;
+  line-height: 1.18;
+}
+.slide.statement p { color: #cfc9bd; max-width: 26em; }
+.slide.statement .gold { color: var(--gold); }
+
+/* --- kickers and labels ------------------------------------------------- */
+
+.kicker {
+  font-size: 16px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+.tag.py   { background: var(--py);   color: #fff; }
+.tag.r    { background: var(--r);    color: #fff; }
+.tag.warn { background: var(--warn); color: #fff; }
+.tag.ok   { background: var(--ok);   color: #fff; }
+
+/* --- layout helpers ----------------------------------------------------- */
+
+.cols   { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
+.cols3  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; align-items: start; }
+.cols-2-3 { display: grid; grid-template-columns: 2fr 3fr; gap: 30px; align-items: start; }
+.cols-3-2 { display: grid; grid-template-columns: 3fr 2fr; gap: 30px; align-items: start; }
+.grow   { flex: 1; min-height: 0; }
+
+/* --- code --------------------------------------------------------------- */
+
+pre {
+  font-family: var(--mono);
+  font-size: 21px;
+  line-height: 1.5;
+  background: var(--panel);
+  border-left: 5px solid var(--rule);
+  border-radius: 4px;
+  padding: 16px 18px;
+  margin: 0 0 16px;
+  overflow: hidden;
+  white-space: pre;
+  tab-size: 4;
+}
+pre.py { border-left-color: var(--py); }
+pre.r  { border-left-color: var(--r); }
+pre.bad  { border-left-color: var(--warn); background: #fbf0ee; }
+pre.good { border-left-color: var(--ok);   background: #eff6f0; }
+pre.term { background: var(--ink); color: #e5e0d5; border-left-color: var(--gold); }
+pre.sm { font-size: 18px; }
+pre.xs { font-size: 15.5px; line-height: 1.45; }
+
+code {
+  font-family: var(--mono);
+  font-size: 0.92em;
+  background: var(--gold-soft);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+pre code { background: none; padding: 0; font-size: inherit; }
+
+/* syntax highlighting (applied by deck.js) */
+.tok-com { color: #7d7565; font-style: italic; }
+.tok-str { color: #9a5b1e; }
+.tok-kw  { color: #1f5ba0; font-weight: 600; }
+.tok-num { color: #7a4fa3; }
+.tok-fn  { color: #35625c; }
+.tok-op  { color: #4a453c; }
+pre.term .tok-com { color: #9a9384; }
+pre.term .tok-str { color: #e0b070; }
+pre.term .tok-kw  { color: #8fc0ef; }
+pre.term .tok-num { color: #c9a6e0; }
+pre.term .tok-fn  { color: #8fd0c4; }
+pre.term .tok-op  { color: #cfc9bd; }
+
+.out {
+  font-family: var(--mono);
+  font-size: 19px;
+  color: var(--ink-soft);
+  margin: -8px 0 16px 6px;
+}
+.out::before { content: "→ "; color: var(--gold); font-weight: 700; }
+
+/* --- callout boxes ------------------------------------------------------ */
+
+.box {
+  border: 2px solid var(--rule);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 0 0 16px;
+  background: #fff;
+}
+.box > :last-child { margin-bottom: 0; }
+.box .box-title {
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: var(--ink-faint);
+}
+.box.gold { border-color: var(--gold); background: #fdf9ef; }
+.box.gold .box-title { color: var(--gold); }
+.box.warn { border-color: var(--warn); background: #fbf3f1; }
+.box.warn .box-title { color: var(--warn); }
+.box.ok   { border-color: var(--ok);   background: #f1f7f2; }
+.box.ok   .box-title { color: var(--ok); }
+.box.ai   { border-color: var(--py);   background: #f0f5fa; }
+.box.ai   .box-title { color: var(--py); }
+
+/* --- tables ------------------------------------------------------------- */
+
+table { border-collapse: collapse; width: 100%; margin: 0 0 16px; }
+th, td {
+  text-align: left;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 21px;
+  vertical-align: top;
+}
+th {
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border-bottom: 2px solid var(--ink);
+}
+td code { font-size: 0.9em; }
+tr:last-child td { border-bottom: none; }
+
+/* --- misc components ---------------------------------------------------- */
+
+.pipeline {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  margin: 0 0 18px;
+}
+.pipeline .step {
+  flex: 1;
+  background: var(--panel);
+  border-top: 4px solid var(--gold);
+  border-radius: 4px;
+  padding: 12px 14px;
+  font-size: 19px;
+  line-height: 1.35;
+}
+.pipeline .step b { display: block; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+
+.qcard {
+  border: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 20px 26px;
+  background: #fdf9ef;
+  margin: 0 0 18px;
+}
+.qcard .q { font-size: 15px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+.qcard p:last-child { margin-bottom: 0; }
+
+.footnote {
+  margin-top: auto;
+  padding-bottom: 0;
+  font-size: 17px;
+  color: var(--ink-faint);
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+}
+
+/* --- chrome: progress, slide number, notes ------------------------------ */
+
+#progress {
+  position: fixed;
+  left: 0; bottom: 0;
+  height: 4px;
+  background: var(--gold);
+  z-index: 40;
+  transition: width .15s ease;
+}
+
+#counter {
+  position: fixed;
+  right: 12px; bottom: 10px;
+  font: 600 13px/1 var(--mono);
+  color: #6d6659;
+  z-index: 40;
+  letter-spacing: .06em;
+}
+
+#notes {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  max-height: 42vh;
+  overflow-y: auto;
+  background: #14120f;
+  color: #ddd7ca;
+  border-top: 3px solid var(--gold);
+  padding: 16px 24px 20px;
+  font-size: 16px;
+  line-height: 1.55;
+  z-index: 50;
+  display: none;
+}
+#notes.on { display: block; }
+#notes h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+#notes ul { margin: 0 0 8px; padding-left: 1.2em; }
+#notes li { margin-bottom: 5px; }
+#notes p  { margin: 0 0 8px; }
+#notes code { background: #2c2822; color: #e8c98a; }
+#notes .none { color: #77716a; font-style: italic; }
+
+#help {
+  position: fixed;
+  inset: 0;
+  background: rgba(20,18,15,.94);
+  color: #eee8dc;
+  z-index: 60;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+#help.on { display: flex; }
+#help table { width: auto; }
+#help td { border: none; padding: 6px 18px; font-size: 20px; color: #eee8dc; }
+#help td:first-child { font-family: var(--mono); color: var(--gold); text-align: right; }
+
+/* --- overview mode ------------------------------------------------------ */
+
+body.overview { overflow: auto; background: #1c1a16; }
+body.overview #stage { position: static; display: block; padding: 24px; }
+body.overview #scaler {
+  width: auto; height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  transform: none !important;
+}
+body.overview .slide {
+  display: block !important;
+  position: relative;
+  inset: auto;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 2px solid #34302a;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+}
+body.overview .slide * { pointer-events: none; }
+body.overview .slide.current { border-color: var(--gold); }
+body.overview .slide::after {
+  content: attr(data-n);
+  position: absolute;
+  right: 0; bottom: 0;
+  background: rgba(20,18,15,.8);
+  color: var(--gold);
+  font: 600 20px var(--mono);
+  padding: 2px 8px;
+  z-index: 5;
+}
+/* shrink the real slide innards down into the thumbnail */
+body.overview .slide .inner {
+  position: absolute;
+  top: 0; left: 0;
+  inset: auto;
+  width: var(--slide-w);
+  height: var(--slide-h);
+  padding: 48px 64px 56px;
+  transform: scale(var(--thumb-scale, 0.25)) !important;
+  transform-origin: top left;
+}
+body.overview #progress, body.overview #counter, body.overview #notes { display: none; }
+
+/* --- print to PDF ------------------------------------------------------- */
+
+@page { size: 1280px 720px; margin: 0; }
+
+@media print {
+  html, body { overflow: visible; height: auto; background: #fff; }
+  #stage { position: static; display: block; }
+  #scaler { width: auto; height: auto; transform: none !important; }
+  .slide {
+    display: block !important;
+    position: relative;
+    inset: auto;
+    width: var(--slide-w);
+    height: var(--slide-h);
+    page-break-after: always;
+    break-after: page;
+    border: none;
+  }
+  #progress, #counter, #notes, #help { display: none !important; }
+}

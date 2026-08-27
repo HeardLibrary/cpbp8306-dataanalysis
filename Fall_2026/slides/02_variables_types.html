@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CPBP 8306 — Session 2: Variables and Types</title>
+<link rel="stylesheet" href="assets/deck.css">
+</head>
+<body>
+<div id="stage"><div id="scaler">
+
+<!-- ================================================================= 1 -->
+<section class="slide title">
+  <p class="kicker">CPBP 8306 &middot; Session 2</p>
+  <h1>Variables, Types,<br>and Expressions</h1>
+  <hr>
+  <p>Where most of your bugs will come from &mdash; and how to see them</p>
+  <p><small>Unit 1 — Foundations &middot; Python-first, R alongside</small></p>
+  <script type="text/notes">
+    <ul>
+      <li>Open <code>demos/02_types_demo.py</code> in one window and an R console in another before class.</li>
+      <li>Quick poll: who got both installs working? Note who didn't and pair them with the TA during the activity.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 2 -->
+<section class="slide mid">
+  <p class="kicker">Recap &middot; 0&ndash;3 min</p>
+  <h2>Last week we broke a research question into six steps.</h2>
+  <p class="big">Somebody name one.</p>
+  <p><small>read the file &rarr; look at the data &rarr; split into groups &rarr; compute means &rarr; test the difference &rarr; report it</small></p>
+  <div class="box gold">
+    <p class="box-title">Today</p>
+    <p>Every one of those steps moves <em>values</em> around. Today is about what a value <strong>is</strong>.</p>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>Take two answers, thirty seconds. Don't let this run long — the meat is later.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 3 -->
+<section class="slide statement">
+  <h2>Most bugs a beginner hits &mdash; and most bugs an AI slips past you &mdash; are <span class="gold">type bugs.</span></h2>
+  <p class="big">You wrote <code style="background:#3a3529;color:#e8c98a">"5"</code> when you meant <code style="background:#3a3529;color:#e8c98a">5</code>.<br>You averaged a column that was secretly text.</p>
+  <p>Once you can <em>see</em> types, you can debug them.</p>
+  <script type="text/notes">
+    <ul>
+      <li>Call back to slide 4 of last week — the trailing-space bug was a type/value bug that ran silently.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 4 -->
+<section class="slide">
+  <h2>By the end of today you can&hellip;</h2>
+  <ol class="big">
+    <li>Explain what assignment actually does &mdash; and why <code>=</code> is not <code>==</code>.</li>
+    <li>Name the four primitive types and where each shows up in research data.</li>
+    <li>Predict the result of a mixed-type expression, including the surprising ones.</li>
+    <li>Read a <code>TypeError</code> traceback and find the line that caused it.</li>
+  </ol>
+  <script type="text/notes"><ul><li>Objective 4 is the one that pays off every week for the rest of the semester.</li></ul></script>
+</section>
+
+<!-- ================================================================= 5 -->
+<section class="slide">
+  <p class="kicker">Segment 2 &middot; 3&ndash;10 min</p>
+  <h2>Assignment is a <em>command</em>, not a claim</h2>
+  <div class="cols">
+    <div>
+      <div class="box">
+        <p class="box-title">In math</p>
+        <p><code>x = 5</code> is a <strong>claim about the world.</strong></p>
+        <p><code>5 = x</code> means exactly the same thing.</p>
+      </div>
+    </div>
+    <div>
+      <div class="box gold">
+        <p class="box-title">In code</p>
+        <p><code>x = 5</code> is an <strong>instruction</strong>: &ldquo;store the value 5 in a box I will call <code>x</code>.&rdquo;</p>
+        <p><code>5 = x</code> is a syntax error. You cannot store something into a 5.</p>
+      </div>
+    </div>
+  </div>
+  <pre class="py">
+patient_id = 42
+patient_id = patient_id + 1    # read the RIGHT side first, then store it
+print(patient_id)
+</pre>
+  <p class="out">43</p>
+  <script type="text/notes">
+    <ul>
+      <li>The line <code>patient_id = patient_id + 1</code> is nonsense as an equation and obvious as a command. That contrast is the whole segment.</li>
+      <li>Say the reading rule out loud: <strong>right side first, then store.</strong> Students who internalize this stop being confused by reassignment.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 6 -->
+<section class="slide">
+  <h2><span class="tag r">R</span> Same idea, different ink</h2>
+  <pre class="r">
+patient_id &lt;- 42
+patient_id &lt;- patient_id + 1
+print(patient_id)
+</pre>
+  <p class="out">43</p>
+  <p>R uses <code>&lt;-</code> by convention. <code>=</code> also works, but every R codebase you will ever read uses the arrow, so use the arrow.</p>
+  <div class="box gold">
+    <p class="box-title">Naming rules — identical in both languages</p>
+    <ul class="tight sm">
+      <li>Letters, digits, underscore. Start with a letter. No spaces.</li>
+      <li>Case-sensitive: <code>Patient</code> and <code>patient</code> are two different variables.</li>
+      <li><code>bp_systolic</code> is a hundred times more useful than <code>x1</code>. Future-you is a stranger.</li>
+      <li>Anti-pattern: naming every intermediate step <code>data</code>. You will lose track of which step you're on.</li>
+    </ul>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>The "future-you is a stranger" line is worth saying — it reframes naming from style to self-defense.</li>
+      <li>Case-sensitivity bites people who came from Excel. Mention it.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 7 -->
+<section class="slide">
+  <p class="kicker">Segment 3 &middot; 10&ndash;18 min</p>
+  <h2>Four types, and where they live in your data</h2>
+  <table>
+    <thead><tr><th>Type</th><th>Python</th><th>R</th><th>In a research dataset</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Integer</strong></td><td><code>int</code></td><td><code>integer</code></td><td>Number of trials, patient count, read depth</td></tr>
+      <tr><td><strong>Float</strong></td><td><code>float</code></td><td><code>numeric</code></td><td>Blood pressure 117.3, expression level, p-value</td></tr>
+      <tr><td><strong>String</strong></td><td><code>str</code></td><td><code>character</code></td><td>Patient ID <code>"P042"</code>, sample name, group label</td></tr>
+      <tr><td><strong>Boolean</strong></td><td><code>bool</code></td><td><code>logical</code></td><td>Passed QC? Treated? Above threshold?</td></tr>
+    </tbody>
+  </table>
+  <div class="footnote">A fifth one is coming in Session 7: <strong>missing</strong> (<code>NaN</code> / <code>NA</code>). It is a type of its own and it will cause you trouble.</div>
+  <script type="text/notes">
+    <ul>
+      <li>Ask for a research example of each from the room before you show the last column.</li>
+      <li>Patient IDs are the classic trap: they look numeric, they are not numeric, and treating them as numeric loses leading zeros forever.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 8 -->
+<section class="slide">
+  <h2>The single most useful debugging move of the semester</h2>
+  <div class="cols">
+    <div>
+      <p><span class="tag py">Python</span></p>
+      <pre class="py sm">
+type(patient_id)
+type("P042")
+type(True)
+type(117.3)
+</pre>
+      <p class="out">&lt;class 'int'&gt; &nbsp; &lt;class 'str'&gt;<br>&nbsp; &nbsp;&lt;class 'bool'&gt; &nbsp; &lt;class 'float'&gt;</p>
+    </div>
+    <div>
+      <p><span class="tag r">R</span></p>
+      <pre class="r sm">
+class(patient_id)
+class("P042")
+class(TRUE)
+class(117.3)
+</pre>
+      <p class="out">"numeric" &nbsp; "character"<br>&nbsp; &nbsp;"logical" &nbsp; "numeric"</p>
+    </div>
+  </div>
+  <div class="box gold">
+    <p class="box-title">Habit to build starting now</p>
+    <p class="sm">When something behaves strangely, <strong>check the type before you check anything else.</strong> Three seconds, and it is the answer surprisingly often.</p>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>Note that R has no separate integer class by default — <code>class(42)</code> is "numeric". Mention it, don't dwell.</li>
+      <li>Session 7 version of this habit: <code>df.dtypes</code> in pandas, <code>str(df)</code> in R. Foreshadow.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================= 9 -->
+<section class="slide">
+  <h2>Gotcha 1: booleans are secretly numbers</h2>
+  <pre class="py">
+passed_qc = [True, False, True, True, False]
+
+sum(passed_qc)                    # counts the Trues
+sum(passed_qc) / len(passed_qc)   # fraction that passed
+</pre>
+  <p class="out">3 &nbsp;&nbsp;then&nbsp;&nbsp; 0.6</p>
+  <p><code>True</code> is 1 and <code>False</code> is 0 when you do arithmetic on them. Same in R: <code>sum(c(TRUE, FALSE, TRUE))</code> is <code>2</code>.</p>
+  <div class="box ok">
+    <p class="box-title">This is not a curiosity — it is the idiom</p>
+    <p>&ldquo;What fraction of my samples passed QC?&rdquo; is literally <code>mean(passed_qc)</code>. Averaging a column of true/false gives you a proportion.</p>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>This is the first genuinely useful trick of the course. Make sure it lands — ask them what <code>mean(age &gt; 65)</code> would give.</li>
+      <li>Answer: the proportion of patients over 65. That reframing is the seed of all filtering later.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 10 -->
+<section class="slide">
+  <h2>Gotcha 2: the Excel-to-CSV type disaster</h2>
+  <pre class="py bad">
+"5" + "3"        # two strings
+</pre>
+  <p class="out">'53' &nbsp;&nbsp;&mdash; not 8. <code>+</code> on strings means &ldquo;glue together.&rdquo;</p>
+  <pre class="py bad">
+"5" + 3          # a string and a number
+</pre>
+  <p class="out">TypeError &nbsp;&nbsp;&mdash; Python refuses to guess what you meant.</p>
+  <div class="box warn">
+    <p class="box-title">Why you will meet this in week 7</p>
+    <p>One cell in your <code>age</code> column says <code>"unknown"</code>, or has a stray comma, or a trailing space. The whole column loads as text. <code>mean(age)</code> then fails &mdash; or worse, quietly does something else.</p>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>Ask: "is Python refusing a good thing or a bad thing here?" Good — the alternative is a silent wrong answer. Contrast with R's silent coercion next week.</li>
+      <li>Real example if you have one: a genotype column where "1/1" got autocorrected to a date by Excel.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 11 -->
+<section class="slide mid center">
+  <div class="qcard">
+    <p class="q">Predict before you run &mdash; sixty seconds, with a neighbor</p>
+    <pre class="plain xs" style="background:#fff;border-left-color:var(--gold);text-align:left">
+a = 5
+b = "5"
+c = 5.0
+d = True
+
+a == c        ?
+a == b        ?
+d == 1        ?
+b * 3         ?
+</pre>
+  </div>
+  <p><small>Commit to an answer out loud <em>before</em> anyone types it.</small></p>
+  <script type="text/notes">
+    <ul>
+      <li>Answers: <code>True</code> (5 equals 5.0); <code>False</code> (number vs string, no error, just False — this one surprises people); <code>True</code> (booleans are numbers); <code>'555'</code> (string repetition).</li>
+      <li><code>a == b</code> is the important one: it does <em>not</em> error, it just quietly says False. That is exactly how a silent bug survives a whole analysis.</li>
+      <li>Then run it live so they see it.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 12 -->
+<section class="slide">
+  <p class="kicker">Segment 4 &middot; 18&ndash;25 min</p>
+  <h2>Expressions and the operators you need</h2>
+  <table class="sm">
+    <thead><tr><th style="width:210px">Operator</th><th>Means</th><th>Research example</th></tr></thead>
+    <tbody>
+      <tr><td><code>+ - * /</code></td><td>arithmetic</td><td><code>weight / height**2</code></td></tr>
+      <tr><td><code>**</code> (Py) &nbsp; <code>^</code> (R)</td><td>exponent</td><td><code>sd**2</code> — variance from SD</td></tr>
+      <tr><td><code>%</code> (Py) &nbsp; <code>%%</code> (R)</td><td>remainder</td><td>even/odd, every-nth-row checks</td></tr>
+      <tr><td><code>==</code> &nbsp; <code>!=</code></td><td>equality test &rarr; boolean</td><td><code>group == "treated"</code></td></tr>
+      <tr><td><code>&lt; &gt; &lt;= &gt;=</code></td><td>comparison &rarr; boolean</td><td><code>age &gt;= 65</code></td></tr>
+      <tr><td><code>and or not</code> (Py)<br><code>&amp; | !</code> (R)</td><td>combine booleans</td><td><code>age &gt;= 65 and treated</code></td></tr>
+    </tbody>
+  </table>
+  <div class="footnote">Everything in the bottom three rows produces a <strong>boolean</strong> — which, per two slides ago, you can then <code>sum()</code> or <code>mean()</code>.</div>
+  <script type="text/notes">
+    <ul>
+      <li>Don't read the table. Point at the bottom three rows and connect them to the boolean trick — that connection is the payoff.</li>
+      <li>Note Python's <code>%</code> vs R's <code>%%</code> — a small translation trap.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 13 -->
+<section class="slide statement">
+  <h2><span class="gold">=</span> assigns. &nbsp; <span class="gold">==</span> asks.</h2>
+  <p class="big"><code style="background:#3a3529;color:#e8c98a">if x = 5</code> is an error.<br><code style="background:#3a3529;color:#e8c98a">if x == 5</code> is a question.</p>
+  <p>This is the single most common beginner typo. It will not be the last time you see this slide.</p>
+  <script type="text/notes">
+    <ul>
+      <li>In R, <code>if (mean(xs) = 3)</code> is also an error, but for a different reason — it tries to assign to a function call. This exact snippet is on the final quiz.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 14 -->
+<section class="slide">
+  <h2>Gotcha 3: floats are approximate</h2>
+  <pre class="py bad">
+0.1 + 0.2
+0.1 + 0.2 == 0.3
+</pre>
+  <p class="out">0.30000000000000004 &nbsp;&nbsp;then&nbsp;&nbsp; False</p>
+  <p>This is not a Python bug. It is how binary computers store decimals &mdash; R does it too, it just prints fewer digits and hides it from you.</p>
+  <div class="cols">
+    <div>
+      <div class="box warn">
+        <p class="box-title">Never</p>
+        <pre class="py xs plain" style="margin:0;background:none;border:none;padding:0">if p_value == 0.05:</pre>
+      </div>
+    </div>
+    <div>
+      <div class="box ok">
+        <p class="box-title">Instead</p>
+        <pre class="py xs plain" style="margin:0;background:none;border:none;padding:0">if abs(a - b) &lt; 1e-9:
+np.isclose(a, b)      # Python
+all.equal(a, b)       # R</pre>
+      </div>
+    </div>
+  </div>
+  <script type="text/notes">
+    <ul>
+      <li>R hiding it is the interesting half: <code>0.1 + 0.2 == 0.3</code> is FALSE in R too, but <code>print(0.1+0.2)</code> shows 0.3. Demo it if you have R up — it makes the point that a clean-looking printout proves nothing.</li>
+      <li>Where this actually bites research code: filtering on an exact threshold, or checking whether proportions sum to 1.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 15 -->
+<section class="slide">
+  <p class="kicker">Segment 5 &middot; 25&ndash;30 min</p>
+  <h2>How to read a traceback</h2>
+  <pre class="term">
+Traceback (most recent call last):
+  File "analysis.py", line 12, in &lt;module&gt;
+    total_age = ages_str + 10
+TypeError: can only concatenate str (not "int") to str
+</pre>
+  <ol class="sm">
+    <li><strong>Read the bottom line first.</strong> That is the actual complaint: Python saw a <em>string</em> on the left of <code>+</code>.</li>
+    <li><strong>Then the file and line.</strong> <code>analysis.py</code>, line 12. Go there.</li>
+    <li><strong>Then the offending code.</strong> Now you know <code>ages_str</code> is a string when you thought it was a number.</li>
+    <li><strong>Then fix the cause, not the symptom.</strong> <code>int(ages_str) + 10</code> patches it. Better: fix wherever <code>ages_str</code> got assigned.</li>
+  </ol>
+  <script type="text/notes">
+    <ul>
+      <li>Say "read from the bottom up" twice. It is the single highest-yield sentence in this lecture.</li>
+      <li>The middle of a long traceback is usually library internals — teach them it's fine to skip it.</li>
+      <li>Point 4 matters: the bug is almost always upstream of the line that crashed.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 16 -->
+<section class="slide">
+  <h2>Pasting the error into ChatGPT</h2>
+  <div class="box ai">
+    <p class="box-title">This is a legitimate move &mdash; with a catch</p>
+    <p>ChatGPT reads the same four things you just read, and it is genuinely good at explaining what a <code>TypeError</code> means.</p>
+  </div>
+  <div class="box warn">
+    <p class="box-title">The catch</p>
+    <p>It does not know what <code>ages_str</code> <strong>should have been.</strong> It will confidently suggest <code>str(10)</code> &mdash; making the numbers into text and producing <code>"4210"</code> &mdash; because that also makes the error go away.</p>
+    <p><strong>Making the error go away is not the same as fixing the bug.</strong></p>
+  </div>
+  <p class="center">Better prompt: <em>&ldquo;This errors. <strong>I expect <code>ages_str</code> to hold ages as numbers.</strong> Where did it become a string?&rdquo;</em></p>
+  <script type="text/notes">
+    <ul>
+      <li>This slide is the AI-literacy core of the week. The fix that silences the error is often the wrong fix.</li>
+      <li>The better prompt works because it supplies the one thing the model cannot know: intent.</li>
+    </ul>
+  </script>
+</section>
+
+<!-- ================================================================ 17 -->
+<section class="slide">
+  <h2>Vocabulary and traps</h2>
+  <div class="cols">
+    <div>
+      <div class="box">
+        <p class="box-title">Words</p>
+        <ul class="tight sm">
+          <li><strong>Variable</strong> — a named box holding a value</li>
+          <li><strong>Assignment</strong> — putting a value in the box</li>
+          <li><strong>Type</strong> — the kind of value</li>
+          <li><strong>Expression</strong> — code that evaluates to a value</li>
+          <li><strong>Traceback</strong> — the error report</li>
+          <li><strong>Coercion</strong> — converting one type to another</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="box warn">
+        <p class="box-title">Traps we saw</p>
+        <ul class="tight sm">
+          <li><code>=</code> where you meant <code>==</code></li>
+          <li>Assuming CSV numbers loaded as numbers</li>
+          <li>Comparing floats with <code>==</code></li>
+          <li>Reading only the top of a traceback</li>
+          <li>Accepting an AI fix that silences rather than solves</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script type="text/notes"><ul><li>Leave this up during the transition to the activity.</li></ul></script>
+</section>
+
+<!-- ================================================================ 18 -->
+<section class="slide">
+  <h2>Activity &amp; next week</h2>
+  <div class="cols">
+    <div>
+      <div class="box ai">
+        <p class="box-title">Week 2 tutor — 20 minutes</p>
+        <p class="sm">Seven problems. You will be handed broken code and asked to <strong>predict</strong> what it does before running it.</p>
+        <p class="sm">Predicting wrong is fine and expected. Refusing to predict is not.</p>
+        <p class="sm">Transcript to Brightspace before you leave.</p>
+      </div>
+    </div>
+    <div>
+      <div class="box gold">
+        <p class="box-title">Next week</p>
+        <p class="sm"><strong>Collections</strong> — lists, vectors, dictionaries. One value becomes many values, and we learn to reach in and grab the ones we want.</p>
+        <p class="sm">Also: the first place Python and R genuinely disagree.</p>
+      </div>
+    </div>
+  </div>
+  <p class="center"><small>Reminder: choose your project dataset by Session 4. That is two weeks from now.</small></p>
+  <script type="text/notes"><ul><li>Repeat the dataset deadline every single week from here until Session 6.</li></ul></script>
+</section>
+
+</div></div>
+<script src="assets/deck.js"></script>
+</body>
+</html>
