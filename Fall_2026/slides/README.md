@@ -7,8 +7,7 @@ slides/
 ├── assets/deck.css    shared styling
 ├── assets/deck.js     the slide engine (~250 lines, no dependencies)
 ├── CPBP8306_Session1_Thinking_Like_a_Coder.pptx   ← Session 1 (PowerPoint)
-├── 02_variables_types.html
-├── 02_variables_types.pptx
+├── CPBP8306_Session2_Variables_and_Types.pptx    ← Session 2 (PowerPoint)
 ├── 03_collections_indexing.pptx
 ├── 03_collections_indexing.html
 ├── 04_control_flow.html
@@ -27,10 +26,13 @@ projector. `B` blanks the screen. It replaces the old
 Python, VS Code, R, and RStudio, because no pre-work went out this year. The
 tutor activity moved to homework. See `../instructor/run_of_show_unit1.md`.
 
-Sessions 2 and 3 exist in **both** formats. They are parallel versions of the
-same content, not sequels — pick one per session and open only that one, or the
-slide numbers in `../instructor/run_of_show_unit1.md` will not match what is on
-the projector.
+**Session 2 has been merged too** (17 slides). Its two variants — a 13-slide
+HTML deck with speaker notes and a 9-slide PowerPoint without them — have been
+combined into one PowerPoint file and removed.
+
+Session 3 still exists in **both** formats and has not been merged. Pick one and
+open only that one, or the slide numbers in
+`../instructor/run_of_show_unit1.md` will not match what is on the projector.
 
 ## Using the HTML decks
 
