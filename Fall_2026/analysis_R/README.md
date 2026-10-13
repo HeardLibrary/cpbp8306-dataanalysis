@@ -36,7 +36,7 @@ From a terminal, inside this folder:
 Rscript main.R
 ```
 
-`main.R` stops with a message if it cannot find `data/raw/patients.csv`. That message means the working directory is wrong. It needs R 4.1 or newer, because the scripts use the `|>` pipe.
+`main.R` stops with a message if it cannot find `data/raw/patients.csv`. That message means the working directory is wrong. The scripts use the dplyr pipe, `%>%`. Base R has its own pipe, `|>`, that does the same job, and Part 5 of `1_data_cleaning.R` explains the difference.
 
 ## Packages
 
@@ -118,5 +118,5 @@ Commit the code. The files in `data/clean/` can be rebuilt by running `main.R`, 
 | A column called `...1` in penguins | The unnamed row-number column. `1_data_cleaning.R` drops it. |
 | `NAs introduced by coercion` when converting age | Expected. It is the 6 `"unknown"` values becoming `NA`. |
 | `read_csv` shows no `"A "` in `group` | `read_csv()` trims spaces by default. `main.R` sets `trim_ws = FALSE` so the problem stays visible. |
-| `unexpected '>'` | Your R is older than 4.1 and does not know `|>`. Update R. |
+| `could not find function "%>%"` | dplyr is not loaded. Run `main.R`, which loads it, instead of running a script on its own. |
 | A package will not install | Check your internet connection, then run `install.packages("name")` yourself and read the error. |

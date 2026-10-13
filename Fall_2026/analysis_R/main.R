@@ -20,7 +20,8 @@
 #   scripts/      0_language_basics.R, 1_data_cleaning.R, 2_statistics.R
 #   figures/      plots saved by later scripts (empty for now).
 #
-# Needs R 4.1 or newer, because the scripts use the |> pipe.
+# The scripts use the dplyr pipe, %>%. Base R has its own pipe, |>, that does the
+# same job. Part 5 of scripts/1_data_cleaning.R explains the difference.
 # =============================================================================
 
 
@@ -53,7 +54,7 @@ for (pkg in packages) {
 
 library(readr)    # read_csv() and write_csv(): read and write CSV files as tibbles
 library(dplyr)    # the six core functions (filter, select, mutate, arrange,
-                  # group_by, summarise) plus the joins and the |> pipe helpers
+                  # group_by, summarise) plus the joins and the %>% pipe
 library(tidyr)    # reshaping (pivot_longer, pivot_wider) and splitting a column
                   # into several (separate, unite)
 library(stringr)  # text functions that all start with str_ (str_trim, str_to_upper)

@@ -1,8 +1,24 @@
-# The course teaching dataset — `patients.csv`
+# Course datasets
 
-250 synthetic patients. Used from Session 1 onward so that every example in the
-course refers to the *same* rectangle of data instead of a fresh toy list each
-week.
+Three files live in this folder. Every example in the course uses one of them,
+so students see the same rectangles of data from week to week instead of a fresh
+toy list each time.
+
+| File | What it is | Used in |
+|---|---|---|
+| `patients.csv` | 250 synthetic patients with planted defects | Sessions 1 to 9 |
+| `penguins.csv` | 344 Palmer Archipelago penguins | Sessions 7 to 12 |
+| `schools_tibble.csv` | 169 Nashville schools, one column per grade | Sessions 7 and 8 |
+
+The `analysis_R` and `analysis_python` folders next to `data/` each keep their own
+copy of these three files in `data/raw/`. If you change a file here, copy it
+there too.
+
+---
+
+# `patients.csv`
+
+250 synthetic patients. Used from Session 1 onward.
 
 **It is synthetic.** No real patients, no privacy concerns, safe to commit and
 to distribute. Regenerate it with:
@@ -69,6 +85,28 @@ Two things make it excellent to teach:
 
 Run `python demos/01_the_hook.py` to see the full three-part reveal.
 
+### Loading it in R and in pandas
+
+The two languages treat this file differently, and the differences matter for the
+defects above.
+
+| What you load | pandas `pd.read_csv()` | R `read_csv()` (readr) | R `read.csv()` (base) |
+|---|---|---|---|
+| `group` trailing space | kept: `"A "` is its own group | **removed by default**, so the defect disappears | kept |
+| `age` with `"unknown"` | text (`object`) | text (`character`) | text |
+| `visit_date` | text | guessed as a date, and `2026-02-30` becomes `NA` with a parsing warning | text |
+
+In R, `read_csv()` removes spaces at the start and end of text values unless you
+set `trim_ws = FALSE`. Sessions 1 to 3 and 8 depend on the trailing space being
+there, so load the file in R with:
+
+```r
+patients <- read_csv("patients.csv", trim_ws = FALSE)
+```
+
+Add `col_types = cols(visit_date = col_character())` if you also want the
+impossible date to stay visible as text.
+
 ---
 
 ## Suggested use by session
@@ -81,8 +119,10 @@ Run `python demos/01_the_hook.py` to see the full three-part reveal.
 | 4 | `sum(df["systolic"] > 140)` vs the loop |
 | 5 | Write `count_high()` and test it against the real column |
 | 6 | Relative paths; check dtypes on load; what belongs in `.gitignore` |
-| 7–8 | Cleaning it properly: strip, recode, coerce, handle missing |
+| 7 | Spot the defects with the tidy-data lens: types, missing values, raw vs. cleaned files |
+| 8 | Fix them: `str_trim` and `str_to_upper` in one `mutate()` (`.str.strip()` and `.str.upper()` in pandas), `as.numeric` for `age`, then join and reshape |
 | 9 | The bimodal distribution that explains everything |
+| 11 | The corrected t-test: group A 129.4 against group B 134.2, p = 0.0064 |
 
 ---
 
@@ -96,23 +136,57 @@ Do not let anyone submit an analysis of `patients.csv` as their project.
 
 # `penguins.csv`
 
-The Palmer Archipelago penguin data, referenced throughout Sessions 7–12.
-Vendored into the repo so that nobody has to install a package or hit the
-network mid-class. 344 rows.
+The Palmer Archipelago penguin data, used in Sessions 7 to 12. It is stored here
+so that nobody has to install a package or reach the network during class.
+344 penguins: Adelie 152, Gentoo 124, Chinstrap 68.
 
-Columns: `species`, `island`, `bill_length_mm`, `bill_depth_mm`,
-`flipper_length_mm`, `body_mass_g`, `sex`. There are genuine missing values
-(2 rows missing all measurements, 11 missing `sex`) — that's in the original
-data, not something added, and it makes the file useful for Session 8's
-missing-value segment.
+The file is an export of the R `palmerpenguins` data, so it matches the package.
 
-> **One discrepancy to know about.** `lectures/07_dataframes_tidy.md` says
-> `df.shape` gives `(344, 8)`. That's true of the R `palmerpenguins` package,
-> which includes a `year` column. **This vendored copy has 7 columns** — it comes
-> from the seaborn distribution, which drops `year`. Either update the lecture to
-> say `(344, 7)`, or add a `year` column if you want the R package's shape. The
-> row count is the same either way.
+| Column | Notes |
+|---|---|
+| (unnamed first column) | A row number written by R. pandas calls it `Unnamed: 0` and readr calls it `...1`. It carries no data. |
+| `species`, `island` | Text. |
+| `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g` | The four measurements. 2 penguins have no measurements at all. |
+| `sex` | Lowercase `female` or `male`. 11 are missing. |
+| `year` | The sampling year, 2007 to 2009. It is not a measurement. |
+
+Shape: pandas reads the file as 344 rows by 9 columns. Drop the first column and
+it is 344 by 8, the same shape as the R package. In Python, `penguins.iloc[:, 1:]`
+drops it. In R, `select(-1)` does.
+
+Keep `year` out of PCA, clustering and correlation matrices. Select the four
+measurement columns by name instead of taking every numeric column.
+
+The missing values are in the original data, not added for the course. They are
+what Session 8's missing-value segment uses.
 
 Source: Horst AM, Hill AP, Gorman KB (2020). *palmerpenguins: Palmer
 Archipelago (Antarctica) penguin data.* Data collected by Dr. Kristen Gorman
 at Palmer Station LTER. CC0.
+
+---
+
+# `schools_tibble.csv`
+
+Enrollment for 169 Nashville schools in the 2018-19 school year, one row per
+school and 35 columns. Students download it from Brightspace. It is the real
+example of a wide, untidy table in Sessions 7 and 8.
+
+Source: the original citation is not recorded in this folder. Add it before the
+file is shared outside the course.
+
+| Columns | Notes |
+|---|---|
+| `school_year`, `school_level`, `school_id`, `school_name`, `state_school_id`, `zip_code` | Identifiers. `zip_code` and the ids are labels, not numbers to average. `school_year` is `18-19` in every row, so it is a constant. |
+| `grade_pre_k_3yrs` to `grade_12` | 15 columns of student counts. One variable (grade) is spread across the headers. |
+| race and ethnicity columns, `male`, `female`, `economically_disadvantaged`, `disability`, `limited_english_proficiency` | More counts. `male` plus `female` is 86,527, the same total as the grade columns. |
+| `latitude`, `longitude`, `mapped_location` | `mapped_location` stores the same coordinates as one text value, so one cell holds two values. |
+
+## What it is used to teach
+
+| # | Defect | Surfaces in |
+|---|---|---|
+| 1 | The grade columns are values of one variable. Made long, the file has 868 rows, not 169 × 15. | Sessions 7 and 8 (`pivot_longer`, `melt`) |
+| 2 | `mapped_location` holds latitude and longitude in one cell. | Session 7 |
+| 3 | `NA` in a grade column means the school does not offer that grade. All 31 middle schools have `NA` in `grade_9`, and 130 schools have `NA` in `grade_pre_k_3yrs`. Filling with 0 would be wrong. | Sessions 7 and 8 |
+| 4 | `school_level` uses two labels for one category: `Non-Traditional` (5 schools) and `Non-Traditional - Hybrid` (2). | Sessions 7 and 8 |

@@ -79,9 +79,9 @@ print(messy)           # the variable "year" is hiding in the column names
 print(tidy)            # patient_id, year, bp: one variable per column
 
 # ---------------------------------------------------------------------------
-# Slide 7: three ways real tables break the rules (schools_tibble.csv)
+# Slide 8: three ways real tables break the rules (schools_tibble.csv)
 # ---------------------------------------------------------------------------
-section("Slide 7: schools_tibble.csv")
+section("Slide 8: schools_tibble.csv")
 
 print(schools.shape)   # (169, 35)
 
@@ -110,9 +110,9 @@ print(middle.grade_9.isna().sum(), "of", len(middle))    # all 31 middle schools
 print(schools.school_year.unique())                      # ['18-19']
 
 # ---------------------------------------------------------------------------
-# Slide 8: column types and the traps you have already met
+# Slide 9: column types and the traps you have already met
 # ---------------------------------------------------------------------------
-section("Slide 8: column types")
+section("Slide 9: column types")
 
 print(df.dtypes)       # check types in pandas
 

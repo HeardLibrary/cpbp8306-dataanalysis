@@ -78,7 +78,7 @@
 # Part 6: Multivariate methods and machine learning  (Session 12)
 # -----------------------------------------------------------------------------
 # Use the four penguin measurement columns, rows with no missing values:
-#   X <- penguins |> select(bill_length_mm:body_mass_g) |> drop_na()
+#   X <- penguins %>% select(bill_length_mm:body_mass_g) %>% drop_na()
 # Then:
 #   - scale the columns, so grams do not outweigh millimetres
 #   - prcomp() for PCA, with a scree plot and a plot of the first two components

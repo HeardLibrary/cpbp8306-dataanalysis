@@ -21,6 +21,10 @@
 # The rule for the whole script: raw data is read-only. Examples change copies.
 # The pipeline in Part 9 writes new files and never overwrites the originals.
 #
+# A note on the pipe: from Part 4 on, some code uses %>%. It passes the result on
+# its left into the function on its right, so read it as "and then". Part 5
+# explains it, and the second pipe R has, |>.
+#
 # Needs these objects from main.R: patients_raw, penguins_raw, schools_raw
 # =============================================================================
 
@@ -196,7 +200,8 @@ print(str_to_upper("m"))
 print(str_replace_all("Non-Traditional - Hybrid", " - Hybrid", ""))
 
 # mutate() changes or adds columns. This is the cleaning step from Session 8.
-patients_demo <- patients_demo |>
+# %>% is the pipe: take patients_demo, and then mutate it. Part 5 explains it.
+patients_demo <- patients_demo %>%
   mutate(group = str_trim(group),
          sex = str_to_upper(sex))
 print(table(patients_demo$group))                 # A 125, B 125
@@ -238,24 +243,24 @@ print(head(patients_demo$label))
 
 # --- Split one column into two, and join them back (S04) ---------------------
 # separate() splits school_year ("18-19") at the dash into two columns.
-split_years <- schools_demo |>
+split_years <- schools_demo %>%
   separate(school_year, into = c("year_start", "year_end"), sep = "-")
 print(head(split_years[, c("school_name", "year_start", "year_end")], 3))
 # unite() glues them back together.
-rejoined <- split_years |> unite(school_year, year_start, year_end, sep = "-")
+rejoined <- split_years %>% unite(school_year, year_start, year_end, sep = "-")
 print(head(rejoined$school_year, 3))
 
 # mapped_location stores latitude and longitude as ONE text value, "(36.02, -86.66)".
 # Session 7 called this two values in one cell. Split it, then convert to numbers.
-location_split <- schools_demo |>
-  separate(mapped_location, into = c("lat_text", "lon_text"), sep = ", ") |>
+location_split <- schools_demo %>%
+  separate(mapped_location, into = c("lat_text", "lon_text"), sep = ", ") %>%
   mutate(lat_new = as.numeric(str_remove(lat_text, "\\(")),
          lon_new = as.numeric(str_remove(lon_text, "\\)")))
 # The result matches the latitude and longitude columns the file already has.
 print(all(abs(location_split$lat_new - location_split$latitude) < 1e-6, na.rm = TRUE))   # TRUE
 
 # --- Arithmetic on columns ---------------------------------------------------
-penguins_demo <- penguins_raw |> mutate(body_mass_kg = body_mass_g / 1000)
+penguins_demo <- penguins_raw %>% mutate(body_mass_kg = body_mass_g / 1000)
 print(head(penguins_demo[, c("body_mass_g", "body_mass_kg")], 3))
 
 # --- Change a column's type --------------------------------------------------
@@ -271,32 +276,40 @@ print(class(patients_demo$age))                   # "numeric"
 section("Part 5: the six functions and the pipe")
 
 # Cleaned patients, used by the examples below.
-patients_ok <- patients_raw |>
+patients_ok <- patients_raw %>%
   mutate(group = str_trim(group), sex = str_to_upper(sex),
          age = suppressWarnings(as.numeric(age)))
 
 # Each function changes a table in one way. show() prints the size after each.
-show(patients_ok |> filter(systolic > 130), "filter(systolic > 130)             rows go down")
-show(patients_ok |> select(patient_id, systolic, group), "select(patient_id, systolic, group)  columns go down")
-show(patients_ok |> mutate(pulse_pressure = systolic - diastolic), "mutate(pulse_pressure = ...)           one column added")
-show(patients_ok |> arrange(desc(systolic)), "arrange(desc(systolic))               same size, new order")
+show(patients_ok %>% filter(systolic > 130), "filter(systolic > 130)             rows go down")
+show(patients_ok %>% select(patient_id, systolic, group), "select(patient_id, systolic, group)  columns go down")
+show(patients_ok %>% mutate(pulse_pressure = systolic - diastolic), "mutate(pulse_pressure = ...)           one column added")
+show(patients_ok %>% arrange(desc(systolic)), "arrange(desc(systolic))               same size, new order")
 # group_by() marks the groups. summarise() collapses each group to one row.
-print(patients_ok |>
-        group_by(group) |>
+print(patients_ok %>%
+        group_by(group) %>%
         summarise(n = n(), mean_systolic = mean(systolic, na.rm = TRUE)))
 
-# The pipe |> passes each result into the next function. Read it as "and then".
+# A pipe passes each result into the next function. Read it as "and then".
+# R has two pipes that do the same job:
+#   %>%  the dplyr pipe (from the magrittr package). Loading dplyr gives it to you,
+#        and it works in any version of R. We use it in every script here.
+#   |>   the base R pipe, built into R 4.1 and later. It needs parentheses after
+#        the function (x |> head(), not x |> head), and its placeholder is _
+#        where %>% uses a dot.
+# You will see both in tutorials and in AI-written code. Pandas has no pipe
+# operator. Method chaining does the same job there.
 # Run a pipeline one step at a time, and look at the size after each step.
-step1 <- penguins_raw |> filter(species == "Adelie")
-step2 <- step1 |> mutate(kg = body_mass_g / 1000)
-step3 <- step2 |> group_by(island) |> summarise(mean_kg = mean(kg, na.rm = TRUE))
+step1 <- penguins_raw %>% filter(species == "Adelie")
+step2 <- step1 %>% mutate(kg = body_mass_g / 1000)
+step3 <- step2 %>% group_by(island) %>% summarise(mean_kg = mean(kg, na.rm = TRUE))
 cat(nrow(penguins_raw), "->", nrow(step1), "->", nrow(step2), "->", nrow(step3), "rows\n")   # 344 -> 152 -> 152 -> 3
 print(step3)
 # mutate kept every row. summarise collapsed each group.
 
 # Order matters. select() dropped body_mass_g, so the filter has nothing to test.
 wrong_order <- tryCatch(
-  penguins_raw |> select(species, island) |> filter(body_mass_g > 4000),
+  penguins_raw %>% select(species, island) %>% filter(body_mass_g > 4000),
   error = function(e) "error: object 'body_mass_g' not found")
 print(wrong_order)
 
@@ -360,12 +373,12 @@ show(bind_cols(ids, bps), "bind_cols(ids, bps)  (dplyr)")
 # --- Joins: match rows by a shared key ---------------------------------------
 # Two small tables built from the penguins data, called L and R. They share the
 # key column species, but only Adelie appears in both.
-species_means <- penguins_raw |>
-  group_by(species) |>
+species_means <- penguins_raw %>%
+  group_by(species) %>%
   summarise(mean_mass = round(mean(body_mass_g, na.rm = TRUE)),
             mean_bill = round(mean(bill_length_mm, na.rm = TRUE), 1))
-L <- species_means |> filter(species %in% c("Adelie", "Gentoo")) |> select(species, mean_mass)
-R <- species_means |> filter(species %in% c("Adelie", "Chinstrap")) |> select(species, mean_bill)
+L <- species_means %>% filter(species %in% c("Adelie", "Gentoo")) %>% select(species, mean_mass)
+R <- species_means %>% filter(species %in% c("Adelie", "Chinstrap")) %>% select(species, mean_bill)
 print(L)
 print(R)
 
@@ -388,18 +401,18 @@ print(merge(L, R, by = "species", all = TRUE))
 # --- Build a combined table step by step (S06) -------------------------------
 # Add each penguin's species average to its own row. A left join keeps every
 # penguin, so the row count should not change.
-penguins_plus <- penguins_raw |>
-  left_join(species_means, by = "species") |>
+penguins_plus <- penguins_raw %>%
+  left_join(species_means, by = "species") %>%
   select(species, island, body_mass_g, mean_mass, everything())
 cat(nrow(penguins_raw), "->", nrow(penguins_plus), "rows\n")            # 344 -> 344
 names(penguins_plus)[names(penguins_plus) == "mean_mass"] <- "species_mean_mass"
 print(head(penguins_plus[, 1:4], 3))
 
 # The sanity check: after every join, compare the row counts.
-island_means <- penguins_raw |>
-  group_by(island) |>
+island_means <- penguins_raw %>%
+  group_by(island) %>%
   summarise(mean_mass = round(mean(body_mass_g, na.rm = TRUE)))          # 3 rows
-species_by_island <- penguins_raw |> count(species, island, name = "n")  # 5 rows
+species_by_island <- penguins_raw %>% count(species, island, name = "n")  # 5 rows
 too_many <- left_join(island_means, species_by_island, by = "island")
 cat(nrow(island_means), "->", nrow(too_many), "rows\n")                  # 3 -> 5
 # Biscoe and Dream appear twice in species_by_island, so they appear twice in
@@ -415,21 +428,21 @@ section("Part 8: reshape")
 # schools file has one column per grade: grade_9, grade_10, and so on.
 four_schools <- c("Antioch High School", "Cane Ridge High School",
                   "Glencliff High School", "Hillsboro High")
-wide4 <- schools_raw |>
-  filter(school_name %in% four_schools) |>
+wide4 <- schools_raw %>%
+  filter(school_name %in% four_schools) %>%
   select(school_name, grade_9, grade_10, grade_11, grade_12)
 print(wide4)
 
 # pivot_longer() makes it long. cols = which columns to unpivot,
 # names_to = the new column for the old headings, values_to = the new column for the numbers.
-long4 <- wide4 |> pivot_longer(cols = grade_9:grade_12, names_to = "grade", values_to = "students")
+long4 <- wide4 %>% pivot_longer(cols = grade_9:grade_12, names_to = "grade", values_to = "students")
 print(long4)                                      # 16 rows: 4 schools x 4 grades
 
 # The same on the whole file. starts_with("grade_") picks all 15 grade columns.
 # names_prefix removes "grade_" from the new values. values_drop_na = TRUE drops
 # the grades a school does not offer (the NA that means "not offered").
-schools_long_demo <- schools_raw |>
-  select(school_id, school_name, starts_with("grade_")) |>
+schools_long_demo <- schools_raw %>%
+  select(school_id, school_name, starts_with("grade_")) %>%
   pivot_longer(cols = starts_with("grade_"), names_to = "grade", names_prefix = "grade_",
                values_to = "students", values_drop_na = TRUE)
 cat(nrow(schools_long_demo), "rows, not", nrow(schools_raw) * 15, "\n")          # 868, not 2535
@@ -444,15 +457,15 @@ print(table(is.na(grade_numbers)))
 print(as.numeric(substr("x2020", 2, 5)))          # 2020
 
 # pivot_wider() goes the other way: long back to wide.
-schools_wide_again <- schools_long_demo |>
+schools_wide_again <- schools_long_demo %>%
   pivot_wider(names_from = grade, values_from = students)
 show(schools_wide_again, "pivot_wider(): back to one row per school")
 
 # Wide is easier for a person to read. Count penguins by species and island,
 # then spread the islands into columns. values_fill = 0 fills the empty combinations.
-penguin_counts <- penguins_raw |> count(species, island)
+penguin_counts <- penguins_raw %>% count(species, island)
 print(penguin_counts)                             # long: one row per combination
-print(penguin_counts |> pivot_wider(names_from = island, values_from = n, values_fill = 0))
+print(penguin_counts %>% pivot_wider(names_from = island, values_from = n, values_fill = 0))
 
 
 # =============================================================================
@@ -475,22 +488,22 @@ section("Part 9: the cleaning pipeline")
 
 dir.create("data/clean", showWarnings = FALSE)
 
-patients_clean <- patients_raw |>
+patients_clean <- patients_raw %>%
   mutate(group = str_trim(group),
          sex = str_to_upper(sex),
          age = suppressWarnings(as.numeric(age)))
 
-penguins_clean <- penguins_raw |>
+penguins_clean <- penguins_raw %>%
   select(-1)                                      # the unnamed row-number column
 
-schools_clean <- schools_raw |>
+schools_clean <- schools_raw %>%
   mutate(school_level = recode(school_level, "Non-Traditional - Hybrid" = "Non-Traditional"),
-         zip_code = as.character(zip_code)) |>
+         zip_code = as.character(zip_code)) %>%
   select(-mapped_location)
 
 # A long version of the schools table, one row per school per grade.
-schools_long <- schools_clean |>
-  select(school_id, school_name, school_level, zip_code, starts_with("grade_")) |>
+schools_long <- schools_clean %>%
+  select(school_id, school_name, school_level, zip_code, starts_with("grade_")) %>%
   pivot_longer(cols = starts_with("grade_"), names_to = "grade", values_to = "students",
                values_drop_na = TRUE)
 

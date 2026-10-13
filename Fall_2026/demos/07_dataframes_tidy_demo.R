@@ -72,13 +72,16 @@ print(messy)          # the variable "year" is hiding in the column names
 print(tidy)           # patient_id, year, bp: one variable per column
 
 # ---------------------------------------------------------------------------
-# Slide 7: three ways real tables break the rules (schools_tibble.csv)
+# Slide 8: three ways real tables break the rules (schools_tibble.csv)
 # ---------------------------------------------------------------------------
-section("Slide 7: schools_tibble.csv")
+section("Slide 8: schools_tibble.csv")
 
 print(dim(schools))   # 169 35
 
-# The four-school table on the slide comes from the high schools
+# The four-school table on the slide comes from the high schools.
+# |> is a pipe. It passes the result on its left into the function on its right,
+# so read it as "and then": take schools, then keep the high schools, then select
+# six columns.
 high <- schools |>
   filter(school_level == "High School") |>
   select(school_name, grade_9, grade_10, grade_11, grade_12, mapped_location)
@@ -103,9 +106,9 @@ cat(sum(is.na(middle$grade_9)), "of", nrow(middle), "\n")   # all 31 middle scho
 print(unique(schools$school_year))                   # "18-19"
 
 # ---------------------------------------------------------------------------
-# Slide 8: column types and the traps you have already met
+# Slide 9: column types and the traps you have already met
 # ---------------------------------------------------------------------------
-section("Slide 8: column types")
+section("Slide 9: column types")
 
 print(sapply(df, class))                             # check types across every column
 
