@@ -1,0 +1,869 @@
+school_id,school_name,school_level,zip_code,grade,students
+496,A. Z. Kelley Elementary,Elementary School,37013,grade_pre_k_4yrs,40.0
+496,A. Z. Kelley Elementary,Elementary School,37013,grade_k,153.0
+496,A. Z. Kelley Elementary,Elementary School,37013,grade_1,146.0
+496,A. Z. Kelley Elementary,Elementary School,37013,grade_2,177.0
+496,A. Z. Kelley Elementary,Elementary School,37013,grade_3,174.0
+496,A. Z. Kelley Elementary,Elementary School,37013,grade_4,157.0
+375,Alex Green Elementary,Elementary School,37189,grade_pre_k_4yrs,37.0
+375,Alex Green Elementary,Elementary School,37189,grade_k,53.0
+375,Alex Green Elementary,Elementary School,37189,grade_1,46.0
+375,Alex Green Elementary,Elementary School,37189,grade_2,40.0
+375,Alex Green Elementary,Elementary School,37189,grade_3,33.0
+375,Alex Green Elementary,Elementary School,37189,grade_4,57.0
+105,Amqui Elementary,Elementary School,37115,grade_pre_k_3yrs,2.0
+105,Amqui Elementary,Elementary School,37115,grade_pre_k_4yrs,29.0
+105,Amqui Elementary,Elementary School,37115,grade_k,91.0
+105,Amqui Elementary,Elementary School,37115,grade_1,81.0
+105,Amqui Elementary,Elementary School,37115,grade_2,89.0
+105,Amqui Elementary,Elementary School,37115,grade_3,78.0
+105,Amqui Elementary,Elementary School,37115,grade_4,94.0
+460,Andrew Jackson Elementary,Elementary School,37138,grade_pre_k_3yrs,4.0
+460,Andrew Jackson Elementary,Elementary School,37138,grade_pre_k_4yrs,29.0
+460,Andrew Jackson Elementary,Elementary School,37138,grade_k,93.0
+460,Andrew Jackson Elementary,Elementary School,37138,grade_1,85.0
+460,Andrew Jackson Elementary,Elementary School,37138,grade_2,90.0
+460,Andrew Jackson Elementary,Elementary School,37138,grade_3,110.0
+460,Andrew Jackson Elementary,Elementary School,37138,grade_4,91.0
+110,Antioch High School,High School,37013,grade_9,474.0
+110,Antioch High School,High School,37013,grade_10,476.0
+110,Antioch High School,High School,37013,grade_11,544.0
+110,Antioch High School,High School,37013,grade_12,462.0
+111,Antioch Middle,Middle School,37013,grade_5,170.0
+111,Antioch Middle,Middle School,37013,grade_6,238.0
+111,Antioch Middle,Middle School,37013,grade_7,200.0
+111,Antioch Middle,Middle School,37013,grade_8,174.0
+577,Apollo Middle,Middle School,37013,grade_5,211.0
+577,Apollo Middle,Middle School,37013,grade_6,236.0
+577,Apollo Middle,Middle School,37013,grade_7,214.0
+577,Apollo Middle,Middle School,37013,grade_8,174.0
+130,Bellevue Middle,Middle School,37221,grade_5,192.0
+130,Bellevue Middle,Middle School,37221,grade_6,170.0
+130,Bellevue Middle,Middle School,37221,grade_7,169.0
+130,Bellevue Middle,Middle School,37221,grade_8,154.0
+135,Bellshire Elementary,Elementary School,37207,grade_pre_k_3yrs,15.0
+135,Bellshire Elementary,Elementary School,37207,grade_pre_k_4yrs,43.0
+135,Bellshire Elementary,Elementary School,37207,grade_k,67.0
+135,Bellshire Elementary,Elementary School,37207,grade_1,54.0
+135,Bellshire Elementary,Elementary School,37207,grade_2,52.0
+135,Bellshire Elementary,Elementary School,37207,grade_3,66.0
+135,Bellshire Elementary,Elementary School,37207,grade_4,57.0
+118,Brick Church College Prep,Charter,37207,grade_5,85.0
+118,Brick Church College Prep,Charter,37207,grade_6,86.0
+118,Brick Church College Prep,Charter,37207,grade_7,66.0
+118,Brick Church College Prep,Charter,37207,grade_8,76.0
+165,Buena Vista Elementary,Elementary School,37208,grade_pre_k_4yrs,36.0
+165,Buena Vista Elementary,Elementary School,37208,grade_k,35.0
+165,Buena Vista Elementary,Elementary School,37208,grade_1,47.0
+165,Buena Vista Elementary,Elementary School,37208,grade_2,45.0
+165,Buena Vista Elementary,Elementary School,37208,grade_3,49.0
+165,Buena Vista Elementary,Elementary School,37208,grade_4,41.0
+419,Cambridge Early Learning Center,Elementary School,37013,grade_pre_k_4yrs,136.0
+181,Cameron College Preparatory,Charter,37210,grade_5,159.0
+181,Cameron College Preparatory,Charter,37210,grade_6,175.0
+181,Cameron College Preparatory,Charter,37210,grade_7,138.0
+181,Cameron College Preparatory,Charter,37210,grade_8,142.0
+184,Cane Ridge Elementary,Elementary School,37013,grade_pre_k_4yrs,38.0
+184,Cane Ridge Elementary,Elementary School,37013,grade_k,100.0
+184,Cane Ridge Elementary,Elementary School,37013,grade_1,102.0
+184,Cane Ridge Elementary,Elementary School,37013,grade_2,102.0
+184,Cane Ridge Elementary,Elementary School,37013,grade_3,99.0
+184,Cane Ridge Elementary,Elementary School,37013,grade_4,87.0
+184,Cane Ridge Elementary,Elementary School,37013,grade_5,45.0
+182,Cane Ridge High School,High School,37013,grade_9,395.0
+182,Cane Ridge High School,High School,37013,grade_10,480.0
+182,Cane Ridge High School,High School,37013,grade_11,439.0
+182,Cane Ridge High School,High School,37013,grade_12,422.0
+185,Carter-Lawrence Elementary,Elementary School,37203,grade_pre_k_4yrs,19.0
+185,Carter-Lawrence Elementary,Elementary School,37203,grade_k,45.0
+185,Carter-Lawrence Elementary,Elementary School,37203,grade_1,45.0
+185,Carter-Lawrence Elementary,Elementary School,37203,grade_2,61.0
+185,Carter-Lawrence Elementary,Elementary School,37203,grade_3,56.0
+185,Carter-Lawrence Elementary,Elementary School,37203,grade_4,65.0
+186,Casa Azafran Early Learning Center,Elementary School,37211,grade_pre_k_3yrs,11.0
+186,Casa Azafran Early Learning Center,Elementary School,37211,grade_pre_k_4yrs,76.0
+200,Chadwell Elementary,Elementary School,37115,grade_pre_k_4yrs,19.0
+200,Chadwell Elementary,Elementary School,37115,grade_k,54.0
+200,Chadwell Elementary,Elementary School,37115,grade_1,60.0
+200,Chadwell Elementary,Elementary School,37115,grade_2,64.0
+200,Chadwell Elementary,Elementary School,37115,grade_3,71.0
+200,Chadwell Elementary,Elementary School,37115,grade_4,76.0
+205,Charlotte Park Elementary,Elementary School,37209,grade_pre_k_3yrs,4.0
+205,Charlotte Park Elementary,Elementary School,37209,grade_pre_k_4yrs,34.0
+205,Charlotte Park Elementary,Elementary School,37209,grade_k,85.0
+205,Charlotte Park Elementary,Elementary School,37209,grade_1,96.0
+205,Charlotte Park Elementary,Elementary School,37209,grade_2,91.0
+205,Charlotte Park Elementary,Elementary School,37209,grade_3,85.0
+205,Charlotte Park Elementary,Elementary School,37209,grade_4,72.0
+215,Cockrill Elementary,Elementary School,37209,grade_pre_k_3yrs,3.0
+215,Cockrill Elementary,Elementary School,37209,grade_pre_k_4yrs,37.0
+215,Cockrill Elementary,Elementary School,37209,grade_k,51.0
+215,Cockrill Elementary,Elementary School,37209,grade_1,50.0
+215,Cockrill Elementary,Elementary School,37209,grade_2,62.0
+215,Cockrill Elementary,Elementary School,37209,grade_3,67.0
+215,Cockrill Elementary,Elementary School,37209,grade_4,58.0
+225,Cole Elementary,Elementary School,37013,grade_pre_k_4yrs,78.0
+225,Cole Elementary,Elementary School,37013,grade_k,143.0
+225,Cole Elementary,Elementary School,37013,grade_1,144.0
+225,Cole Elementary,Elementary School,37013,grade_2,124.0
+225,Cole Elementary,Elementary School,37013,grade_3,133.0
+225,Cole Elementary,Elementary School,37013,grade_4,125.0
+448,Cora Howe School,Special Education,37206,grade_2,6.0
+448,Cora Howe School,Special Education,37206,grade_3,1.0
+448,Cora Howe School,Special Education,37206,grade_4,7.0
+448,Cora Howe School,Special Education,37206,grade_5,8.0
+448,Cora Howe School,Special Education,37206,grade_6,3.0
+448,Cora Howe School,Special Education,37206,grade_7,11.0
+448,Cora Howe School,Special Education,37206,grade_8,10.0
+448,Cora Howe School,Special Education,37206,grade_9,9.0
+448,Cora Howe School,Special Education,37206,grade_10,6.0
+448,Cora Howe School,Special Education,37206,grade_11,16.0
+448,Cora Howe School,Special Education,37206,grade_12,20.0
+783,Creswell Middle School of the Arts,Middle School,37218,grade_5,119.0
+783,Creswell Middle School of the Arts,Middle School,37218,grade_6,100.0
+783,Creswell Middle School of the Arts,Middle School,37218,grade_7,88.0
+783,Creswell Middle School of the Arts,Middle School,37218,grade_8,106.0
+235,Crieve Hall Elementary,Elementary School,37220,grade_k,102.0
+235,Crieve Hall Elementary,Elementary School,37220,grade_1,94.0
+235,Crieve Hall Elementary,Elementary School,37220,grade_2,86.0
+235,Crieve Hall Elementary,Elementary School,37220,grade_3,105.0
+235,Crieve Hall Elementary,Elementary School,37220,grade_4,75.0
+238,Croft Middle,Middle School,37211,grade_5,217.0
+238,Croft Middle,Middle School,37211,grade_6,196.0
+238,Croft Middle,Middle School,37211,grade_7,182.0
+238,Croft Middle,Middle School,37211,grade_8,168.0
+240,Cumberland Elementary,Elementary School,37218,grade_k,43.0
+240,Cumberland Elementary,Elementary School,37218,grade_1,55.0
+240,Cumberland Elementary,Elementary School,37218,grade_2,51.0
+240,Cumberland Elementary,Elementary School,37218,grade_3,57.0
+240,Cumberland Elementary,Elementary School,37218,grade_4,65.0
+560,Dan Mills Elementary,Elementary School,37216,grade_pre_k_3yrs,1.0
+560,Dan Mills Elementary,Elementary School,37216,grade_pre_k_4yrs,32.0
+560,Dan Mills Elementary,Elementary School,37216,grade_k,118.0
+560,Dan Mills Elementary,Elementary School,37216,grade_1,100.0
+560,Dan Mills Elementary,Elementary School,37216,grade_2,102.0
+560,Dan Mills Elementary,Elementary School,37216,grade_3,99.0
+560,Dan Mills Elementary,Elementary School,37216,grade_4,92.0
+252,Dodson Elementary,Elementary School,37076,grade_pre_k_3yrs,3.0
+252,Dodson Elementary,Elementary School,37076,grade_pre_k_4yrs,27.0
+252,Dodson Elementary,Elementary School,37076,grade_k,96.0
+252,Dodson Elementary,Elementary School,37076,grade_1,76.0
+252,Dodson Elementary,Elementary School,37076,grade_2,84.0
+252,Dodson Elementary,Elementary School,37076,grade_3,77.0
+252,Dodson Elementary,Elementary School,37076,grade_4,75.0
+260,Donelson Middle,Middle School,37214,grade_5,205.0
+260,Donelson Middle,Middle School,37214,grade_6,208.0
+260,Donelson Middle,Middle School,37214,grade_7,194.0
+260,Donelson Middle,Middle School,37214,grade_8,169.0
+265,Dupont Elementary,Elementary School,37138,grade_pre_k_4yrs,37.0
+265,Dupont Elementary,Elementary School,37138,grade_k,65.0
+265,Dupont Elementary,Elementary School,37138,grade_1,72.0
+265,Dupont Elementary,Elementary School,37138,grade_2,63.0
+265,Dupont Elementary,Elementary School,37138,grade_3,76.0
+265,Dupont Elementary,Elementary School,37138,grade_4,66.0
+270,Dupont-Hadley Middle,Middle School,37138,grade_5,157.0
+270,Dupont-Hadley Middle,Middle School,37138,grade_6,166.0
+270,Dupont-Hadley Middle,Middle School,37138,grade_7,157.0
+270,Dupont-Hadley Middle,Middle School,37138,grade_8,173.0
+275,Dupont-Tyler Middle,Middle School,37076,grade_5,165.0
+275,Dupont-Tyler Middle,Middle School,37076,grade_6,123.0
+275,Dupont-Tyler Middle,Middle School,37076,grade_7,143.0
+275,Dupont-Tyler Middle,Middle School,37076,grade_8,148.0
+278,Eagle View Elementary,Elementary School,37013,grade_pre_k_4yrs,38.0
+278,Eagle View Elementary,Elementary School,37013,grade_k,102.0
+278,Eagle View Elementary,Elementary School,37013,grade_1,104.0
+278,Eagle View Elementary,Elementary School,37013,grade_2,88.0
+278,Eagle View Elementary,Elementary School,37013,grade_3,87.0
+278,Eagle View Elementary,Elementary School,37013,grade_4,90.0
+280,Eakin Elementary,Elementary School,37212,grade_k,115.0
+280,Eakin Elementary,Elementary School,37212,grade_1,98.0
+280,Eakin Elementary,Elementary School,37212,grade_2,121.0
+280,Eakin Elementary,Elementary School,37212,grade_3,113.0
+280,Eakin Elementary,Elementary School,37212,grade_4,107.0
+286,East End Preparatory School,Charter,37216,grade_k,113.0
+286,East End Preparatory School,Charter,37216,grade_1,113.0
+286,East End Preparatory School,Charter,37216,grade_2,113.0
+286,East End Preparatory School,Charter,37216,grade_3,115.0
+286,East End Preparatory School,Charter,37216,grade_4,112.0
+286,East End Preparatory School,Charter,37216,grade_5,113.0
+286,East End Preparatory School,Charter,37216,grade_6,110.0
+286,East End Preparatory School,Charter,37216,grade_7,90.0
+296,East Nashville Middle,Middle School,37206,grade_5,81.0
+296,East Nashville Middle,Middle School,37206,grade_6,96.0
+296,East Nashville Middle,Middle School,37206,grade_7,101.0
+296,East Nashville Middle,Middle School,37206,grade_8,82.0
+290,East Nashville School,High School,37206,grade_9,178.0
+290,East Nashville School,High School,37206,grade_10,188.0
+290,East Nashville School,High School,37206,grade_11,195.0
+290,East Nashville School,High School,37206,grade_12,153.0
+305,Explore Community School,Charter,37206,grade_k,69.0
+305,Explore Community School,Charter,37206,grade_1,79.0
+305,Explore Community School,Charter,37206,grade_2,72.0
+305,Explore Community School,Charter,37206,grade_3,71.0
+308,Fall-Hamilton Elementary,Elementary School,37203,grade_pre_k_3yrs,16.0
+308,Fall-Hamilton Elementary,Elementary School,37203,grade_pre_k_4yrs,40.0
+308,Fall-Hamilton Elementary,Elementary School,37203,grade_k,69.0
+308,Fall-Hamilton Elementary,Elementary School,37203,grade_1,65.0
+308,Fall-Hamilton Elementary,Elementary School,37203,grade_2,53.0
+308,Fall-Hamilton Elementary,Elementary School,37203,grade_3,45.0
+308,Fall-Hamilton Elementary,Elementary School,37203,grade_4,45.0
+315,Gateway Elementary,Elementary School,37115,grade_k,50.0
+315,Gateway Elementary,Elementary School,37115,grade_1,44.0
+315,Gateway Elementary,Elementary School,37115,grade_2,39.0
+315,Gateway Elementary,Elementary School,37115,grade_3,59.0
+315,Gateway Elementary,Elementary School,37115,grade_4,64.0
+320,Glencliff Elementary,Elementary School,37211,grade_pre_k_4yrs,35.0
+320,Glencliff Elementary,Elementary School,37211,grade_k,94.0
+320,Glencliff Elementary,Elementary School,37211,grade_1,127.0
+320,Glencliff Elementary,Elementary School,37211,grade_2,109.0
+320,Glencliff Elementary,Elementary School,37211,grade_3,98.0
+320,Glencliff Elementary,Elementary School,37211,grade_4,103.0
+325,Glencliff High School,High School,37211,grade_9,295.0
+325,Glencliff High School,High School,37211,grade_10,287.0
+325,Glencliff High School,High School,37211,grade_11,315.0
+325,Glencliff High School,High School,37211,grade_12,275.0
+330,Glendale Elementary,Elementary School,37204,grade_pre_k_3yrs,10.0
+330,Glendale Elementary,Elementary School,37204,grade_pre_k_4yrs,16.0
+330,Glendale Elementary,Elementary School,37204,grade_k,94.0
+330,Glendale Elementary,Elementary School,37204,grade_1,88.0
+330,Glendale Elementary,Elementary School,37204,grade_2,77.0
+330,Glendale Elementary,Elementary School,37204,grade_3,76.0
+330,Glendale Elementary,Elementary School,37204,grade_4,77.0
+335,Glengarry Elementary,Elementary School,37217,grade_pre_k_4yrs,18.0
+335,Glengarry Elementary,Elementary School,37217,grade_k,79.0
+335,Glengarry Elementary,Elementary School,37217,grade_1,55.0
+335,Glengarry Elementary,Elementary School,37217,grade_2,74.0
+335,Glengarry Elementary,Elementary School,37217,grade_3,66.0
+335,Glengarry Elementary,Elementary School,37217,grade_4,69.0
+345,Glenview Elementary,Elementary School,37217,grade_pre_k_4yrs,60.0
+345,Glenview Elementary,Elementary School,37217,grade_k,108.0
+345,Glenview Elementary,Elementary School,37217,grade_1,102.0
+345,Glenview Elementary,Elementary School,37217,grade_2,117.0
+345,Glenview Elementary,Elementary School,37217,grade_3,110.0
+345,Glenview Elementary,Elementary School,37217,grade_4,106.0
+350,Goodlettsville Elementary,Elementary School,37072,grade_pre_k_3yrs,4.0
+350,Goodlettsville Elementary,Elementary School,37072,grade_pre_k_4yrs,31.0
+350,Goodlettsville Elementary,Elementary School,37072,grade_k,70.0
+350,Goodlettsville Elementary,Elementary School,37072,grade_1,55.0
+350,Goodlettsville Elementary,Elementary School,37072,grade_2,61.0
+350,Goodlettsville Elementary,Elementary School,37072,grade_3,61.0
+350,Goodlettsville Elementary,Elementary School,37072,grade_4,67.0
+355,Goodlettsville Middle,Middle School,37072,grade_5,157.0
+355,Goodlettsville Middle,Middle School,37072,grade_6,164.0
+355,Goodlettsville Middle,Middle School,37072,grade_7,148.0
+355,Goodlettsville Middle,Middle School,37072,grade_8,136.0
+360,Gower Elementary,Elementary School,37209,grade_pre_k_3yrs,5.0
+360,Gower Elementary,Elementary School,37209,grade_pre_k_4yrs,26.0
+360,Gower Elementary,Elementary School,37209,grade_k,114.0
+360,Gower Elementary,Elementary School,37209,grade_1,94.0
+360,Gower Elementary,Elementary School,37209,grade_2,112.0
+360,Gower Elementary,Elementary School,37209,grade_3,127.0
+360,Gower Elementary,Elementary School,37209,grade_4,120.0
+365,Gra-Mar Middle,Middle School,37216,grade_5,85.0
+365,Gra-Mar Middle,Middle School,37216,grade_6,66.0
+365,Gra-Mar Middle,Middle School,37216,grade_7,86.0
+365,Gra-Mar Middle,Middle School,37216,grade_8,94.0
+370,Granbery Elementary,Elementary School,37027,grade_k,188.0
+370,Granbery Elementary,Elementary School,37027,grade_1,148.0
+370,Granbery Elementary,Elementary School,37027,grade_2,135.0
+370,Granbery Elementary,Elementary School,37027,grade_3,150.0
+370,Granbery Elementary,Elementary School,37027,grade_4,134.0
+434,H.G. Hill Middle School,Middle School,37205,grade_5,196.0
+434,H.G. Hill Middle School,Middle School,37205,grade_6,170.0
+434,H.G. Hill Middle School,Middle School,37205,grade_7,168.0
+434,H.G. Hill Middle School,Middle School,37205,grade_8,157.0
+395,Harpeth Valley Elementary,Elementary School,37221,grade_pre_k_3yrs,3.0
+395,Harpeth Valley Elementary,Elementary School,37221,grade_pre_k_4yrs,12.0
+395,Harpeth Valley Elementary,Elementary School,37221,grade_k,143.0
+395,Harpeth Valley Elementary,Elementary School,37221,grade_1,149.0
+395,Harpeth Valley Elementary,Elementary School,37221,grade_2,146.0
+395,Harpeth Valley Elementary,Elementary School,37221,grade_3,126.0
+395,Harpeth Valley Elementary,Elementary School,37221,grade_4,128.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_pre_k_3yrs,241.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_pre_k_4yrs,141.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_k,40.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_1,44.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_2,46.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_3,38.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_4,36.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_5,26.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_6,21.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_7,25.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_8,18.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_9,14.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_10,6.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_11,10.0
+397,Harris-Hillman Special Education,Special Education,37212,grade_12,93.0
+230,Hattie Cotton Elementary,Elementary School,37206,grade_pre_k_4yrs,20.0
+230,Hattie Cotton Elementary,Elementary School,37206,grade_k,46.0
+230,Hattie Cotton Elementary,Elementary School,37206,grade_1,51.0
+230,Hattie Cotton Elementary,Elementary School,37206,grade_2,49.0
+230,Hattie Cotton Elementary,Elementary School,37206,grade_3,36.0
+230,Hattie Cotton Elementary,Elementary School,37206,grade_4,62.0
+400,Haynes Middle,Middle School,37207,grade_5,55.0
+400,Haynes Middle,Middle School,37207,grade_6,73.0
+400,Haynes Middle,Middle School,37207,grade_7,61.0
+400,Haynes Middle,Middle School,37207,grade_8,54.0
+405,Haywood Elementary,Elementary School,37211,grade_pre_k_4yrs,48.0
+405,Haywood Elementary,Elementary School,37211,grade_k,124.0
+405,Haywood Elementary,Elementary School,37211,grade_1,132.0
+405,Haywood Elementary,Elementary School,37211,grade_2,99.0
+405,Haywood Elementary,Elementary School,37211,grade_3,129.0
+405,Haywood Elementary,Elementary School,37211,grade_4,144.0
+410,Head Middle,Middle School,37203,grade_5,171.0
+410,Head Middle,Middle School,37203,grade_6,172.0
+410,Head Middle,Middle School,37203,grade_7,106.0
+410,Head Middle,Middle School,37203,grade_8,117.0
+552,Henry C Maxwell Elementary,Elementary School,37013,grade_pre_k_3yrs,4.0
+552,Henry C Maxwell Elementary,Elementary School,37013,grade_pre_k_4yrs,50.0
+552,Henry C Maxwell Elementary,Elementary School,37013,grade_k,95.0
+552,Henry C Maxwell Elementary,Elementary School,37013,grade_1,97.0
+552,Henry C Maxwell Elementary,Elementary School,37013,grade_2,126.0
+552,Henry C Maxwell Elementary,Elementary School,37013,grade_3,116.0
+552,Henry C Maxwell Elementary,Elementary School,37013,grade_4,112.0
+415,Hermitage Elementary,Elementary School,37076,grade_pre_k_3yrs,4.0
+415,Hermitage Elementary,Elementary School,37076,grade_pre_k_4yrs,27.0
+415,Hermitage Elementary,Elementary School,37076,grade_k,59.0
+415,Hermitage Elementary,Elementary School,37076,grade_1,53.0
+415,Hermitage Elementary,Elementary School,37076,grade_2,58.0
+415,Hermitage Elementary,Elementary School,37076,grade_3,48.0
+415,Hermitage Elementary,Elementary School,37076,grade_4,55.0
+420,Hickman Elementary,Elementary School,37214,grade_pre_k_3yrs,8.0
+420,Hickman Elementary,Elementary School,37214,grade_pre_k_4yrs,36.0
+420,Hickman Elementary,Elementary School,37214,grade_k,83.0
+420,Hickman Elementary,Elementary School,37214,grade_1,91.0
+420,Hickman Elementary,Elementary School,37214,grade_2,96.0
+420,Hickman Elementary,Elementary School,37214,grade_3,87.0
+420,Hickman Elementary,Elementary School,37214,grade_4,94.0
+435,Hillsboro High,High School,37215,grade_9,312.0
+435,Hillsboro High,High School,37215,grade_10,304.0
+435,Hillsboro High,High School,37215,grade_11,294.0
+435,Hillsboro High,High School,37215,grade_12,294.0
+440,Hillwood High,High School,37205,grade_9,268.0
+440,Hillwood High,High School,37205,grade_10,293.0
+440,Hillwood High,High School,37205,grade_11,263.0
+440,Hillwood High,High School,37205,grade_12,283.0
+451,Hull-Jackson Elementary,Elementary School,37208,grade_pre_k_3yrs,74.0
+451,Hull-Jackson Elementary,Elementary School,37208,grade_pre_k_4yrs,74.0
+451,Hull-Jackson Elementary,Elementary School,37208,grade_k,69.0
+451,Hull-Jackson Elementary,Elementary School,37208,grade_1,64.0
+451,Hull-Jackson Elementary,Elementary School,37208,grade_2,44.0
+451,Hull-Jackson Elementary,Elementary School,37208,grade_3,62.0
+451,Hull-Jackson Elementary,Elementary School,37208,grade_4,59.0
+450,Hume-Fogg High,High School,37203,grade_9,222.0
+450,Hume-Fogg High,High School,37203,grade_10,233.0
+450,Hume-Fogg High,High School,37203,grade_11,227.0
+450,Hume-Fogg High,High School,37203,grade_12,221.0
+452,Hunters Lane High,High School,37207,grade_9,377.0
+452,Hunters Lane High,High School,37207,grade_10,310.0
+452,Hunters Lane High,High School,37207,grade_11,340.0
+452,Hunters Lane High,High School,37207,grade_12,305.0
+175,Ida B. Wells Elementary,Elementary School,37207,grade_pre_k_4yrs,20.0
+175,Ida B. Wells Elementary,Elementary School,37207,grade_k,39.0
+175,Ida B. Wells Elementary,Elementary School,37207,grade_1,59.0
+175,Ida B. Wells Elementary,Elementary School,37207,grade_2,60.0
+175,Ida B. Wells Elementary,Elementary School,37207,grade_3,47.0
+175,Ida B. Wells Elementary,Elementary School,37207,grade_4,72.0
+455,Inglewood Elementary,Elementary School,37216,grade_pre_k_4yrs,40.0
+455,Inglewood Elementary,Elementary School,37216,grade_k,35.0
+455,Inglewood Elementary,Elementary School,37216,grade_1,33.0
+455,Inglewood Elementary,Elementary School,37216,grade_2,37.0
+455,Inglewood Elementary,Elementary School,37216,grade_3,30.0
+455,Inglewood Elementary,Elementary School,37216,grade_4,32.0
+457,Intrepid College Prep Charter,Charter,37013,grade_5,118.0
+457,Intrepid College Prep Charter,Charter,37013,grade_6,118.0
+457,Intrepid College Prep Charter,Charter,37013,grade_7,105.0
+457,Intrepid College Prep Charter,Charter,37013,grade_8,89.0
+457,Intrepid College Prep Charter,Charter,37013,grade_9,98.0
+457,Intrepid College Prep Charter,Charter,37013,grade_10,54.0
+510,Isaac Litton Middle,Middle School,37216,grade_5,125.0
+510,Isaac Litton Middle,Middle School,37216,grade_6,127.0
+510,Isaac Litton Middle,Middle School,37216,grade_7,112.0
+510,Isaac Litton Middle,Middle School,37216,grade_8,119.0
+152,Ivanetta H. Davis Learning Center at Bordeaux,Elementary School,37218,grade_pre_k_3yrs,37.0
+152,Ivanetta H. Davis Learning Center at Bordeaux,Elementary School,37218,grade_pre_k_4yrs,131.0
+310,J.E. Moss Elementary,Elementary School,37013,grade_pre_k_3yrs,6.0
+310,J.E. Moss Elementary,Elementary School,37013,grade_pre_k_4yrs,30.0
+310,J.E. Moss Elementary,Elementary School,37013,grade_k,150.0
+310,J.E. Moss Elementary,Elementary School,37013,grade_1,177.0
+310,J.E. Moss Elementary,Elementary School,37013,grade_2,132.0
+310,J.E. Moss Elementary,Elementary School,37013,grade_3,145.0
+310,J.E. Moss Elementary,Elementary School,37013,grade_4,136.0
+120,Jere Baxter Middle,Middle School,37207,grade_5,67.0
+120,Jere Baxter Middle,Middle School,37207,grade_6,64.0
+120,Jere Baxter Middle,Middle School,37207,grade_7,72.0
+120,Jere Baxter Middle,Middle School,37207,grade_8,61.0
+465,Joelton Elementary,Elementary School,37080,grade_pre_k_3yrs,3.0
+465,Joelton Elementary,Elementary School,37080,grade_pre_k_4yrs,17.0
+465,Joelton Elementary,Elementary School,37080,grade_k,46.0
+465,Joelton Elementary,Elementary School,37080,grade_1,48.0
+465,Joelton Elementary,Elementary School,37080,grade_2,49.0
+465,Joelton Elementary,Elementary School,37080,grade_3,54.0
+465,Joelton Elementary,Elementary School,37080,grade_4,40.0
+470,Joelton Middle,Middle School,37080,grade_5,75.0
+470,Joelton Middle,Middle School,37080,grade_6,71.0
+470,Joelton Middle,Middle School,37080,grade_7,82.0
+470,Joelton Middle,Middle School,37080,grade_8,95.0
+790,John B. Whitsitt Elementary,Elementary School,37210,grade_pre_k_4yrs,38.0
+790,John B. Whitsitt Elementary,Elementary School,37210,grade_k,79.0
+790,John B. Whitsitt Elementary,Elementary School,37210,grade_1,80.0
+790,John B. Whitsitt Elementary,Elementary School,37210,grade_2,78.0
+790,John B. Whitsitt Elementary,Elementary School,37210,grade_3,77.0
+790,John B. Whitsitt Elementary,Elementary School,37210,grade_4,78.0
+285,John Early Middle,Middle School,37208,grade_5,62.0
+285,John Early Middle,Middle School,37208,grade_6,58.0
+285,John Early Middle,Middle School,37208,grade_7,66.0
+285,John Early Middle,Middle School,37208,grade_8,95.0
+498,John F. Kennedy Middle,Middle School,37013,grade_5,196.0
+498,John F. Kennedy Middle,Middle School,37013,grade_6,202.0
+498,John F. Kennedy Middle,Middle School,37013,grade_7,201.0
+498,John F. Kennedy Middle,Middle School,37013,grade_8,207.0
+615,John Overton High,High School,37220,grade_9,500.0
+615,John Overton High,High School,37220,grade_10,515.0
+615,John Overton High,High School,37220,grade_11,544.0
+615,John Overton High,High School,37220,grade_12,406.0
+563,John Trotwood Moore Middle,Middle School,37204,grade_5,223.0
+563,John Trotwood Moore Middle,Middle School,37204,grade_6,204.0
+563,John Trotwood Moore Middle,Middle School,37204,grade_7,181.0
+563,John Trotwood Moore Middle,Middle School,37204,grade_8,152.0
+480,Johnson Alternative Learning Center,Non-Traditional,37210,grade_5,4.0
+480,Johnson Alternative Learning Center,Non-Traditional,37210,grade_6,6.0
+480,Johnson Alternative Learning Center,Non-Traditional,37210,grade_7,11.0
+480,Johnson Alternative Learning Center,Non-Traditional,37210,grade_8,27.0
+480,Johnson Alternative Learning Center,Non-Traditional,37210,grade_9,10.0
+480,Johnson Alternative Learning Center,Non-Traditional,37210,grade_10,23.0
+480,Johnson Alternative Learning Center,Non-Traditional,37210,grade_11,32.0
+480,Johnson Alternative Learning Center,Non-Traditional,37210,grade_12,8.0
+485,Jones Elementary,Elementary School,37208,grade_k,41.0
+485,Jones Elementary,Elementary School,37208,grade_1,55.0
+485,Jones Elementary,Elementary School,37208,grade_2,56.0
+485,Jones Elementary,Elementary School,37208,grade_3,50.0
+485,Jones Elementary,Elementary School,37208,grade_4,59.0
+380,Julia Green Elementary,Elementary School,37215,grade_k,105.0
+380,Julia Green Elementary,Elementary School,37215,grade_1,88.0
+380,Julia Green Elementary,Elementary School,37215,grade_2,83.0
+380,Julia Green Elementary,Elementary School,37215,grade_3,95.0
+380,Julia Green Elementary,Elementary School,37215,grade_4,73.0
+512,KA @ The Crossings MS,Charter,37013,grade_5,104.0
+512,KA @ The Crossings MS,Charter,37013,grade_6,79.0
+512,KA @ The Crossings MS,Charter,37013,grade_7,84.0
+512,KA @ The Crossings MS,Charter,37013,grade_8,38.0
+502,KIPP Academy Nashville,Charter,37207,grade_5,97.0
+502,KIPP Academy Nashville,Charter,37207,grade_6,94.0
+502,KIPP Academy Nashville,Charter,37207,grade_7,88.0
+502,KIPP Academy Nashville,Charter,37207,grade_8,86.0
+499,KIPP Academy Nashville Elementary,Charter,37206,grade_k,99.0
+499,KIPP Academy Nashville Elementary,Charter,37206,grade_1,100.0
+499,KIPP Academy Nashville Elementary,Charter,37206,grade_2,94.0
+499,KIPP Academy Nashville Elementary,Charter,37206,grade_3,84.0
+499,KIPP Academy Nashville Elementary,Charter,37206,grade_4,104.0
+503,KIPP Nashville College Prep,Charter,37207,grade_5,106.0
+503,KIPP Nashville College Prep,Charter,37207,grade_6,95.0
+503,KIPP Nashville College Prep,Charter,37207,grade_7,94.0
+503,KIPP Nashville College Prep,Charter,37207,grade_8,88.0
+501,KIPP Nashville College Prep Elementary,Charter,37207,grade_k,87.0
+501,KIPP Nashville College Prep Elementary,Charter,37207,grade_1,95.0
+501,KIPP Nashville College Prep Elementary,Charter,37207,grade_2,74.0
+504,KIPP Nashville Collegiate High School,Charter,37207,grade_9,138.0
+504,KIPP Nashville Collegiate High School,Charter,37207,grade_10,115.0
+504,KIPP Nashville Collegiate High School,Charter,37207,grade_11,81.0
+504,KIPP Nashville Collegiate High School,Charter,37207,grade_12,48.0
+511,Knowledge Academies High School,Charter,37013,grade_9,102.0
+511,Knowledge Academies High School,Charter,37013,grade_10,96.0
+511,Knowledge Academies High School,Charter,37013,grade_11,84.0
+511,Knowledge Academies High School,Charter,37013,grade_12,71.0
+506,Knowledge Academy,Charter,37013,grade_5,59.0
+506,Knowledge Academy,Charter,37013,grade_6,75.0
+506,Knowledge Academy,Charter,37013,grade_7,70.0
+506,Knowledge Academy,Charter,37013,grade_8,63.0
+122,Lakeview Elementary,Elementary School,37217,grade_pre_k_3yrs,19.0
+122,Lakeview Elementary,Elementary School,37217,grade_pre_k_4yrs,43.0
+122,Lakeview Elementary,Elementary School,37217,grade_k,117.0
+122,Lakeview Elementary,Elementary School,37217,grade_1,97.0
+122,Lakeview Elementary,Elementary School,37217,grade_2,97.0
+122,Lakeview Elementary,Elementary School,37217,grade_3,101.0
+122,Lakeview Elementary,Elementary School,37217,grade_4,101.0
+508,LEAD Academy,Charter,37208,grade_9,141.0
+508,LEAD Academy,Charter,37208,grade_10,128.0
+508,LEAD Academy,Charter,37208,grade_11,84.0
+508,LEAD Academy,Charter,37208,grade_12,80.0
+507,LEAD Prep Southeast,Charter,37211,grade_5,121.0
+507,LEAD Prep Southeast,Charter,37211,grade_6,125.0
+507,LEAD Prep Southeast,Charter,37211,grade_7,120.0
+507,LEAD Prep Southeast,Charter,37211,grade_8,150.0
+507,LEAD Prep Southeast,Charter,37211,grade_9,95.0
+507,LEAD Prep Southeast,Charter,37211,grade_10,79.0
+517,Liberty Collegiate Academy,Charter,37216,grade_5,103.0
+517,Liberty Collegiate Academy,Charter,37216,grade_6,127.0
+517,Liberty Collegiate Academy,Charter,37216,grade_7,100.0
+517,Liberty Collegiate Academy,Charter,37216,grade_8,103.0
+520,Lockeland Elementary,Elementary School,37206,grade_k,56.0
+520,Lockeland Elementary,Elementary School,37206,grade_1,61.0
+520,Lockeland Elementary,Elementary School,37206,grade_2,58.0
+520,Lockeland Elementary,Elementary School,37206,grade_3,58.0
+520,Lockeland Elementary,Elementary School,37206,grade_4,59.0
+545,Madison Middle,Middle School,37115,grade_5,153.0
+545,Madison Middle,Middle School,37115,grade_6,137.0
+545,Madison Middle,Middle School,37115,grade_7,117.0
+545,Madison Middle,Middle School,37115,grade_8,146.0
+550,Maplewood High,High School,37216,grade_9,190.0
+550,Maplewood High,High School,37216,grade_10,190.0
+550,Maplewood High,High School,37216,grade_11,232.0
+550,Maplewood High,High School,37216,grade_12,172.0
+100,Margaret Allen Middle,Middle School,37210,grade_5,92.0
+100,Margaret Allen Middle,Middle School,37210,grade_6,120.0
+100,Margaret Allen Middle,Middle School,37210,grade_7,123.0
+100,Margaret Allen Middle,Middle School,37210,grade_8,101.0
+497,Martin Luther King Jr School,High School,37203,grade_7,138.0
+497,Martin Luther King Jr School,High School,37203,grade_8,153.0
+497,Martin Luther King Jr School,High School,37203,grade_9,257.0
+497,Martin Luther King Jr School,High School,37203,grade_10,238.0
+497,Martin Luther King Jr School,High School,37203,grade_11,238.0
+497,Martin Luther King Jr School,High School,37203,grade_12,238.0
+682,May Werthan Shayne Elementary School,Elementary School,37211,grade_pre_k_3yrs,9.0
+682,May Werthan Shayne Elementary School,Elementary School,37211,grade_pre_k_4yrs,18.0
+682,May Werthan Shayne Elementary School,Elementary School,37211,grade_k,156.0
+682,May Werthan Shayne Elementary School,Elementary School,37211,grade_1,121.0
+682,May Werthan Shayne Elementary School,Elementary School,37211,grade_2,162.0
+682,May Werthan Shayne Elementary School,Elementary School,37211,grade_3,127.0
+682,May Werthan Shayne Elementary School,Elementary School,37211,grade_4,167.0
+530,McGavock Elementary,Elementary School,37214,grade_pre_k_4yrs,19.0
+530,McGavock Elementary,Elementary School,37214,grade_k,50.0
+530,McGavock Elementary,Elementary School,37214,grade_1,51.0
+530,McGavock Elementary,Elementary School,37214,grade_2,57.0
+530,McGavock Elementary,Elementary School,37214,grade_3,54.0
+530,McGavock Elementary,Elementary School,37214,grade_4,44.0
+532,McGavock High,High School,37214,grade_8,1.0
+532,McGavock High,High School,37214,grade_9,568.0
+532,McGavock High,High School,37214,grade_10,598.0
+532,McGavock High,High School,37214,grade_11,570.0
+532,McGavock High,High School,37214,grade_12,539.0
+540,McMurray Middle,Middle School,37211,grade_5,198.0
+540,McMurray Middle,Middle School,37211,grade_6,208.0
+540,McMurray Middle,Middle School,37211,grade_7,205.0
+540,McMurray Middle,Middle School,37211,grade_8,199.0
+555,Meigs Middle,Middle School,37206,grade_5,171.0
+555,Meigs Middle,Middle School,37206,grade_6,175.0
+555,Meigs Middle,Middle School,37206,grade_7,165.0
+555,Meigs Middle,Middle School,37206,grade_8,170.0
+748,Metro Nashville Virtual School,Non-Traditional,37209,grade_7,12.0
+748,Metro Nashville Virtual School,Non-Traditional,37209,grade_8,135.0
+748,Metro Nashville Virtual School,Non-Traditional,37209,grade_9,21.0
+748,Metro Nashville Virtual School,Non-Traditional,37209,grade_10,24.0
+748,Metro Nashville Virtual School,Non-Traditional,37209,grade_11,66.0
+748,Metro Nashville Virtual School,Non-Traditional,37209,grade_12,96.0
+562,Middle College High,High School,37209,grade_9,59.0
+562,Middle College High,High School,37209,grade_11,41.0
+562,Middle College High,High School,37209,grade_12,24.0
+535,Moses McKissack Middle,Middle School,37209,grade_5,74.0
+535,Moses McKissack Middle,Middle School,37209,grade_6,86.0
+535,Moses McKissack Middle,Middle School,37209,grade_7,76.0
+535,Moses McKissack Middle,Middle School,37209,grade_8,75.0
+576,Mt. View Elementary,Elementary School,37013,grade_pre_k_3yrs,4.0
+576,Mt. View Elementary,Elementary School,37013,grade_pre_k_4yrs,51.0
+576,Mt. View Elementary,Elementary School,37013,grade_k,126.0
+576,Mt. View Elementary,Elementary School,37013,grade_1,124.0
+576,Mt. View Elementary,Elementary School,37013,grade_2,130.0
+576,Mt. View Elementary,Elementary School,37013,grade_3,145.0
+576,Mt. View Elementary,Elementary School,37013,grade_4,111.0
+585,Murrell School,Special Education,37210,grade_1,2.0
+585,Murrell School,Special Education,37210,grade_2,4.0
+585,Murrell School,Special Education,37210,grade_3,6.0
+585,Murrell School,Special Education,37210,grade_4,9.0
+585,Murrell School,Special Education,37210,grade_5,8.0
+585,Murrell School,Special Education,37210,grade_6,11.0
+585,Murrell School,Special Education,37210,grade_7,6.0
+585,Murrell School,Special Education,37210,grade_8,4.0
+590,Napier Elementary,Elementary School,37210,grade_pre_k_3yrs,8.0
+590,Napier Elementary,Elementary School,37210,grade_pre_k_4yrs,43.0
+590,Napier Elementary,Elementary School,37210,grade_k,69.0
+590,Napier Elementary,Elementary School,37210,grade_1,53.0
+590,Napier Elementary,Elementary School,37210,grade_2,51.0
+590,Napier Elementary,Elementary School,37210,grade_3,49.0
+590,Napier Elementary,Elementary School,37210,grade_4,45.0
+589,Nashville Academy of Computer Science,Charter,37207,grade_5,76.0
+589,Nashville Academy of Computer Science,Charter,37207,grade_6,70.0
+589,Nashville Academy of Computer Science,Charter,37207,grade_7,77.0
+589,Nashville Academy of Computer Science,Charter,37207,grade_8,69.0
+142,Nashville Big Picture High School,Non-Traditional,37209,grade_9,30.0
+142,Nashville Big Picture High School,Non-Traditional,37209,grade_10,45.0
+142,Nashville Big Picture High School,Non-Traditional,37209,grade_11,27.0
+142,Nashville Big Picture High School,Non-Traditional,37209,grade_12,27.0
+592,Nashville Classical,Charter,37206,grade_k,73.0
+592,Nashville Classical,Charter,37206,grade_1,64.0
+592,Nashville Classical,Charter,37206,grade_2,70.0
+592,Nashville Classical,Charter,37206,grade_3,64.0
+592,Nashville Classical,Charter,37206,grade_4,67.0
+592,Nashville Classical,Charter,37206,grade_5,52.0
+594,Nashville Prep,Charter,37209,grade_5,85.0
+594,Nashville Prep,Charter,37209,grade_6,97.0
+594,Nashville Prep,Charter,37209,grade_7,75.0
+594,Nashville Prep,Charter,37209,grade_8,79.0
+242,Nashville School Of The Arts,High School,37210,grade_9,146.0
+242,Nashville School Of The Arts,High School,37210,grade_10,140.0
+242,Nashville School Of The Arts,High School,37210,grade_11,146.0
+242,Nashville School Of The Arts,High School,37210,grade_12,117.0
+601,Neelys Bend College Prep,Charter,37115,grade_5,141.0
+601,Neelys Bend College Prep,Charter,37115,grade_6,119.0
+601,Neelys Bend College Prep,Charter,37115,grade_7,120.0
+601,Neelys Bend College Prep,Charter,37115,grade_8,131.0
+595,Neelys Bend Elementary,Elementary School,37115,grade_k,52.0
+595,Neelys Bend Elementary,Elementary School,37115,grade_1,57.0
+595,Neelys Bend Elementary,Elementary School,37115,grade_2,51.0
+595,Neelys Bend Elementary,Elementary School,37115,grade_3,52.0
+595,Neelys Bend Elementary,Elementary School,37115,grade_4,66.0
+605,New Vision Academy,Charter,37217,grade_5,47.0
+605,New Vision Academy,Charter,37217,grade_6,40.0
+605,New Vision Academy,Charter,37217,grade_7,38.0
+605,New Vision Academy,Charter,37217,grade_8,35.0
+145,Norman Binkley Elementary,Elementary School,37211,grade_pre_k_3yrs,4.0
+145,Norman Binkley Elementary,Elementary School,37211,grade_pre_k_4yrs,31.0
+145,Norman Binkley Elementary,Elementary School,37211,grade_k,126.0
+145,Norman Binkley Elementary,Elementary School,37211,grade_1,98.0
+145,Norman Binkley Elementary,Elementary School,37211,grade_2,106.0
+145,Norman Binkley Elementary,Elementary School,37211,grade_3,117.0
+145,Norman Binkley Elementary,Elementary School,37211,grade_4,92.0
+610,Old Center Elementary,Elementary School,37072,grade_pre_k_4yrs,40.0
+610,Old Center Elementary,Elementary School,37072,grade_k,67.0
+610,Old Center Elementary,Elementary School,37072,grade_1,63.0
+610,Old Center Elementary,Elementary School,37072,grade_2,66.0
+610,Old Center Elementary,Elementary School,37072,grade_3,74.0
+610,Old Center Elementary,Elementary School,37072,grade_4,56.0
+618,Paragon Mills Elementary,Elementary School,37211,grade_pre_k_3yrs,10.0
+618,Paragon Mills Elementary,Elementary School,37211,grade_pre_k_4yrs,68.0
+618,Paragon Mills Elementary,Elementary School,37211,grade_k,110.0
+618,Paragon Mills Elementary,Elementary School,37211,grade_1,109.0
+618,Paragon Mills Elementary,Elementary School,37211,grade_2,107.0
+618,Paragon Mills Elementary,Elementary School,37211,grade_3,108.0
+618,Paragon Mills Elementary,Elementary School,37211,grade_4,108.0
+620,Park Avenue Elementary,Elementary School,37209,grade_pre_k_4yrs,39.0
+620,Park Avenue Elementary,Elementary School,37209,grade_k,51.0
+620,Park Avenue Elementary,Elementary School,37209,grade_1,62.0
+620,Park Avenue Elementary,Elementary School,37209,grade_2,56.0
+620,Park Avenue Elementary,Elementary School,37209,grade_3,65.0
+620,Park Avenue Elementary,Elementary School,37209,grade_4,84.0
+632,Pearl-Cohn High,High School,37208,grade_9,151.0
+632,Pearl-Cohn High,High School,37208,grade_10,142.0
+632,Pearl-Cohn High,High School,37208,grade_11,155.0
+632,Pearl-Cohn High,High School,37208,grade_12,137.0
+640,Pennington Elementary,Elementary School,37214,grade_pre_k_3yrs,3.0
+640,Pennington Elementary,Elementary School,37214,grade_pre_k_4yrs,15.0
+640,Pennington Elementary,Elementary School,37214,grade_k,51.0
+640,Pennington Elementary,Elementary School,37214,grade_1,48.0
+640,Pennington Elementary,Elementary School,37214,grade_2,53.0
+640,Pennington Elementary,Elementary School,37214,grade_3,62.0
+640,Pennington Elementary,Elementary School,37214,grade_4,45.0
+650,Percy Priest Elementary,Elementary School,37215,grade_k,99.0
+650,Percy Priest Elementary,Elementary School,37215,grade_1,99.0
+650,Percy Priest Elementary,Elementary School,37215,grade_2,102.0
+650,Percy Priest Elementary,Elementary School,37215,grade_3,104.0
+650,Percy Priest Elementary,Elementary School,37215,grade_4,93.0
+652,Purpose Prep,Charter,37228,grade_k,87.0
+652,Purpose Prep,Charter,37228,grade_1,69.0
+652,Purpose Prep,Charter,37228,grade_2,60.0
+652,Purpose Prep,Charter,37228,grade_3,66.0
+652,Purpose Prep,Charter,37228,grade_4,85.0
+660,RePublic High School,Charter,37207,grade_9,232.0
+660,RePublic High School,Charter,37207,grade_10,162.0
+660,RePublic High School,Charter,37207,grade_11,129.0
+660,RePublic High School,Charter,37207,grade_12,119.0
+784,Robert Churchwell Elementary,Elementary School,37208,grade_pre_k_4yrs,18.0
+784,Robert Churchwell Elementary,Elementary School,37208,grade_k,49.0
+784,Robert Churchwell Elementary,Elementary School,37208,grade_1,64.0
+784,Robert Churchwell Elementary,Elementary School,37208,grade_2,56.0
+784,Robert Churchwell Elementary,Elementary School,37208,grade_3,68.0
+784,Robert Churchwell Elementary,Elementary School,37208,grade_4,56.0
+500,Robert E. Lillard Elementary,Elementary School,37218,grade_k,46.0
+500,Robert E. Lillard Elementary,Elementary School,37218,grade_1,53.0
+500,Robert E. Lillard Elementary,Elementary School,37218,grade_2,47.0
+500,Robert E. Lillard Elementary,Elementary School,37218,grade_3,55.0
+500,Robert E. Lillard Elementary,Elementary School,37218,grade_4,66.0
+665,Robertson Academy Gifted School,GATE Center,37220,grade_pre_k_3yrs,15.0
+665,Robertson Academy Gifted School,GATE Center,37220,grade_pre_k_4yrs,28.0
+667,Rocketship Nashville Northeast Elementary,Charter,37207,grade_k,109.0
+667,Rocketship Nashville Northeast Elementary,Charter,37207,grade_1,72.0
+667,Rocketship Nashville Northeast Elementary,Charter,37207,grade_2,90.0
+667,Rocketship Nashville Northeast Elementary,Charter,37207,grade_3,76.0
+667,Rocketship Nashville Northeast Elementary,Charter,37207,grade_4,69.0
+668,Rocketship United,Charter,37217,grade_k,104.0
+668,Rocketship United,Charter,37217,grade_1,110.0
+668,Rocketship United,Charter,37217,grade_2,122.0
+668,Rocketship United,Charter,37217,grade_3,125.0
+668,Rocketship United,Charter,37217,grade_4,99.0
+675,Rose Park Middle,Middle School,37203,grade_5,128.0
+675,Rose Park Middle,Middle School,37203,grade_6,118.0
+675,Rose Park Middle,Middle School,37203,grade_7,107.0
+675,Rose Park Middle,Middle School,37203,grade_8,93.0
+670,Rosebank Elementary,Elementary School,37206,grade_pre_k_4yrs,39.0
+670,Rosebank Elementary,Elementary School,37206,grade_k,70.0
+670,Rosebank Elementary,Elementary School,37206,grade_1,53.0
+670,Rosebank Elementary,Elementary School,37206,grade_2,47.0
+670,Rosebank Elementary,Elementary School,37206,grade_3,41.0
+670,Rosebank Elementary,Elementary School,37206,grade_4,43.0
+681,Ross Early Learning Center,Elementary School,37206,grade_pre_k_3yrs,30.0
+681,Ross Early Learning Center,Elementary School,37206,grade_pre_k_4yrs,192.0
+522,Ruby Major Elementary,Elementary School,37076,grade_pre_k_3yrs,4.0
+522,Ruby Major Elementary,Elementary School,37076,grade_pre_k_4yrs,34.0
+522,Ruby Major Elementary,Elementary School,37076,grade_k,85.0
+522,Ruby Major Elementary,Elementary School,37076,grade_1,83.0
+522,Ruby Major Elementary,Elementary School,37076,grade_2,105.0
+522,Ruby Major Elementary,Elementary School,37076,grade_3,90.0
+522,Ruby Major Elementary,Elementary School,37076,grade_4,104.0
+685,Shwab Elementary,Elementary School,37207,grade_pre_k_3yrs,4.0
+685,Shwab Elementary,Elementary School,37207,grade_pre_k_4yrs,40.0
+685,Shwab Elementary,Elementary School,37207,grade_k,46.0
+685,Shwab Elementary,Elementary School,37207,grade_1,49.0
+685,Shwab Elementary,Elementary School,37207,grade_2,54.0
+685,Shwab Elementary,Elementary School,37207,grade_3,52.0
+685,Shwab Elementary,Elementary School,37207,grade_4,55.0
+686,Smith Springs Elementary School,Elementary School,37013,grade_pre_k_3yrs,18.0
+686,Smith Springs Elementary School,Elementary School,37013,grade_pre_k_4yrs,62.0
+686,Smith Springs Elementary School,Elementary School,37013,grade_k,120.0
+686,Smith Springs Elementary School,Elementary School,37013,grade_1,105.0
+686,Smith Springs Elementary School,Elementary School,37013,grade_2,100.0
+686,Smith Springs Elementary School,Elementary School,37013,grade_3,104.0
+686,Smith Springs Elementary School,Elementary School,37013,grade_4,119.0
+687,Smithson Craighead Academy,Charter,37115,grade_k,31.0
+687,Smithson Craighead Academy,Charter,37115,grade_1,37.0
+687,Smithson Craighead Academy,Charter,37115,grade_2,39.0
+687,Smithson Craighead Academy,Charter,37115,grade_3,41.0
+687,Smithson Craighead Academy,Charter,37115,grade_4,37.0
+690,Stanford Elementary,Elementary School,37214,grade_pre_k_3yrs,52.0
+690,Stanford Elementary,Elementary School,37214,grade_pre_k_4yrs,56.0
+690,Stanford Elementary,Elementary School,37214,grade_k,71.0
+690,Stanford Elementary,Elementary School,37214,grade_1,57.0
+690,Stanford Elementary,Elementary School,37214,grade_2,58.0
+690,Stanford Elementary,Elementary School,37214,grade_3,58.0
+690,Stanford Elementary,Elementary School,37214,grade_4,59.0
+695,STEM Prep Academy,Charter,37210,grade_5,125.0
+695,STEM Prep Academy,Charter,37210,grade_6,137.0
+695,STEM Prep Academy,Charter,37210,grade_7,127.0
+695,STEM Prep Academy,Charter,37210,grade_8,128.0
+696,STEM Prep High School,Charter,37210,grade_9,142.0
+696,STEM Prep High School,Charter,37210,grade_10,124.0
+696,STEM Prep High School,Charter,37210,grade_11,104.0
+696,STEM Prep High School,Charter,37210,grade_12,97.0
+705,Stratford STEM Magnet School,High School,37216,grade_5,88.0
+705,Stratford STEM Magnet School,High School,37216,grade_6,93.0
+705,Stratford STEM Magnet School,High School,37216,grade_7,87.0
+705,Stratford STEM Magnet School,High School,37216,grade_8,78.0
+705,Stratford STEM Magnet School,High School,37216,grade_9,165.0
+705,Stratford STEM Magnet School,High School,37216,grade_10,162.0
+705,Stratford STEM Magnet School,High School,37216,grade_11,144.0
+705,Stratford STEM Magnet School,High School,37216,grade_12,170.0
+710,Stratton Elementary,Elementary School,37115,grade_pre_k_4yrs,21.0
+710,Stratton Elementary,Elementary School,37115,grade_k,96.0
+710,Stratton Elementary,Elementary School,37115,grade_1,88.0
+710,Stratton Elementary,Elementary School,37115,grade_2,95.0
+710,Stratton Elementary,Elementary School,37115,grade_3,89.0
+710,Stratton Elementary,Elementary School,37115,grade_4,113.0
+712,Strive Collegiate Academy,Charter,37214,grade_5,98.0
+712,Strive Collegiate Academy,Charter,37214,grade_6,88.0
+712,Strive Collegiate Academy,Charter,37214,grade_7,73.0
+712,Strive Collegiate Academy,Charter,37214,grade_8,96.0
+715,Sylvan Park Elementary,Elementary School,37209,grade_k,87.0
+715,Sylvan Park Elementary,Elementary School,37209,grade_1,90.0
+715,Sylvan Park Elementary,Elementary School,37209,grade_2,95.0
+715,Sylvan Park Elementary,Elementary School,37209,grade_3,76.0
+715,Sylvan Park Elementary,Elementary School,37209,grade_4,83.0
+422,The Academy at Hickory Hollow,Non-Traditional,37013,grade_12,39.0
+211,The Academy at Old Cockrill,Non-Traditional,37209,grade_12,57.0
+613,The Academy at Opry Mills,Non-Traditional,37214,grade_12,70.0
+718,The Cohn Learning Center,Non-Traditional,37209,grade_10,7.0
+718,The Cohn Learning Center,Non-Traditional,37209,grade_11,63.0
+575,Thomas A. Edison Elementary,Elementary School,37013,grade_pre_k_3yrs,4.0
+575,Thomas A. Edison Elementary,Elementary School,37013,grade_pre_k_4yrs,31.0
+575,Thomas A. Edison Elementary,Elementary School,37013,grade_k,122.0
+575,Thomas A. Edison Elementary,Elementary School,37013,grade_1,149.0
+575,Thomas A. Edison Elementary,Elementary School,37013,grade_2,145.0
+575,Thomas A. Edison Elementary,Elementary School,37013,grade_3,135.0
+575,Thomas A. Edison Elementary,Elementary School,37013,grade_4,152.0
+551,Thurgood Marshall Middle,Middle School,37013,grade_5,216.0
+551,Thurgood Marshall Middle,Middle School,37013,grade_6,246.0
+551,Thurgood Marshall Middle,Middle School,37013,grade_7,242.0
+551,Thurgood Marshall Middle,Middle School,37013,grade_8,244.0
+495,Tom Joy Elementary,Elementary School,37207,grade_pre_k_4yrs,40.0
+495,Tom Joy Elementary,Elementary School,37207,grade_k,70.0
+495,Tom Joy Elementary,Elementary School,37207,grade_1,61.0
+495,Tom Joy Elementary,Elementary School,37207,grade_2,69.0
+495,Tom Joy Elementary,Elementary School,37207,grade_3,70.0
+495,Tom Joy Elementary,Elementary School,37207,grade_4,78.0
+117,Transitions at Bass,Alternative Learning Center,37209,grade_10,3.0
+117,Transitions at Bass,Alternative Learning Center,37209,grade_11,8.0
+117,Transitions at Bass,Alternative Learning Center,37209,grade_12,6.0
+717,Tulip Grove Elementary,Elementary School,37076,grade_pre_k_3yrs,14.0
+717,Tulip Grove Elementary,Elementary School,37076,grade_pre_k_4yrs,34.0
+717,Tulip Grove Elementary,Elementary School,37076,grade_k,104.0
+717,Tulip Grove Elementary,Elementary School,37076,grade_1,78.0
+717,Tulip Grove Elementary,Elementary School,37076,grade_2,91.0
+717,Tulip Grove Elementary,Elementary School,37076,grade_3,87.0
+717,Tulip Grove Elementary,Elementary School,37076,grade_4,90.0
+725,Tusculum Elementary,Elementary School,37211,grade_pre_k_3yrs,6.0
+725,Tusculum Elementary,Elementary School,37211,grade_pre_k_4yrs,61.0
+725,Tusculum Elementary,Elementary School,37211,grade_k,152.0
+725,Tusculum Elementary,Elementary School,37211,grade_1,141.0
+725,Tusculum Elementary,Elementary School,37211,grade_2,138.0
+725,Tusculum Elementary,Elementary School,37211,grade_3,139.0
+725,Tusculum Elementary,Elementary School,37211,grade_4,121.0
+730,Two Rivers Middle,Middle School,37214,grade_5,119.0
+730,Two Rivers Middle,Middle School,37214,grade_6,105.0
+730,Two Rivers Middle,Middle School,37214,grade_7,98.0
+730,Two Rivers Middle,Middle School,37214,grade_8,107.0
+735,Una Elementary,Elementary School,37217,grade_pre_k_4yrs,40.0
+735,Una Elementary,Elementary School,37217,grade_k,143.0
+735,Una Elementary,Elementary School,37217,grade_1,154.0
+735,Una Elementary,Elementary School,37217,grade_2,155.0
+735,Una Elementary,Elementary School,37217,grade_3,123.0
+735,Una Elementary,Elementary School,37217,grade_4,139.0
+743,Valor Flagship Academy,Charter,37211,grade_5,124.0
+743,Valor Flagship Academy,Charter,37211,grade_6,122.0
+743,Valor Flagship Academy,Charter,37211,grade_7,116.0
+743,Valor Flagship Academy,Charter,37211,grade_8,135.0
+743,Valor Flagship Academy,Charter,37211,grade_9,231.0
+744,Valor Voyager Academy,Charter,37211,grade_5,125.0
+744,Valor Voyager Academy,Charter,37211,grade_6,133.0
+744,Valor Voyager Academy,Charter,37211,grade_7,126.0
+744,Valor Voyager Academy,Charter,37211,grade_8,131.0
+114,W. A. Bass Adult Program,Adult,37209,grade_9,55.0
+114,W. A. Bass Adult Program,Adult,37209,grade_10,10.0
+114,W. A. Bass Adult Program,Adult,37209,grade_11,169.0
+114,W. A. Bass Adult Program,Adult,37209,grade_12,48.0
+116,W.A. Bass Alternative Learning Center,Alternative Learning Center,37209,grade_9,17.0
+116,W.A. Bass Alternative Learning Center,Alternative Learning Center,37209,grade_10,25.0
+116,W.A. Bass Alternative Learning Center,Alternative Learning Center,37209,grade_11,34.0
+116,W.A. Bass Alternative Learning Center,Alternative Learning Center,37209,grade_12,10.0
+755,Warner Elementary,Elementary School,37206,grade_pre_k_3yrs,3.0
+755,Warner Elementary,Elementary School,37206,grade_pre_k_4yrs,29.0
+755,Warner Elementary,Elementary School,37206,grade_k,41.0
+755,Warner Elementary,Elementary School,37206,grade_1,43.0
+755,Warner Elementary,Elementary School,37206,grade_2,37.0
+755,Warner Elementary,Elementary School,37206,grade_3,39.0
+755,Warner Elementary,Elementary School,37206,grade_4,43.0
+765,Waverly-Belmont Elementary School,Elementary School,37204,grade_pre_k_3yrs,10.0
+765,Waverly-Belmont Elementary School,Elementary School,37204,grade_pre_k_4yrs,6.0
+765,Waverly-Belmont Elementary School,Elementary School,37204,grade_k,122.0
+765,Waverly-Belmont Elementary School,Elementary School,37204,grade_1,107.0
+765,Waverly-Belmont Elementary School,Elementary School,37204,grade_2,115.0
+765,Waverly-Belmont Elementary School,Elementary School,37204,grade_3,100.0
+765,Waverly-Belmont Elementary School,Elementary School,37204,grade_4,82.0
+770,West End Middle,Middle School,37205,grade_5,143.0
+770,West End Middle,Middle School,37205,grade_6,147.0
+770,West End Middle,Middle School,37205,grade_7,116.0
+770,West End Middle,Middle School,37205,grade_8,126.0
+775,Westmeade Elementary,Elementary School,37205,grade_k,88.0
+775,Westmeade Elementary,Elementary School,37205,grade_1,85.0
+775,Westmeade Elementary,Elementary School,37205,grade_2,88.0
+775,Westmeade Elementary,Elementary School,37205,grade_3,79.0
+775,Westmeade Elementary,Elementary School,37205,grade_4,84.0
+787,Whites Creek High School,High School,37189,grade_9,154.0
+787,Whites Creek High School,High School,37189,grade_10,155.0
+787,Whites Creek High School,High School,37189,grade_11,169.0
+787,Whites Creek High School,High School,37189,grade_12,174.0
+612,William Henry Oliver Middle,Middle School,37211,grade_5,261.0
+612,William Henry Oliver Middle,Middle School,37211,grade_6,250.0
+612,William Henry Oliver Middle,Middle School,37211,grade_7,226.0
+612,William Henry Oliver Middle,Middle School,37211,grade_8,223.0
+805,Wright Middle,Middle School,37211,grade_5,186.0
+805,Wright Middle,Middle School,37211,grade_6,212.0
+805,Wright Middle,Middle School,37211,grade_7,175.0
+805,Wright Middle,Middle School,37211,grade_8,165.0
