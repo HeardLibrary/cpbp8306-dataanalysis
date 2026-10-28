@@ -17,8 +17,8 @@ analysis_python/
   scripts/
     0_language_basics.py     Sessions 1 to 6: labeled examples of the basic commands
     1_data_cleaning.py       Sessions 7 and 8: subset, rename, change, combine, reshape, save
-    2_statistics.py          Sessions 9 to 12: comments only for now
-  figures/                   plots saved by later scripts
+    2_statistics.py          Session 9 is code (exploratory data analysis), Sessions 10 to 12 are a plan
+  figures/                   plots that 2_statistics.py saves (PNG files)
 ```
 
 ## How to run it
@@ -39,9 +39,11 @@ You can also open `main.py` in VS Code or Jupyter and run it top to bottom, with
 |---|---|
 | pandas | DataFrames: `read_csv`, filtering, `groupby`, `merge`, `melt`, `pivot` |
 | numpy | arrays and math: boolean masks, `np.where`, `np.select` |
-| scipy | `stats.ttest_ind`, used in Lecture 1 |
+| scipy | `stats.ttest_ind`, used in Lecture 1 and Session 9 |
+| matplotlib | saving plots with `plt.savefig()` |
+| seaborn | `histplot`, `boxplot`, `scatterplot`, `regplot` and `heatmap` |
 
-`matplotlib` or `seaborn`, `statsmodels` and `scikit-learn` are added when `2_statistics.py` gets code.
+`statsmodels` and `scikit-learn` are added when Sessions 11 and 12 get code.
 
 ## The data
 
@@ -74,7 +76,8 @@ Problems in the raw files are there on purpose. Session 7 and 8 find and fix the
 | Parts 4 to 6 | Session 8 and 2025 S04: change values, the six functions, missing values |
 | Parts 7 and 8 | Session 8 and 2025 S06: concat, merge, melt, pivot |
 | Part 9 | The cleaning pipeline and saving to `data/clean/` |
-| `2_statistics.py` | Sessions 9 to 12 (plan only) |
+| `2_statistics.py` Parts 1 and 2 | Session 9: load the cleaned data, then exploratory data analysis (summaries, three plots, Simpson's paradox, the group A histogram, correlation, missing values, outliers, impossible values), then the pandas version of R's DataExplorer overview |
+| Parts 3 to 7 | Sessions 10 to 12 (plan only) |
 
 `0_language_basics.py` is optional. It changes nothing on disk, so you can skip it or run it as a refresher. To skip it, put a `#` in front of its `runpy.run_path` line in `main.py`.
 
@@ -86,6 +89,8 @@ Running `1_data_cleaning.py` writes four files to `data/clean/`:
 - `penguins_clean.csv`: the row-number column removed, 8 columns
 - `schools_clean.csv`: one `school_level` label per category, `zip_code` as text
 - `schools_long.csv`: one row per school per grade, 868 rows
+
+Running `2_statistics.py` saves 11 PNG files in `figures/`, all named `09_...`. If you install `ydata-profiling` (optional, `pip install ydata-profiling`), Part 2g also writes `09_profile_report.html`, the Python version of R's `create_report()`.
 
 Running the project again replaces these files. Raw files are never touched. The R project writes the same four files, so you can compare the two.
 
@@ -109,4 +114,5 @@ Commit the code. The files in `data/clean/` can be rebuilt by running `main.py`,
 | A column called `Unnamed: 0` in penguins | The unnamed row-number column. `1_data_cleaning.py` drops it. |
 | `age` has type `object` | The word `"unknown"` makes pandas read the column as text. `pd.to_numeric(errors="coerce")` fixes it. |
 | `ModuleNotFoundError` | The library did not install. Run `python -m pip install name` and read the error. |
+| Plots do not appear on screen | They are saved as PNG files in `figures/` instead. Open the files, or add `plt.show()` after a plot to see it. |
 | `Run main.py first` | You ran a script in `scripts/` directly. Run `main.py`, which loads the data first. |

@@ -17,7 +17,7 @@ Folder layout (see README.md for more)
   data/raw/     the original files, exactly as downloaded. Never edit these.
   data/clean/   cleaned files that 1_data_cleaning.py writes.
   scripts/      0_language_basics.py, 1_data_cleaning.py, 2_statistics.py
-  figures/      plots saved by later scripts (empty for now).
+  figures/      plots that 2_statistics.py saves (PNG files).
 
 Needs Python 3.9 or newer.
 """
@@ -49,7 +49,8 @@ if not Path("data/raw/patients.csv").exists():
 # The loop below installs any library that is missing, so this file works on a
 # fresh computer. It needs an internet connection the first time.
 #   module name -> name to give pip
-libraries = {"pandas": "pandas", "numpy": "numpy", "scipy": "scipy"}
+libraries = {"pandas": "pandas", "numpy": "numpy", "scipy": "scipy",
+             "matplotlib": "matplotlib", "seaborn": "seaborn"}
 
 for module, pip_name in libraries.items():
     if importlib.util.find_spec(module) is None:
@@ -58,7 +59,9 @@ for module, pip_name in libraries.items():
 import runpy             # runs another .py file, like R's source()
 import numpy as np       # fast arrays and math. Boolean masks, np.where, np.select.
 import pandas as pd      # tables (DataFrames): read_csv, filter, group, merge, melt
-from scipy import stats  # statistical tests. Used once, in Lecture 1 (a t-test).
+from scipy import stats  # statistical tests: ttest_ind in Lecture 1 and Session 9
+import matplotlib.pyplot as plt   # saving plots with plt.savefig()
+import seaborn as sns             # histplot, boxplot, scatterplot and heatmap
 
 # Other libraries that some lecture examples mention. They are commented out
 # because the scripts do not need them:
@@ -66,9 +69,13 @@ from scipy import stats  # statistical tests. Used once, in Lecture 1 (a t-test)
 #   pyjanitor    clean_names() fixes messy column headings. 1_data_cleaning.py
 #                writes its own version.
 #
+# A library that 2_statistics.py uses only if it is installed:
+#   ydata-profiling   ProfileReport() writes a full HTML report of the data, the
+#                     Python cousin of R's DataExplorer:  pip install ydata-profiling
+#
 # Libraries that 2_statistics.py will need later (not used yet):
-#   matplotlib or seaborn (figures, Session 10), statsmodels (regression),
-#   scikit-learn (PCA, clustering, LASSO, Session 12)
+#   statsmodels (regression, Session 11), scikit-learn (PCA, clustering, LASSO,
+#   Session 12)
 
 
 # -----------------------------------------------------------------------------
@@ -134,7 +141,9 @@ print(f"Loaded: {len(penguins_raw)} penguins, {len(patients_raw)} patients, {len
 #                        It changes nothing, so you can skip it.
 # 1_data_cleaning.py     Sessions 7 and 8: subset, rename, change, combine,
 #                        reshape and save. It writes the cleaned files to data/clean/.
-# 2_statistics.py        Sessions 9 to 12. It only has comments so far.
+# 2_statistics.py        Sessions 9 to 12. Session 9 (exploratory data analysis)
+#                        is code and saves plots in figures/. The rest is comments
+#                        until the course reaches it.
 runpy.run_path("scripts/0_language_basics.py", init_globals=globals())
 runpy.run_path("scripts/1_data_cleaning.py", init_globals=globals())
-# runpy.run_path("scripts/2_statistics.py", init_globals=globals())   # turn this on when the script has code
+runpy.run_path("scripts/2_statistics.py", init_globals=globals())

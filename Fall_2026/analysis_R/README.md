@@ -17,8 +17,8 @@ analysis_R/
   scripts/
     0_language_basics.R      Sessions 1 to 6: labeled examples of the basic commands
     1_data_cleaning.R        Sessions 7 and 8: subset, rename, change, combine, reshape, save
-    2_statistics.R           Sessions 9 to 12: comments only for now
-  figures/                   plots saved by later scripts
+    2_statistics.R           Session 9 is code (exploratory data analysis), Sessions 10 to 12 are a plan
+  figures/                   plots that 2_statistics.R saves (PNG files)
 ```
 
 ## How to run it
@@ -49,8 +49,9 @@ Rscript main.R
 | tidyr | `pivot_longer`, `pivot_wider`, `separate`, `unite`, `drop_na` |
 | stringr | text cleaning: `str_trim`, `str_to_upper`, `str_detect` |
 | tibble | the tibble table type |
+| ggplot2 | plots: `ggplot()`, `geom_histogram()`, `geom_boxplot()`, `ggsave()` |
 
-`ggplot2` and `glmnet` are added when `2_statistics.R` gets code.
+`skimr` (one-call summaries), `naniar` (a picture of missing values) and `DataExplorer` (an overview table, plots of every column and a full HTML report) are optional. `2_statistics.R` uses them only if they are installed. `glmnet` is added when Session 12 gets code.
 
 ## The data
 
@@ -83,7 +84,8 @@ Problems in the raw files are there on purpose. Session 7 and 8 find and fix the
 | Parts 4 to 6 | Session 8 and 2025 S04: change values, the six functions, missing values |
 | Parts 7 and 8 | Session 8 and 2025 S06: joins, bind, pivot |
 | Part 9 | The cleaning pipeline and saving to `data/clean/` |
-| `2_statistics.R` | Sessions 9 to 12 (plan only) |
+| `2_statistics.R` Parts 1 and 2 | Session 9: load the cleaned data, then exploratory data analysis (summaries, three plots, Simpson's paradox, the group A histogram, correlation, missing values, outliers, impossible values), then an optional one-call overview with DataExplorer |
+| Parts 3 to 7 | Sessions 10 to 12 (plan only) |
 
 `0_language_basics.R` is optional. It changes nothing on disk, so you can skip it or run it as a refresher.
 
@@ -95,6 +97,8 @@ Running `1_data_cleaning.R` writes four files to `data/clean/`:
 - `penguins_clean.csv`: the row-number column removed, 8 columns
 - `schools_clean.csv`: one `school_level` label per category, `zip_code` as text
 - `schools_long.csv`: one row per school per grade, 868 rows
+
+Running `2_statistics.R` saves 7 PNG files in `figures/`, all named `09_...`, plus an eighth (a picture of the missing values) if naniar is installed. If DataExplorer is installed, Part 2g adds 7 more PNG files named `09_de_...` and a report, `09_dataexplorer_report.html`. Open the report in a browser. It needs pandoc, which RStudio includes.
 
 Running the project again replaces these files. Raw files are never touched.
 
@@ -118,5 +122,6 @@ Commit the code. The files in `data/clean/` can be rebuilt by running `main.R`, 
 | A column called `...1` in penguins | The unnamed row-number column. `1_data_cleaning.R` drops it. |
 | `NAs introduced by coercion` when converting age | Expected. It is the 6 `"unknown"` values becoming `NA`. |
 | `read_csv` shows no `"A "` in `group` | `read_csv()` trims spaces by default. `main.R` sets `trim_ws = FALSE` so the problem stays visible. |
+| `Warning: Removed 2 rows containing non-finite values` while plotting | Expected. Two penguins have no measurements. |
 | `could not find function "%>%"` | dplyr is not loaded. Run `main.R`, which loads it, instead of running a script on its own. |
 | A package will not install | Check your internet connection, then run `install.packages("name")` yourself and read the error. |

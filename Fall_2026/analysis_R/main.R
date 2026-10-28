@@ -18,7 +18,7 @@
 #   data/raw/     the original files, exactly as downloaded. Never edit these.
 #   data/clean/   cleaned files that 1_data_cleaning.R writes.
 #   scripts/      0_language_basics.R, 1_data_cleaning.R, 2_statistics.R
-#   figures/      plots saved by later scripts (empty for now).
+#   figures/      plots that 2_statistics.R saves (PNG files).
 #
 # The scripts use the dplyr pipe, %>%. Base R has its own pipe, |>, that does the
 # same job. Part 5 of scripts/1_data_cleaning.R explains the difference.
@@ -46,7 +46,7 @@ if (!file.exists("data/raw/patients.csv")) {
 #
 # The loop below installs any package that is missing, so this file works on a
 # fresh computer. It needs an internet connection the first time.
-packages <- c("readr", "dplyr", "tidyr", "stringr", "tibble")
+packages <- c("readr", "dplyr", "tidyr", "stringr", "tibble", "ggplot2")
 
 for (pkg in packages) {
   if (!requireNamespace(pkg, quietly = TRUE)) install.packages(pkg)
@@ -59,6 +59,7 @@ library(tidyr)    # reshaping (pivot_longer, pivot_wider) and splitting a column
                   # into several (separate, unite)
 library(stringr)  # text functions that all start with str_ (str_trim, str_to_upper)
 library(tibble)   # the tibble() function, a modern kind of data frame
+library(ggplot2)  # plots: ggplot(), geom_histogram(), geom_boxplot(), ggsave()
 
 # Other ways to do the same job, in case you see them elsewhere:
 #   library(tidyverse)          loads readr, dplyr, tidyr, stringr, tibble and
@@ -72,8 +73,15 @@ library(tibble)   # the tibble() function, a modern kind of data frame
 #                                  1_data_cleaning.R writes its own version.
 #   install.packages("openxlsx")   read.xlsx() reads Excel files.
 #
-# Packages that 2_statistics.R will need later (not used yet):
-#   ggplot2 (figures, Session 10), glmnet (LASSO, Session 12)
+# Packages that 2_statistics.R uses only if they are installed:
+#   install.packages("skimr")    skim() summarizes every column in one call.
+#   install.packages("naniar")   vis_miss() draws the pattern of missing values.
+#   install.packages("DataExplorer")   introduce(), plot_missing(), plot_bar() and
+#                                      create_report() give a quick first look at a
+#                                      whole data frame. Fall 2025 used it too.
+#
+# A package that 2_statistics.R will need later (not used yet):
+#   glmnet (LASSO, Session 12)
 
 
 # -----------------------------------------------------------------------------
@@ -150,7 +158,9 @@ cat("Loaded:", nrow(penguins_raw), "penguins,", nrow(patients_raw), "patients,",
 #                       It changes nothing, so you can skip it.
 # 1_data_cleaning.R     Sessions 7 and 8: subset, rename, change, combine, reshape
 #                       and save. It writes the cleaned files to data/clean/.
-# 2_statistics.R        Sessions 9 to 12. It only has comments so far.
+# 2_statistics.R        Sessions 9 to 12. Session 9 (exploratory data analysis)
+#                       is code and saves plots in figures/. The rest is comments
+#                       until the course reaches it.
 source("scripts/0_language_basics.R")
 source("scripts/1_data_cleaning.R")
-# source("scripts/2_statistics.R")   # turn this on when the script has code
+source("scripts/2_statistics.R")
