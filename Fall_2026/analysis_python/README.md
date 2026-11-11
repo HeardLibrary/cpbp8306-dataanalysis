@@ -17,7 +17,7 @@ analysis_python/
   scripts/
     0_language_basics.py     Sessions 1 to 6: labeled examples of the basic commands
     1_data_cleaning.py       Sessions 7 and 8: subset, rename, change, combine, reshape, save
-    2_statistics.py          Session 9 is code (exploratory data analysis), Sessions 10 to 12 are a plan
+    2_statistics.py          Sessions 9 and 10 are code (exploratory data analysis, figures), Sessions 11 and 12 are a plan
   figures/                   plots that 2_statistics.py saves (PNG files)
 ```
 
@@ -41,9 +41,9 @@ You can also open `main.py` in VS Code or Jupyter and run it top to bottom, with
 | numpy | arrays and math: boolean masks, `np.where`, `np.select` |
 | scipy | `stats.ttest_ind`, used in Lecture 1 and Session 9 |
 | matplotlib | saving plots with `plt.savefig()` |
-| seaborn | `histplot`, `boxplot`, `scatterplot`, `regplot` and `heatmap` |
+| seaborn | `histplot`, `boxplot`, `scatterplot`, `regplot`, `heatmap`, `relplot` for facets, and `seaborn.objects` (0.12 or newer), which builds a plot layer by layer like ggplot2 |
 
-`statsmodels` and `scikit-learn` are added when Sessions 11 and 12 get code.
+`statsmodels` is optional: Part 3g uses it for Cook's distance and skips that one line if it is missing. It becomes a required library in Session 11, and `scikit-learn` is added when Session 12 gets code.
 
 ## The data
 
@@ -77,7 +77,8 @@ Problems in the raw files are there on purpose. Session 7 and 8 find and fix the
 | Parts 7 and 8 | Session 8 and 2025 S06: concat, merge, melt, pivot |
 | Part 9 | The cleaning pipeline and saving to `data/clean/` |
 | `2_statistics.py` Parts 1 and 2 | Session 9: load the cleaned data, then exploratory data analysis (summaries, three plots, Simpson's paradox, the group A histogram, correlation, missing values, outliers, impossible values), then the pandas version of R's DataExplorer overview |
-| Parts 3 to 7 | Sessions 10 to 12 (plan only) |
+| Part 3 | Session 10: the five parts of a plot, where the aesthetic lives, choosing the plot (including the bar chart of means against the raw points), facets, labels and the three plotting sins, saving at print size, residual and QQ plots, and leverage and Cook's distance on a model with unusual schools. Fall 2025 carry-overs: layers and scoping (Session 8) and the diagnostic plots (Session 10) |
+| Parts 4 to 7 | Sessions 11 and 12 (plan only) |
 
 `0_language_basics.py` is optional. It changes nothing on disk, so you can skip it or run it as a refresher. To skip it, put a `#` in front of its `runpy.run_path` line in `main.py`.
 
@@ -90,7 +91,7 @@ Running `1_data_cleaning.py` writes four files to `data/clean/`:
 - `schools_clean.csv`: one `school_level` label per category, `zip_code` as text
 - `schools_long.csv`: one row per school per grade, 868 rows
 
-Running `2_statistics.py` saves 11 PNG files in `figures/`, all named `09_...`. If you install `ydata-profiling` (optional, `pip install ydata-profiling`), Part 2g also writes `09_profile_report.html`, the Python version of R's `create_report()`.
+Running `2_statistics.py` saves 11 PNG files in `figures/` named `09_...`, and 19 more named `10_...`, plus a PDF, `10_figure1.pdf`. If statsmodels is installed, Part 3h adds `10_leverage_and_cooks_schools.png`. If you install `ydata-profiling` (optional, `pip install ydata-profiling`), Part 2g also writes `09_profile_report.html`, the Python version of R's `create_report()`.
 
 Running the project again replaces these files. Raw files are never touched. The R project writes the same four files, so you can compare the two.
 

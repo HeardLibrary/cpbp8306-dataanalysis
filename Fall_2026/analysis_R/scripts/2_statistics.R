@@ -1,10 +1,10 @@
 # =============================================================================
-# 2_statistics.R  |  Sessions 9 to 12   (Session 9 is code, the rest is a plan)
+# 2_statistics.R  |  Sessions 9 to 12   (Sessions 9 and 10 are code, the rest is a plan)
 # =============================================================================
-# Part 1 loads the cleaned data and Part 2 is Session 9, exploratory data
-# analysis, with working code. Parts 3 to 7 are comments that say what the code
-# will do, which cleaned file it reads, and which session it comes from. Code is
-# added as the course reaches each session.
+# Part 1 loads the cleaned data, Part 2 is Session 9 (exploratory data analysis)
+# and Part 3 is Session 10 (figures), both with working code. Parts 4 to 7 are
+# comments that say what the code will do, which cleaned file it reads, and which
+# session it comes from. Code is added as the course reaches each session.
 #
 # Input: the files that 1_data_cleaning.R saved in data/clean/. This script
 # never reads data/raw/. The one exception is patients_raw, which main.R already
@@ -22,15 +22,23 @@
 #             2e  Correlation
 #             2f  Three data problems: missing values, outliers, impossible values
 #             2g  The whole first look in one call: DataExplorer (optional)
-#   Part 3  Figures                      (Session 10, plan)
+#   Part 3  Figures                      (Session 10)
+#             3a  The five parts of a plot, one layer at a time
+#             3b  Where the aesthetic lives
+#             3c  What plot, for what question
+#             3d  Facets
+#             3e  Labels and the three plotting sins
+#             3f  Saving a figure at the size it will be printed
+#             3g  Plots that check a model: residuals and the QQ plot
+#             3h  Reading the four plots from plot(fit): unusual schools
 #   Part 4  Univariate tests             (Session 11, plan)
 #   Part 5  Regression                   (Session 11, plan)
 #   Part 6  Multivariate and ML          (Session 12, plan)
 #   Part 7  Save results
 #
 # Needs these objects and packages from main.R: patients_raw, and readr, dplyr,
-# stringr and ggplot2. skimr, naniar and DataExplorer are optional. Each one is used
-# only if it is installed.
+# stringr and ggplot2. skimr, naniar, DataExplorer and patchwork are optional. Each one
+# is used only if it is installed.
 # =============================================================================
 
 if (!exists("patients_raw")) {
@@ -353,12 +361,273 @@ if (!requireNamespace("DataExplorer", quietly = TRUE)) {
 # -----------------------------------------------------------------------------
 # Part 3: Figures  (Session 10)
 # -----------------------------------------------------------------------------
-# Plots with ggplot2, each saved to figures/ with ggsave():
-#   - histogram of body_mass_g
-#   - boxplot of systolic blood pressure by group
-#   - scatterplot of flipper_length_mm against body_mass_g, colored by species
-#   - bar chart of schools by school_level
-# Every figure needs labeled axes and a title that states the finding.
+# Session 9's plots were for you. These are for a reader. Every figure is described by
+# five parts: data, aesthetics, geometry, statistics and coordinates. Each one is
+# saved to figures/ with a name that starts 10_.
+
+# --- 3a. The five parts of a plot, one layer at a time -----------------------
+section("3a: data, aesthetics, geometry, statistics, coordinates")
+
+# Data and aesthetics first. With no geometry there is nothing to draw but the axes.
+p <- ggplot(penguins, aes(x = bill_length_mm, y = body_mass_g, color = species))
+# + geom_point() adds the geometry, the mark. Each + adds one layer.
+save_plot(p + geom_point(), "10_points")
+# geom_smooth(method = "lm") is a geometry with a statistic behind it: it fits a
+# regression line for you. Both layers together are composable, points and lines.
+save_plot(p + geom_point() + geom_smooth(method = "lm", formula = y ~ x),
+          "10_points_and_lines")
+# The coordinates are the axes, linear by default. scale_x_log10() or coord_flip()
+# change them without touching the data.
+
+# A prompt for an AI assistant should name all five parts. "Make a nice bar chart"
+# names none of them.
+
+# --- 3b. Where the aesthetic lives -------------------------------------------
+section("3b: color in ggplot() or in one layer")
+
+# aes() inside ggplot() is inherited by every layer. color = species is global here,
+# so geom_smooth() draws one line per species (three lines).
+save_plot(ggplot(penguins, aes(bill_length_mm, body_mass_g, color = species)) +
+            geom_point() + geom_smooth(method = "lm", formula = y ~ x, se = FALSE),
+          "10_global_color")
+# aes() inside geom_point() belongs to that layer only, so geom_smooth() sees all the
+# penguins together and draws one line.
+save_plot(ggplot(penguins, aes(bill_length_mm, body_mass_g)) +
+            geom_point(aes(color = species)) +
+            geom_smooth(method = "lm", formula = y ~ x, se = FALSE),
+          "10_local_color")
+# The slopes behind the lines, in grams per millimeter of bill.
+print(round(coef(lm(body_mass_g ~ bill_length_mm, data = penguins))[2], 1))   # 87.4 overall
+print(penguins %>%
+        group_by(species) %>%
+        summarise(slope = round(coef(lm(body_mass_g ~ bill_length_mm))[2], 1)) %>%
+        as.data.frame())
+# Adelie 94.5, Chinstrap 59.1, Gentoo 109.5. The overall line mixes the difference
+# between species into the slope, which is Session 9's Simpson's paradox again.
+
+# --- 3c. What plot, for what question ----------------------------------------
+section("3c: choose the plot")
+
+# One continuous variable: a histogram.
+save_plot(ggplot(penguins, aes(body_mass_g)) + geom_histogram(bins = 30),
+          "10_histogram_body_mass")
+
+# Two continuous variables, colored by group: a scatter plot.
+save_plot(ggplot(penguins, aes(flipper_length_mm, body_mass_g, color = species)) +
+            geom_point(),
+          "10_flipper_vs_mass")
+
+# One categorical variable: a bar chart of counts. geom_bar() counts the rows, which
+# is the statistics part. Long labels go on the y axis, sorted by count.
+print(count(schools, school_level, sort = TRUE))
+# Elementary School 76, Charter 31, Middle School 31, High School 17, Non-Traditional 7,
+# Special Education 3, Alternative Learning Center 2, Adult 1, GATE Center 1
+save_plot(ggplot(schools, aes(y = reorder(school_level, school_level, FUN = length))) +
+            geom_bar() + labs(y = "School level", x = "Schools"),
+          "10_schools_by_level")
+
+# Continuous by categorical: the anti-pattern first, a bar chart of means.
+means <- patients %>%
+  group_by(group) %>%
+  summarise(mean = mean(systolic, na.rm = TRUE), sd = sd(systolic, na.rm = TRUE),
+            n = sum(!is.na(systolic)))
+print(means)   # A 129.4 (sd 15.1, n 121), B 134.2 (sd 11.9, n 120)
+bars <- ggplot(means, aes(group, mean)) + geom_col() +
+  geom_errorbar(aes(ymin = mean - sd, ymax = mean + sd), width = 0.2) +
+  labs(x = "Group", y = "Systolic pressure (mmHg), mean and sd")
+save_plot(bars, "10_bar_of_means")
+# Two bars and two error bars. Nothing says group A holds two kinds of patient.
+
+# The same data as points, colored by the original label from patients_raw. The 40
+# rows that read "A " (a trailing space) are the second recruitment site from Session 1.
+by_site <- patients_raw %>%
+  mutate(site = if_else(group == "A ", "second site", "first site"),
+         group = str_trim(group))
+points <- ggplot(by_site, aes(group, systolic, color = site)) +
+  geom_jitter(width = 0.15, height = 0, alpha = 0.7) +
+  labs(x = "Group", y = "Systolic pressure (mmHg)", color = "Site")
+save_plot(points, "10_points_by_site")
+print(by_site %>%
+        filter(group == "A") %>%
+        group_by(site) %>%
+        summarise(n = sum(!is.na(systolic)), mean = round(mean(systolic, na.rm = TRUE), 1)))
+# first site: n 81, mean 136.2 / second site: n 40, mean 115.5. The points show it and
+# the bars hide it. Under about 30 points per group, plot the points. With more, a box
+# plot at least.
+save_plot(ggplot(by_site, aes(group, systolic)) +
+            geom_boxplot(outlier.shape = NA) +
+            geom_jitter(aes(color = site), width = 0.15, height = 0, alpha = 0.6) +
+            labs(x = "Group", y = "Systolic pressure (mmHg)", color = "Site"),
+          "10_systolic_box_by_group")
+
+# --- 3d. Facets --------------------------------------------------------------
+section("3d: facets")
+
+# facet_wrap() makes one small plot per level. Every panel shares the same axes by
+# default, so the panels compare honestly.
+save_plot(ggplot(penguins, aes(bill_length_mm, body_mass_g)) +
+            geom_point(alpha = 0.6) + facet_wrap(~ species),
+          "10_facet_wrap", width = 7, height = 3)
+# facet_grid(rows ~ columns) uses two grouping variables.
+print(table(penguins$species, penguins$island))
+# Adelie is on all three islands (44, 56, 52), Chinstrap only on Dream (68) and Gentoo
+# only on Biscoe (124). So 5 of the 9 panels hold data. A grid shows which combinations
+# exist, and for Chinstrap and Gentoo an island effect cannot be separated from a species
+# effect.
+save_plot(ggplot(penguins, aes(bill_length_mm, body_mass_g)) +
+            geom_point(alpha = 0.6) + facet_grid(island ~ species),
+          "10_facet_grid", width = 7, height = 5)
+# Past 3 or 4 groups, facet instead of coloring.
+
+# --- 3e. Labels and the three plotting sins ----------------------------------
+section("3e: labels, scales and chart junk")
+
+# A figure for a reader names each axis with units and states the finding. The viridis
+# palette survives grayscale printing and most kinds of color blindness.
+polished <- ggplot(penguins, aes(bill_length_mm, body_mass_g, color = species)) +
+  geom_point(alpha = 0.7) +
+  scale_color_viridis_d(end = 0.85) +
+  labs(title = "Longer bills go with heavier penguins in all three species",
+       x = "Bill length (mm)", y = "Body mass (g)", color = "Species") +
+  theme_minimal(base_size = 12)
+save_plot(polished, "10_polished")
+
+# The three sins: chart junk (3D bars, shadows, gridlines with no data), ambiguous
+# labels ("value" is not a label), and misleading scales. Here is the same bar chart
+# of means twice. Bars must start at zero, because their length is the data.
+group_means <- patients %>% group_by(group) %>% summarise(mean = mean(systolic, na.rm = TRUE))
+honest <- ggplot(group_means, aes(group, mean)) + geom_col() +
+  labs(x = "Group", y = "Mean systolic pressure (mmHg)")
+save_plot(honest, "10_bars_from_zero", width = 3.5, height = 3.2)
+save_plot(honest + coord_cartesian(ylim = c(125, 135)), "10_bars_truncated",
+          width = 3.5, height = 3.2)
+print(round(group_means$mean, 1))                                              # 129.4 134.2
+print(round(group_means$mean[2] / group_means$mean[1], 3))                     # 1.037
+print(round((group_means$mean[2] - 125) / (group_means$mean[1] - 125), 1))     # 2.1
+# Cut at 125 and B's bar looks 2.1 times as tall as A's, for a 3.7% difference.
+
+# --- 3f. Saving a figure at the size it will be printed ----------------------
+section("3f: ggsave() and combining panels")
+
+# ggsave() takes the size in inches, so the text stays readable at the size on the
+# page. Many journals ask for about 3.5 inches (one column) or 7 inches (two columns).
+# dpi = 300 is the usual minimum for a raster figure: 7 inches is 2100 pixels wide.
+dir.create("figures", showWarnings = FALSE)
+suppressWarnings(ggsave("figures/10_figure1.png", polished, width = 7, height = 4, dpi = 300))
+# A vector format has no resolution, so it stays sharp at any size.
+suppressWarnings(ggsave("figures/10_figure1.pdf", polished, width = 7, height = 4))
+cat("saved figures/10_figure1.png (2100 x 1200 pixels) and figures/10_figure1.pdf\n")
+# Save with code, not the export button: a script rebuilds the figure when a
+# reviewer asks for a change.
+
+# patchwork (optional) puts two plots in one figure. a | b is side by side, a / b is
+# stacked, and plot_annotation() adds the panel letters. Fall 2025 Session 8 used it.
+# Session 13 comes back to it. install.packages("patchwork")
+if (requireNamespace("patchwork", quietly = TRUE)) {
+  library(patchwork)
+  combo <- (bars | points) + plot_annotation(tag_levels = "A")
+  suppressWarnings(ggsave("figures/10_combined.png", combo, width = 9, height = 3.8, dpi = 150))
+  cat("saved figures/10_combined.png\n")
+}
+
+# --- 3g. Plots that check a model: residuals and the QQ plot -----------------
+section("3g: diagnostic plots")
+
+# A residual is what the model did not explain: observed minus fitted. Diagnostic
+# plots look at the residuals to see whether the model is a fair description. This is
+# the Fall 2025 Session 10 material. Session 11 fits models in earnest.
+fit <- lm(body_mass_g ~ flipper_length_mm, data = penguins)
+print(round(summary(fit)$r.squared, 3))   # 0.759
+print(round(coef(fit), 2))                # intercept -5780.83, slope 49.69 g per mm
+
+# plot(fit) draws four standard plots from a fitted model: residuals vs fitted, the QQ
+# plot, scale-location and residuals vs leverage. Part 3h reads all four.
+png("figures/10_diagnostics_base.png", width = 9, height = 6, units = "in", res = 120)
+par(mfrow = c(2, 2))
+plot(fit)
+dev.off()
+cat("saved figures/10_diagnostics_base.png\n")
+
+# Residuals vs fitted: you want a shapeless cloud around zero. A curve means the line
+# is the wrong shape and a funnel means the spread changes. Colored by species, the
+# residuals show structure the line missed.
+resid_df <- penguins %>%
+  filter(!is.na(body_mass_g), !is.na(flipper_length_mm)) %>%
+  mutate(fitted = fitted(fit), resid = resid(fit))
+save_plot(ggplot(resid_df, aes(fitted, resid, color = species)) +
+            geom_hline(yintercept = 0, linetype = "dashed") + geom_point() +
+            labs(x = "Fitted body mass (g)", y = "Residual (g)", color = "Species"),
+          "10_residuals_vs_fitted")
+print(resid_df %>% group_by(species) %>% summarise(mean_resid = round(mean(resid))))
+# Adelie 44, Chinstrap -216, Gentoo 66. Chinstrap sits below the line. Adding species
+# raises R-squared from 0.759 to 0.783 (Session 11).
+print(round(summary(lm(body_mass_g ~ flipper_length_mm + species, data = penguins))$r.squared, 3))
+
+# QQ plot: sorted values against what a normal distribution would give. Points on the
+# line mean normal. Ends that peel away mean skew or extreme values. This is systolic
+# pressure by group, the data behind the Session 1 test.
+save_plot(ggplot(filter(patients, !is.na(systolic)), aes(sample = systolic)) +
+            stat_qq() + stat_qq_line() + facet_wrap(~ group) +
+            labs(x = "Theoretical quantiles", y = "Systolic pressure (mmHg)"),
+          "10_qq_by_group", width = 6, height = 3)
+a_sys <- patients %>% filter(group == "A", !is.na(systolic)) %>% pull(systolic)
+b_sys <- patients %>% filter(group == "B", !is.na(systolic)) %>% pull(systolic)
+print(round(c(A = shapiro.test(a_sys)$p.value, B = shapiro.test(b_sys)$p.value), 3))   # A 0.018, B 0.471
+# Group A's ends curl away from the line (p = 0.018) and group B follows it. A QQ plot
+# drawn before the t-test would have flagged group A, as Session 9's histogram did.
+# Cook's distance in the flipper model peaks at 0.039, far below 1: no one penguin pulls
+# the fit.
+
+# --- 3h. Reading the four plots from plot(fit): unusual schools --------------
+section("3h: leverage and Cook's distance")
+
+# A model with some unusual points: the number of students with a disability against
+# total enrollment at the 169 Metro Nashville schools. total is the sum of the 15 grade
+# columns. A missing grade count means the grade is not offered, so na.rm = TRUE.
+schools_fit <- schools %>%
+  mutate(total = rowSums(across(starts_with("grade_")), na.rm = TRUE))
+fit2 <- lm(disability ~ total, data = schools_fit)
+print(round(summary(fit2)$r.squared, 3))   # 0.598
+print(round(coef(fit2), 4))                # intercept 8.2973, slope 0.1097
+
+# The four panels. Each checks a different assumption, and the same school can show up in
+# several. The numbers on the points are row numbers. Then Cook's distance as bars.
+png("figures/10_four_plots_schools.png", width = 9, height = 6, units = "in", res = 150)
+par(mfrow = c(2, 2))
+plot(fit2)
+dev.off()
+png("figures/10_cooks_distance_schools.png", width = 7, height = 3, units = "in", res = 150)
+plot(fit2, which = 4)
+dev.off()
+cat("saved figures/10_four_plots_schools.png and figures/10_cooks_distance_schools.png\n")
+
+# Who are the unusual points?
+cd <- cooks.distance(fit2)
+top <- order(cd, decreasing = TRUE)[1:3]
+print(top)                       # 102 53 99
+print(round(cd[top], 3))         # 0.398 0.314 0.303: none reaches 0.5
+print(schools_fit %>%
+        slice(top) %>%
+        transmute(school_name, school_level, total, disability,
+                  fitted = round(fitted(fit2)[top], 1),
+                  residual = round(resid(fit2)[top], 1),
+                  leverage = round(hatvalues(fit2)[top], 3)))
+# McGavock High (102): 2276 students, the most leverage (0.166), near the line.
+# Harris-Hillman Special Education (53): 335 students with a disability against 95.9
+#   predicted, a residual of +239.1, but ordinary leverage (0.010).
+# Martin Luther King Jr School (99): 23 with a disability against 146.7, a residual of -123.7.
+# A point needs both a large residual and high leverage to be influential. All three are
+# real schools, not entry errors, and none crosses a Cook's contour.
+
+# What to do with an unusual point: check it, refit without it, and report both fits.
+refit <- function(drop) {
+  f <- lm(disability ~ total, data = schools_fit[-drop, ])
+  round(c(slope = unname(coef(f)[2]), r_squared = summary(f)$r.squared), 3)
+}
+print(refit(102))            # without McGavock:        slope 0.104, R-squared 0.533
+print(refit(53))             # without Harris-Hillman:  slope 0.106, R-squared 0.686
+print(refit(c(53, 102)))     # without both:            slope 0.099, R-squared 0.627
+# The full fit is slope 0.110 and R-squared 0.598.
 
 
 # -----------------------------------------------------------------------------

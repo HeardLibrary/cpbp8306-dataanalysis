@@ -79,6 +79,8 @@ library(ggplot2)  # plots: ggplot(), geom_histogram(), geom_boxplot(), ggsave()
 #   install.packages("DataExplorer")   introduce(), plot_missing(), plot_bar() and
 #                                      create_report() give a quick first look at a
 #                                      whole data frame. Fall 2025 used it too.
+#   install.packages("patchwork")   puts two plots in one figure, a | b or a / b.
+#                                   Part 3f saves one. Fall 2025 used it too.
 #
 # A package that 2_statistics.R will need later (not used yet):
 #   glmnet (LASSO, Session 12)
@@ -158,9 +160,9 @@ cat("Loaded:", nrow(penguins_raw), "penguins,", nrow(patients_raw), "patients,",
 #                       It changes nothing, so you can skip it.
 # 1_data_cleaning.R     Sessions 7 and 8: subset, rename, change, combine, reshape
 #                       and save. It writes the cleaned files to data/clean/.
-# 2_statistics.R        Sessions 9 to 12. Session 9 (exploratory data analysis)
-#                       is code and saves plots in figures/. The rest is comments
-#                       until the course reaches it.
+# 2_statistics.R        Sessions 9 to 12. Sessions 9 (exploratory data analysis)
+#                       and 10 (figures) are code and save plots in figures/. The
+#                       rest is comments until the course reaches it.
 source("scripts/0_language_basics.R")
 source("scripts/1_data_cleaning.R")
 source("scripts/2_statistics.R")

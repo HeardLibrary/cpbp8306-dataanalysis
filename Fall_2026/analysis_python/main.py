@@ -61,7 +61,7 @@ import numpy as np       # fast arrays and math. Boolean masks, np.where, np.sel
 import pandas as pd      # tables (DataFrames): read_csv, filter, group, merge, melt
 from scipy import stats  # statistical tests: ttest_ind in Lecture 1 and Session 9
 import matplotlib.pyplot as plt   # saving plots with plt.savefig()
-import seaborn as sns             # histplot, boxplot, scatterplot and heatmap
+import seaborn as sns             # histplot, boxplot, scatterplot, heatmap and facets
 
 # Other libraries that some lecture examples mention. They are commented out
 # because the scripts do not need them:
@@ -72,6 +72,8 @@ import seaborn as sns             # histplot, boxplot, scatterplot and heatmap
 # A library that 2_statistics.py uses only if it is installed:
 #   ydata-profiling   ProfileReport() writes a full HTML report of the data, the
 #                     Python cousin of R's DataExplorer:  pip install ydata-profiling
+#   statsmodels       Part 3g uses it for Cook's distance, the one diagnostic number
+#                     scipy cannot give:  pip install statsmodels
 #
 # Libraries that 2_statistics.py will need later (not used yet):
 #   statsmodels (regression, Session 11), scikit-learn (PCA, clustering, LASSO,
@@ -141,9 +143,9 @@ print(f"Loaded: {len(penguins_raw)} penguins, {len(patients_raw)} patients, {len
 #                        It changes nothing, so you can skip it.
 # 1_data_cleaning.py     Sessions 7 and 8: subset, rename, change, combine,
 #                        reshape and save. It writes the cleaned files to data/clean/.
-# 2_statistics.py        Sessions 9 to 12. Session 9 (exploratory data analysis)
-#                        is code and saves plots in figures/. The rest is comments
-#                        until the course reaches it.
+# 2_statistics.py        Sessions 9 to 12. Sessions 9 (exploratory data analysis)
+#                        and 10 (figures) are code and save plots in figures/. The
+#                        rest is comments until the course reaches it.
 runpy.run_path("scripts/0_language_basics.py", init_globals=globals())
 runpy.run_path("scripts/1_data_cleaning.py", init_globals=globals())
 runpy.run_path("scripts/2_statistics.py", init_globals=globals())
